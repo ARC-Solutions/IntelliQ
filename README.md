@@ -1,5 +1,5 @@
-# ARCMovies-API
-A Movie API Created by ARC
+# IntelliQ
+Quiz Yourself on Your Chosen Topic with IntelliQ
 
 ### Semantic Branch Names
 Format: `<type>/#<issueNumber>-<alias>`
