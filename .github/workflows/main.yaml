@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
       - name: Set PR message
         run: |
           ticket=$(echo ${{ github.head_ref }} | grep -o 'ITP-[0-9]*')
