@@ -1,6 +1,9 @@
 # IntelliQ
 Quiz Yourself on Your Chosen Topic with IntelliQ
 
+### Semantic JIRA Commit Messages
+git commit -m "ITP-*Ticket Number* <message>"
+
 ### Semantic Branch Names
 Format: `<type>/#<issueNumber>-<alias>`
 #### Example
