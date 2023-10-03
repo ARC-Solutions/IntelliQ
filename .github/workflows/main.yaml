@@ -1,20 +1,25 @@
-name: "Auto PR Message"
+name: "Auto PR Creation and Comment"
+
 on:
-  pull_request:
-    types: [opened]
+  push:
+    branches:
+      - 'ITP-*'
 
 jobs:
-  auto-pr-message:
+  auto-pr-create-and-comment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Install GitHub CLI
         run: sudo apt-get update && sudo apt-get install -y gh
-      - name: Set PR message
+
+      - name: Setup GitHub CLI
+        run: gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create PR with Comment
         run: |
-          ticket=$(echo ${{ github.head_ref }} | grep -o 'ITP-[0-9]*')
-          echo "Link to the ticket: [JIRA Ticket](https://arc-solutions.atlassian.net/browse/$ticket)" > pr_message.txt
-      - name: Update PR
-        run: |
-          gh pr edit ${{ github.event.pull_request.number }} --body-file pr_message.txt
+          ticket=$(echo ${{ github.ref }} | grep -o 'ITP-[0-9]*')
+          pr_url=$(gh pr create --base main --head ${{ github.ref }} --title "PR for $ticket" --body "Link to the ticket: [JIRA Ticket](https://arc-solutions.atlassian.net/browse/$ticket)" --repo ${{ github.repository }} --json url -q '.url')
+          echo "Created PR: $pr_url"
