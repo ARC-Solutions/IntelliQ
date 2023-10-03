@@ -1,0 +1,18 @@
+name: "Auto PR Message"
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  auto-pr-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set PR message
+        run: |
+          ticket=$(echo ${{ github.head_ref }} | grep -o 'ITP-[0-9]*')
+          echo "Link to the ticket: [JIRA Ticket](https://arc-solutions.atlassian.net/browse/$ticket)" > pr_message.txt
+      - name: Update PR
+        run: |
+          gh pr edit ${{ github.event.pull_request.number }} --body-file pr_message.txt
