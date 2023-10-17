@@ -12,9 +12,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup GitHub CLI
-        run: gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create PR with Comment
         run: |
           ticket=$(echo ${{ github.ref }} | grep -o 'ITP-[0-9]*')
