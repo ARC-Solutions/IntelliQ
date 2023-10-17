@@ -3,7 +3,7 @@ name: "Auto PR Creation and Comment"
 on:
   push:
     branches:
-      - 'ITP-*'
+      - main  # Set to your default branch
 
 jobs:
   auto-pr-create-and-comment:
