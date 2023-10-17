@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import Logo from "../../../public/IntelliQ_Logo.png";
 type Props = {};
 
 const Navbar = async (props: Props) => {
@@ -10,7 +9,7 @@ const Navbar = async (props: Props) => {
       <div className="flex items-center justify-center h-full gap-2 px-8 mx-auto max-w-7-xl">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src={Logo}
+            src="https://raw.githubusercontent.com/ARC-Solutions/IntelliQ/main/public/IntelliQ_Logo.png"
             style={{ width: "150px", height: "auto" }}
             alt="IntelliQ_Logo"
           />
