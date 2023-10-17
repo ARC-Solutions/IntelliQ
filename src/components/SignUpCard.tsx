@@ -49,7 +49,7 @@ const SignUpCard = () => {
     <Card className="w-[500px]">
       <CardHeader>
         <CardTitle>ARC-Solutions</CardTitle>
-        <CardDescription>Let's Sign You In</CardDescription>
+        <CardDescription>Let&apos;s Sign You In</CardDescription>
         <Button>
           <FcGoogle size="" />
         </Button>
