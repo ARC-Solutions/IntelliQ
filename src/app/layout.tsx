@@ -17,7 +17,8 @@ export const metadata: Metadata = {
     siteName: 'IntelliQ',
     locale: 'en-US',
     type: 'website',
-  },
+  }
+};
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import type { Metadata } from "next";
