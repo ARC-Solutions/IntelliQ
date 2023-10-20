@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -65,6 +65,10 @@ export const AuthProvider = ({ children }: Props) => {
     }
   };
   const signinUsingOAuth = async ({ email, password }: UserInput) => {};
+
+  const storeSessionToken = ()=>{
+    
+  }
   const value = {
     currentUser,
     setCurrentUser,
