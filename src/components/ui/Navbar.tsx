@@ -9,8 +9,9 @@ const Navbar = async (props: Props) => {
       <div className="flex items-center justify-center h-full gap-2 px-8 mx-auto max-w-7-xl">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="https://raw.githubusercontent.com/ARC-Solutions/IntelliQ/main/public/IntelliQ_Logo.png"
-            style={{ width: "150px", height: "auto" }}
+            src="/IntelliQ_Logo.png"
+            width={150}
+            height={150}
             alt="IntelliQ_Logo"
           />
         </Link>
