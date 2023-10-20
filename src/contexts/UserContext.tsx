@@ -13,16 +13,33 @@ interface UserInput {
   password: string;
 }
 interface AuthContextValue {
-  currentUser: User | undefined;
-  setCurrentUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+  currentUser: User | null;
+  setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
   signinUsingEmail: ({ email, password }: UserInput) => void;
   signupUsingEmail: ({ email, password }: UserInput) => void;
   signinUsingOAuth: ({ email, password }: UserInput) => void;
 }
-const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider = ({ children }: Props) => {
-  const [currentUser, setCurrentUser] = useState<User | undefined>(undefined);
+  const [currentUser, setCurrentUser] = useState<User | null>(
+    getUserSessionToken()
+  );
 
+  const storeSessionToken = (sessionToken: string) => {
+    localStorage.setItem("current-user", JSON.stringify(sessionToken));
+  };
+  function getUserSessionToken() {
+    let user;
+    const storedUser = localStorage.getItem("current-user");
+
+    if (storedUser) {
+      user = JSON.parse(storedUser);
+    } else {
+      user = null;
+    }
+
+    return user;
+  }
   const signupUsingEmail = async ({ email, password }: UserInput) => {
     const response = await fetch(
       "https://intelliq-be.azurewebsites.net/api/signup",
@@ -45,7 +62,6 @@ export const AuthProvider = ({ children }: Props) => {
     storeSessionToken(data.sessionToken);
   };
   const signinUsingEmail = async ({ email, password }: UserInput) => {
-    console.log("sign in");
     const response = await fetch(
       "https://intelliq-be.azurewebsites.net/api/signin",
       {
@@ -65,10 +81,6 @@ export const AuthProvider = ({ children }: Props) => {
     storeSessionToken(data.sessionToken);
   };
   const signinUsingOAuth = async ({ email, password }: UserInput) => {};
-
-  const storeSessionToken = (sessionToken: string) => {
-    localStorage.setItem("current-user", JSON.stringify(sessionToken));
-  };
   const value = {
     currentUser,
     setCurrentUser,
