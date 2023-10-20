@@ -67,18 +67,20 @@ const SignUpCard = () => {
               />
             </div>
             <div>
-              <Label htmlFor="name">Your Password</Label>
+              <Label htmlFor="password">Your Password</Label>
               <Input
-                id="name"
+                id="password"
+                type="password"
                 placeholder="Enter your Password"
                 ref={passwordRef}
               />
             </div>
             {isANewUser && (
               <div>
-                <Label htmlFor="name">Confirm Password</Label>
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
                 <Input
-                  id="name"
+                  id="confirmPassword"
+                  type="password"
                   placeholder="Confirm your Password"
                   ref={confirmPasswordRef}
                 />
