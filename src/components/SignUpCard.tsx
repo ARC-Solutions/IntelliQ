@@ -12,9 +12,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "../contexts/UserContext";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 const SignUpCard = () => {
   const [isANewUser, setIsAnewUser] = useState(false);
   const {
@@ -36,6 +37,7 @@ const SignUpCard = () => {
       toast.error("Please fill out all the fields");
       return;
     }
+
     if (isANewUser) {
       confirmPassword === password
         ? signupUsingEmail({ email, password })
@@ -44,6 +46,8 @@ const SignUpCard = () => {
       signinUsingEmail({ email, password });
     }
   };
+
+ 
 
   return (
     <Card className="w-[500px]">
