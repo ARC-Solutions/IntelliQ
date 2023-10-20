@@ -47,7 +47,11 @@ const SignUpCard = () => {
     }
   };
 
- 
+  useEffect(() => {
+    if (currentUser) {
+      redirect("/dashboard");
+    }
+  }, [currentUser]);
 
   return (
     <Card className="w-[500px]">
