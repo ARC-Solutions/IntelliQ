@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
-
+import { toast } from "react-toastify";
 type Props = {
   children: React.ReactNode;
 };
@@ -24,51 +24,51 @@ export const AuthProvider = ({ children }: Props) => {
   const [currentUser, setCurrentUser] = useState<User | undefined>(undefined);
 
   const signupUsingEmail = async ({ email, password }: UserInput) => {
-    try {
-      console.log("sign up");
+    const response = await fetch(
+      "https://intelliq-be.azurewebsites.net/api/signup",
+      {
+        method: "POST",
 
-      const response = await fetch(
-        "https://intelliq-be.azurewebsites.net/api/signup",
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
+    const data = await response.json();
+    if (data.error) {
+      toast.error(data.error);
+      return;
     }
+
+    setCurrentUser({ email: data.email, id: data.userID });
+    storeSessionToken(data.sessionToken);
   };
   const signinUsingEmail = async ({ email, password }: UserInput) => {
-    try {
-      console.log("sign in");
-      const response = await fetch(
-        "https://intelliq-be.azurewebsites.net/api/signin",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+    console.log("sign in");
+    const response = await fetch(
+      "https://intelliq-be.azurewebsites.net/api/signin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
+    const data = await response.json();
+    if (data.error) {
+      toast.error(data.error);
+      return;
     }
+    setCurrentUser({ email: data.email, id: data.userID });
+    storeSessionToken(data.sessionToken);
   };
   const signinUsingOAuth = async ({ email, password }: UserInput) => {};
 
-  const storeSessionToken = ()=>{
-    
-  }
+  const storeSessionToken = (sessionToken: string) => {
+    localStorage.setItem("current-user", JSON.stringify(sessionToken));
+  };
   const value = {
     currentUser,
     setCurrentUser,
