@@ -1,11 +1,19 @@
-import React from 'react'
+import { useAuth } from "../../contexts/UserContext";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
-const page = (props: Props) => {
-  return (
-    <div>page</div>
-  )
-}
+const Dashboard = (props: Props) => {
+  const {
+    currentUser,
+    setCurrentUser,
+    signinUsingEmail,
+    signinUsingOAuth,
+    signupUsingEmail,
+  } = useAuth();
+  console.log(currentUser);
 
-export default page
+  return <div>page</div>;
+};
+
+export default Dashboard;
