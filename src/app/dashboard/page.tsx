@@ -3,9 +3,7 @@ import { useAuth } from "@/contexts/UserContext";
 import { redirect } from "next/navigation";
 import React, { useEffect } from "react";
 
-type Props = {};
-
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
