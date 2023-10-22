@@ -28,7 +28,28 @@ const SignUpCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
-  const handleSubmit = () => {
+  const handleSubmit = async (isGoogleOAuth: boolean = false) => {
+    if (isGoogleOAuth) {
+      try {
+        const response = await fetch("https://intelliq-be.azurewebsites.net/api/signin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ provider: "google" }),
+        });
+        const data = await response.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        }
+        return;
+      } catch (error) {
+        toast.error("Failed to initiate Google sign in.");
+        return;
+      }
+    }
+
     const email = emailRef.current?.value as string;
     const password = passwordRef.current?.value as string;
     const confirmPassword = confirmPasswordRef.current?.value as string;
@@ -40,8 +61,8 @@ const SignUpCard = () => {
 
     if (isANewUser) {
       confirmPassword === password
-        ? signupUsingEmail({ email, password })
-        : toast.error("Your Password does not match");
+          ? signupUsingEmail({ email, password })
+          : toast.error("Your Password does not match");
     } else {
       signinUsingEmail({ email, password });
     }
@@ -58,7 +79,7 @@ const SignUpCard = () => {
       <CardHeader>
         <CardTitle>ARC-Solutions</CardTitle>
         <CardDescription>Let&apos;s Sign You In</CardDescription>
-        <Button>
+        <Button onClick={() => handleSubmit(true)}>
           <FcGoogle size="" />
         </Button>
       </CardHeader>
@@ -96,7 +117,7 @@ const SignUpCard = () => {
             )}
           </div>
         </form>
-        <Button onClick={handleSubmit}>
+        <Button onClick={() => handleSubmit(false)}>
           {isANewUser ? "Sign Up" : "Sign In"}
         </Button>
       </CardContent>

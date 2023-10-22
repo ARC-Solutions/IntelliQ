@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { supabase } from "@/utils/supabaseClient";
 type Props = {
   children: React.ReactNode;
 };
@@ -96,7 +97,22 @@ export const AuthProvider = ({ children }: Props) => {
     });
     storeSessionToken(data.sessionToken);
   };
-  const signinUsingOAuth = async ({ email, password }: UserInput) => {};
+  const signinUsingOAuth = async () => {
+    const { user, session, error } = await (supabase.auth.signInWithOAuth({
+      provider: 'google'
+    }) as any);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    setCurrentUser({
+      email: user.email,
+      id: user.id,
+      img: null,
+    });
+    storeSessionToken(session.access_token);
+  };
+
 
   const signout = async () => {
     await fetch("https://intelliq-be.azurewebsites.net/api/logout", {
