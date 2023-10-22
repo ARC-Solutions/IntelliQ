@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import UserAvatar from "../UserAvatar";
+
 type Props = {};
 
 const Navbar = async (props: Props) => {
@@ -15,6 +17,7 @@ const Navbar = async (props: Props) => {
             alt="IntelliQ_Logo"
           />
         </Link>
+        <UserAvatar />
       </div>
     </div>
   );

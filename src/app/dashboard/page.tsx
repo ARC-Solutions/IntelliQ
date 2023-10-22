@@ -1,15 +1,16 @@
 "use client";
 import { useAuth } from "@/contexts/UserContext";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
-type Props = {};
-
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   const { currentUser } = useAuth();
-  if(!currentUser){
-    redirect("/");
-  }
+
+  useEffect(() => {
+    if (!currentUser) {
+      redirect("/");
+    }
+  }, [currentUser]);
   return <div>Dashboard</div>;
 };
 
