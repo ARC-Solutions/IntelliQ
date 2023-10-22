@@ -12,7 +12,7 @@ import {
 import { useAuth } from "@/contexts/UserContext";
 import Image from "next/image";
 const UserAvatar = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, signout } = useAuth();
   if (currentUser) {
     return (
       <Avatar>
@@ -34,7 +34,7 @@ const UserAvatar = () => {
           <DropdownMenuContent>
             <DropdownMenuLabel>{currentUser.email}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={signout}>
               Sign out <IoExitOutline />
             </DropdownMenuItem>
           </DropdownMenuContent>

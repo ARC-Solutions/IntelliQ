@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 type Props = {
   children: React.ReactNode;
@@ -19,17 +19,19 @@ interface AuthContextValue {
   signinUsingEmail: ({ email, password }: UserInput) => void;
   signupUsingEmail: ({ email, password }: UserInput) => void;
   signinUsingOAuth: ({ email, password }: UserInput) => void;
+  signout: () => void;
 }
 const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider = ({ children }: Props) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(
-    getUserSessionToken()
-  );
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const storeSessionToken = (sessionToken: string) => {
     if (typeof window !== "undefined") {
       localStorage.setItem("current-user", JSON.stringify(sessionToken));
     }
+  };
+  const removeSessionToken = () => {
+    localStorage.removeItem("current-user");
   };
   function getUserSessionToken() {
     let user;
@@ -45,6 +47,7 @@ export const AuthProvider = ({ children }: Props) => {
       return user;
     }
   }
+
   const signupUsingEmail = async ({ email, password }: UserInput) => {
     const response = await fetch(
       "https://intelliq-be.azurewebsites.net/api/signup",
@@ -90,17 +93,34 @@ export const AuthProvider = ({ children }: Props) => {
       email: data.email,
       id: data.userID,
       img: null,
+
     });
     storeSessionToken(data.sessionToken);
   };
   const signinUsingOAuth = async ({ email, password }: UserInput) => {};
+
+  const signout = async () => {
+    await fetch("https://intelliq-be.azurewebsites.net/api/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setCurrentUser(null);
+    removeSessionToken();
+  };
   const value = {
     currentUser,
     setCurrentUser,
     signinUsingEmail,
     signinUsingOAuth,
     signupUsingEmail,
+    signout,
   };
+
+  useEffect(() => {
+    console.log(getUserSessionToken());
+  }, []);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
