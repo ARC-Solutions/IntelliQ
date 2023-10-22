@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: Props) => {
     setCurrentUser({
       email: data.email,
       id: data.userID,
-      img: "../../public/favicon.png",
+      img: null,
     });
     storeSessionToken(data.sessionToken);
   };
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }: Props) => {
     setCurrentUser({
       email: data.email,
       id: data.userID,
-      img: "../../public/favicon.png",
+      img: null,
     });
     storeSessionToken(data.sessionToken);
   };
