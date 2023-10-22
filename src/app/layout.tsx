@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/ui/Navbar";
@@ -23,9 +23,23 @@ export const metadata: Metadata = {
     description: 'Test your expertise across various subjects with IntelliQ',
     url: 'www.intelliq.arc-solutions.xyz/',
     siteName: 'IntelliQ',
+    images: [
+      {
+        url: 'https://www.intelliq.arc-solutions.xyz/intelliq_og.png',
+        width: 1920,
+        height: 1080,
+      }
+    ],
     locale: 'en-US',
     type: 'website',
   },
+  twitter: {
+    title: 'IntelliQ',
+    card: 'summary_large_image',
+  },
+  icons: {
+    shortcut: '/favicon.png',
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

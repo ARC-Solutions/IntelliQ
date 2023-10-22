@@ -26,19 +26,23 @@ export const AuthProvider = ({ children }: Props) => {
   );
 
   const storeSessionToken = (sessionToken: string) => {
-    localStorage.setItem("current-user", JSON.stringify(sessionToken));
+    if(typeof window !== 'undefined'){
+      localStorage.setItem("current-user", JSON.stringify(sessionToken));
+    }
   };
   function getUserSessionToken() {
     let user;
-    const storedUser = localStorage.getItem("current-user");
+    if(typeof window !== 'undefined'){
+      const storedUser = localStorage.getItem("current-user");
 
-    if (storedUser) {
-      user = JSON.parse(storedUser);
-    } else {
-      user = null;
+      if (storedUser) {
+        user = JSON.parse(storedUser);
+      } else {
+        user = null;
+      }
+
+      return user;
     }
-
-    return user;
   }
   const signupUsingEmail = async ({ email, password }: UserInput) => {
     const response = await fetch(
@@ -96,5 +100,5 @@ export const useAuth = (): AuthContextValue => {
   if (authContext === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-  return authContext;
+  return authContext as AuthContextValue;
 };
