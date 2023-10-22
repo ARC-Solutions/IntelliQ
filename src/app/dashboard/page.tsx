@@ -7,7 +7,7 @@ type Props = {};
 
 const Dashboard = (props: Props) => {
   const { currentUser } = useAuth();
-  if(!currentUser){
+  if (!currentUser) {
     redirect("/");
   }
   return <div>Dashboard</div>;

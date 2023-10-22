@@ -7,6 +7,7 @@ type Props = {
 interface User {
   id: string;
   email: string;
+  img: string | null;
 }
 interface UserInput {
   email: string;
@@ -26,13 +27,13 @@ export const AuthProvider = ({ children }: Props) => {
   );
 
   const storeSessionToken = (sessionToken: string) => {
-    if(typeof window !== 'undefined'){
+    if (typeof window !== "undefined") {
       localStorage.setItem("current-user", JSON.stringify(sessionToken));
     }
   };
   function getUserSessionToken() {
     let user;
-    if(typeof window !== 'undefined'){
+    if (typeof window !== "undefined") {
       const storedUser = localStorage.getItem("current-user");
 
       if (storedUser) {
@@ -62,7 +63,11 @@ export const AuthProvider = ({ children }: Props) => {
       return;
     }
 
-    setCurrentUser({ email: data.email, id: data.userID });
+    setCurrentUser({
+      email: data.email,
+      id: data.userID,
+      img: "../../public/favicon.png",
+    });
     storeSessionToken(data.sessionToken);
   };
   const signinUsingEmail = async ({ email, password }: UserInput) => {
@@ -81,7 +86,11 @@ export const AuthProvider = ({ children }: Props) => {
       toast.error(data.error);
       return;
     }
-    setCurrentUser({ email: data.email, id: data.userID });
+    setCurrentUser({
+      email: data.email,
+      id: data.userID,
+      img: "../../public/favicon.png",
+    });
     storeSessionToken(data.sessionToken);
   };
   const signinUsingOAuth = async ({ email, password }: UserInput) => {};
