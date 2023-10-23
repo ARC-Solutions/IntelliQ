@@ -19,7 +19,15 @@ const UserAvatar = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             {currentUser?.img ? (
-              <AvatarImage src={currentUser.img} />
+              <div className="relative w-full h-full aspect-square">
+                <Image
+                priority
+                  src={currentUser.img}
+                  fill
+                  alt="user"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
             ) : (
               <AvatarImage src="https://github.com/shadcn.png" />
             )}

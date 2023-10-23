@@ -134,7 +134,11 @@ export const AuthProvider = ({ children }: Props) => {
         },
       }
     );
-    const { userID, email } = await response.json();
+    const {
+      user: {
+        user: { userID, email },
+      },
+    } = await response.json();
     setCurrentUser({ id: userID, email, img: null, name: null });
   };
   const value = {
@@ -151,6 +155,7 @@ export const AuthProvider = ({ children }: Props) => {
       userInfos();
     }
   }, []);
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
