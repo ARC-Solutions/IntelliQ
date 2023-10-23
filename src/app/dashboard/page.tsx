@@ -2,15 +2,7 @@
 import { useAuth } from "@/contexts/UserContext";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-import { BsFillQuestionDiamondFill } from "react-icons/bs";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import QuizMe from "@/components/QuizMe";
 const Dashboard = () => {
   const { currentUser } = useAuth();
 
@@ -20,19 +12,9 @@ const Dashboard = () => {
     }
   }, [currentUser]);
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>
-          Quiz Me!
-          <BsFillQuestionDiamondFill />
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <CardDescription>
-          Challenge yourself to a quiz with a topic of your choice
-        </CardDescription>
-      </CardContent>
-    </Card>
+    <div>
+      <QuizMe />
+    </div>
   );
 };
 
