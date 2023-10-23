@@ -31,13 +31,16 @@ const SignUpCard = () => {
   const handleSubmit = async (isGoogleOAuth: boolean = false) => {
     if (isGoogleOAuth) {
       try {
-        const response = await fetch("https://intelliq-be.azurewebsites.net/api/signin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ provider: "google" }),
-        });
+        const response = await fetch(
+          "https://intelliq-be.azurewebsites.net/api/signin",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ provider: "google" }),
+          }
+        );
         const data = await response.json();
 
         if (data.url) {
@@ -61,8 +64,8 @@ const SignUpCard = () => {
 
     if (isANewUser) {
       confirmPassword === password
-          ? signupUsingEmail({ email, password })
-          : toast.error("Your Password does not match");
+        ? signupUsingEmail({ email, password })
+        : toast.error("Your Password does not match");
     } else {
       signinUsingEmail({ email, password });
     }
@@ -73,6 +76,21 @@ const SignUpCard = () => {
       redirect("/dashboard");
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    const pattern = /-auth-token$/;
+    const localStorageKeys = Object.keys(localStorage);
+    const authTokens = localStorageKeys.filter((key) => pattern.test(key))[0];
+    if (typeof window !== "undefined") {
+      const storedItem = localStorage.getItem(authTokens);
+      if (storedItem !== null) {
+         const {user:{id, user_metadata:{avatar_url, full_name, email}}, access_token} = JSON.parse(storedItem);
+         console.log(id, avatar_url, email, access_token, full_name);
+         
+         setCurrentUser({id, email, img:avatar_url, name: full_name});
+      }
+    }
+  }, []);
 
   return (
     <Card className="w-[500px]">

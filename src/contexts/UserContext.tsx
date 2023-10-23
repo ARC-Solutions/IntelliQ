@@ -9,6 +9,7 @@ interface User {
   id: string;
   email: string;
   img: string | null;
+  name: string | null;
 }
 interface UserInput {
   email: string;
@@ -48,7 +49,6 @@ export const AuthProvider = ({ children }: Props) => {
       return user;
     }
   }
-
   const signupUsingEmail = async ({ email, password }: UserInput) => {
     const response = await fetch(
       "https://intelliq-be.azurewebsites.net/api/signup",
@@ -71,6 +71,7 @@ export const AuthProvider = ({ children }: Props) => {
       email: data.email,
       id: data.userID,
       img: null,
+      name: null
     });
     storeSessionToken(data.sessionToken);
   };
@@ -94,25 +95,15 @@ export const AuthProvider = ({ children }: Props) => {
       email: data.email,
       id: data.userID,
       img: null,
+      name: null
     });
     storeSessionToken(data.sessionToken);
   };
   const signinUsingOAuth = async () => {
-    const { user, session, error } = await (supabase.auth.signInWithOAuth({
-      provider: 'google'
+    await (supabase.auth.signInWithOAuth({
+      provider: "google",
     }) as any);
-    if (error) {
-      toast.error(error.message);
-      return;
-    }
-    setCurrentUser({
-      email: user.email,
-      id: user.id,
-      img: null,
-    });
-    storeSessionToken(session.access_token);
   };
-
 
   const signout = async () => {
     await fetch("https://intelliq-be.azurewebsites.net/api/logout", {
@@ -135,7 +126,7 @@ export const AuthProvider = ({ children }: Props) => {
       }
     );
     const { userID, email } = await response.json();
-    setCurrentUser({ id: userID, email, img: null });
+    setCurrentUser({ id: userID, email, img: null, name: null });
   };
   const value = {
     currentUser,

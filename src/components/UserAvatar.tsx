@@ -19,20 +19,17 @@ const UserAvatar = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             {currentUser?.img ? (
-              <div className="relative w-full h-full aspect-square">
-                <Image
-                  src={currentUser?.img}
-                  fill
-                  alt="user"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
+              <AvatarImage src={currentUser.img} />
             ) : (
               <AvatarImage src="https://github.com/shadcn.png" />
             )}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
+            {currentUser.name && (
+              <DropdownMenuLabel>{currentUser.name}</DropdownMenuLabel>
+            )}
             <DropdownMenuLabel>{currentUser.email}</DropdownMenuLabel>
+
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={signout}>
               Sign out <IoExitOutline />
