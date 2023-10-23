@@ -84,13 +84,17 @@ const SignUpCard = () => {
     if (typeof window !== "undefined") {
       const storedItem = localStorage.getItem(authTokens);
       if (storedItem !== null) {
-         const {user:{id, user_metadata:{avatar_url, full_name, email}}, access_token} = JSON.parse(storedItem);
-         console.log(id, avatar_url, email, access_token, full_name);
-         
-         setCurrentUser({id, email, img:avatar_url, name: full_name});
+        const {
+          user: {
+            id,
+            user_metadata: { avatar_url, full_name, email },
+          },
+          access_token,
+        } = JSON.parse(storedItem);
+        setCurrentUser({ id, email, img: avatar_url, name: full_name });
       }
     }
-  }, []);
+  }, [currentUser]);
 
   return (
     <Card className="w-[500px]">

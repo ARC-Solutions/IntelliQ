@@ -33,7 +33,15 @@ export const AuthProvider = ({ children }: Props) => {
     }
   };
   const removeSessionToken = () => {
-    localStorage.removeItem("current-user");
+    if (getUserSessionToken()) {
+      localStorage.removeItem("current-user");
+      return;
+    }
+    const pattern = /-auth-token$/;
+    const localStorageKeys = Object.keys(localStorage);
+    const authTokens = localStorageKeys.filter((key) => pattern.test(key))[0];
+
+    localStorage.removeItem(authTokens);
   };
   function getUserSessionToken() {
     let user;
@@ -71,7 +79,7 @@ export const AuthProvider = ({ children }: Props) => {
       email: data.email,
       id: data.userID,
       img: null,
-      name: null
+      name: null,
     });
     storeSessionToken(data.sessionToken);
   };
@@ -95,7 +103,7 @@ export const AuthProvider = ({ children }: Props) => {
       email: data.email,
       id: data.userID,
       img: null,
-      name: null
+      name: null,
     });
     storeSessionToken(data.sessionToken);
   };
@@ -112,6 +120,7 @@ export const AuthProvider = ({ children }: Props) => {
         "Content-Type": "application/json",
       },
     });
+
     setCurrentUser(null);
     removeSessionToken();
   };
