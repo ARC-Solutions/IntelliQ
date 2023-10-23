@@ -18,13 +18,8 @@ import { toast } from "react-toastify";
 import { redirect } from "next/navigation";
 const SignUpCard = () => {
   const [isANewUser, setIsAnewUser] = useState(false);
-  const {
-    currentUser,
-    setCurrentUser,
-    signinUsingEmail,
-    signinUsingOAuth,
-    signupUsingEmail,
-  } = useAuth();
+  const { currentUser, setCurrentUser, signinUsingEmail, signupUsingEmail } =
+    useAuth();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);

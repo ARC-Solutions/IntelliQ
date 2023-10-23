@@ -20,7 +20,7 @@ interface AuthContextValue {
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
   signinUsingEmail: ({ email, password }: UserInput) => void;
   signupUsingEmail: ({ email, password }: UserInput) => void;
-  signinUsingOAuth: ({ email, password }: UserInput) => void;
+  signinUsingOAuth: () => void;
   signout: () => void;
 }
 const AuthContext = createContext<AuthContextValue | null>(null);
