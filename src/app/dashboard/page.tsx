@@ -3,6 +3,7 @@ import { useAuth } from "@/contexts/UserContext";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import QuizMe from "@/components/QuizMe";
+import TopPicks from "@/components/TopPicks";
 const Dashboard = () => {
   const { currentUser } = useAuth();
 
@@ -14,6 +15,7 @@ const Dashboard = () => {
   return (
     <div>
       <QuizMe />
+      <TopPicks/>
     </div>
   );
 };

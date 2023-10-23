@@ -134,11 +134,7 @@ export const AuthProvider = ({ children }: Props) => {
         },
       }
     );
-    const {
-      user: {
-        user: { userID, email },
-      },
-    } = await response.json();
+    const { userID, email } = await response.json();
     setCurrentUser({ id: userID, email, img: null, name: null });
   };
   const value = {
