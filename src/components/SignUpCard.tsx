@@ -23,6 +23,7 @@ const SignUpCard = () => {
     setCurrentUser,
     signinUsingEmail,
     signupUsingEmail,
+    signinUsingOAuth,
   } = useAuth();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -30,6 +31,9 @@ const SignUpCard = () => {
   const handleSubmit = async (isGoogleOAuth: boolean = false) => {
     if (isGoogleOAuth) {
       try {
+        // const data = await signinUsingOAuth();
+        // console.log(data);
+
         const response = await fetch(
           "https://intelliq-be.azurewebsites.net/api/signin",
           {
@@ -83,6 +87,7 @@ const SignUpCard = () => {
           },
           access_token,
         } = JSON.parse(storedItem);
+
         setCurrentUser({ id, email, img: avatar_url, name: full_name });
       }
     }

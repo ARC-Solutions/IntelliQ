@@ -109,14 +109,7 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   const signout = async () => {
-    // await fetch("https://intelliq-be.azurewebsites.net/api/logout", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
     await supabase.auth.signOut();
-
     setCurrentUser(null);
     removeSessionToken();
   };
