@@ -1,6 +1,6 @@
 "use client";
 import { IoExitOutline } from "react-icons/io5";
-import { Avatar} from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,

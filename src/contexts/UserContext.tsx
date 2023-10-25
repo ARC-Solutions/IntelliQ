@@ -37,11 +37,6 @@ export const AuthProvider = ({ children }: Props) => {
       localStorage.removeItem("current-user");
       return;
     }
-    const pattern = /-auth-token$/;
-    const localStorageKeys = Object.keys(localStorage);
-    const authTokens = localStorageKeys.filter((key) => pattern.test(key))[0];
-
-    localStorage.removeItem(authTokens);
   };
   function getUserSessionToken() {
     let user;
@@ -114,12 +109,13 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   const signout = async () => {
-    await fetch("https://intelliq-be.azurewebsites.net/api/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // await fetch("https://intelliq-be.azurewebsites.net/api/logout", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    await supabase.auth.signOut();
 
     setCurrentUser(null);
     removeSessionToken();
