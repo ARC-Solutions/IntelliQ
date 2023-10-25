@@ -147,7 +147,6 @@ export const AuthProvider = ({ children }: Props) => {
       userInfos();
     }
   }, []);
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
