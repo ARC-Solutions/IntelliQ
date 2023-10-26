@@ -47,7 +47,7 @@ const CreateQuiz = () => {
                 ref={interestsRef}
               />
               <CardDescription>
-                Provide a topic you'd like to have a quiz about
+                Provide a topic you&apos;d like to have a quiz about
               </CardDescription>
             </div>
             <div>
