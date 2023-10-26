@@ -104,9 +104,13 @@ export const AuthProvider = ({ children }: Props) => {
     }
   };
   const signinUsingOAuth = async () => {
-    await (supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-    }) as any);
+    });
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
   };
 
   const signout = async () => {
@@ -118,15 +122,6 @@ export const AuthProvider = ({ children }: Props) => {
       console.log(error);
     }
   };
-  const value = {
-    currentUser,
-    setCurrentUser,
-    signinUsingEmail,
-    signinUsingOAuth,
-    signupUsingEmail,
-    signout,
-  };
-
   const getUserInfo = async () => {
     const {
       data: { session },
@@ -139,12 +134,26 @@ export const AuthProvider = ({ children }: Props) => {
       toast.error(error.message);
     }
     const user = session?.user;
+    const avatar = user.user_metadata.avatar_url as string;
+    const name = user.user_metadata.full_name as string;
     const userID = user?.id as string;
     const userEmail = user?.email as string;
-
-    setCurrentUser({ id: userID, email: userEmail, img: null, name: null });
-    console.log(userID, userEmail);
+    setCurrentUser({
+      id: userID,
+      email: userEmail,
+      img: avatar || null,
+      name: name || null,
+    });
   };
+  const value = {
+    currentUser,
+    setCurrentUser,
+    signinUsingEmail,
+    signinUsingOAuth,
+    signupUsingEmail,
+    signout,
+  };
+
   useEffect(() => {
     getUserInfo();
   }, []);
