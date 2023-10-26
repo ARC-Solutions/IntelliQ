@@ -12,10 +12,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "../contexts/UserContext";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
 const SignUpCard = () => {
   const [isANewUser, setIsAnewUser] = useState(false);
   const { signinUsingEmail, signupUsingEmail, signinUsingOAuth } = useAuth();

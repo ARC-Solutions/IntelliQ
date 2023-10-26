@@ -5,8 +5,6 @@ import { FaCss3Alt } from "react-icons/fa";
 import { SiJavascript } from "react-icons/si";
 import { RiMicroscopeFill } from "react-icons/ri";
 import Topic from "./Topic";
-import { IconType } from "react-icons";
-
 export interface RecommendedTopic {
   name: string;
   icon: React.ReactElement;

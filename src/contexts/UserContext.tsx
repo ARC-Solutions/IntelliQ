@@ -93,6 +93,7 @@ export const AuthProvider = ({ children }: Props) => {
     try {
       await supabase.auth.signOut();
       setCurrentUser(null);
+      toast.info("User signed out");
     } catch (error) {
       console.log(error);
     }

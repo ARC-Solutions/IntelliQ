@@ -2,9 +2,6 @@ import { RecommendedTopic } from "./Topics"
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 const Topic = ({name, icon}: RecommendedTopic) => {
   return (
