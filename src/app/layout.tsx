@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/UserContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SupabaseProvider } from "@/contexts/SupabaseContext";
+import { QuizProvider } from "@/contexts/QuizContext";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "600", "700", "800"],
@@ -52,8 +53,10 @@ export default function RootLayout({
       <body className={cn(inter.className, "antialiased min-h-screen pt-32")}>
         <SupabaseProvider>
           <AuthProvider>
-            <Navbar />
-            {children}
+            <QuizProvider>
+              <Navbar />
+              {children}
+            </QuizProvider>
           </AuthProvider>
           <ToastContainer position="top-right" autoClose={2000} />
         </SupabaseProvider>
