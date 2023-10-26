@@ -14,7 +14,7 @@ const Dashboard = async () => {
   const supabase = createServerComponentClient({
     cookies,
   });
-  const session = (await supabase.auth.getSession()).data.session;
+  const { session } = (await supabase.auth.getSession()).data;
   if (!session) {
     redirect("/");
   }

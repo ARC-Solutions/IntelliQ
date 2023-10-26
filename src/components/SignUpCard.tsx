@@ -18,8 +18,7 @@ import { toast } from "react-toastify";
 import { redirect } from "next/navigation";
 const SignUpCard = () => {
   const [isANewUser, setIsAnewUser] = useState(false);
-  const { signinUsingEmail, signupUsingEmail, signinUsingOAuth } =
-    useAuth();
+  const { signinUsingEmail, signupUsingEmail, signinUsingOAuth } = useAuth();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
@@ -27,23 +26,7 @@ const SignUpCard = () => {
     if (isGoogleOAuth) {
       try {
         signinUsingOAuth();
-      return;
-        // const response = await fetch(
-        //   "https://intelliq-be.azurewebsites.net/api/signin",
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({ provider: "google" }),
-        //   }
-        // );
-        // const data = await response.json();
-
-        // if (data.url) {
-        //   window.location.href = data.url;
-        // }
-        // return;
+        return;
       } catch (error) {
         toast.error("Failed to initiate Google sign in.");
         return;

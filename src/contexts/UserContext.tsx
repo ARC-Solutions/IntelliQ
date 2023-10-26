@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }: Props) => {
     }
   };
   const signinUsingOAuth = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
     if (error) {
