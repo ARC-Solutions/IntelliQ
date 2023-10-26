@@ -18,13 +18,8 @@ import { toast } from "react-toastify";
 import { redirect } from "next/navigation";
 const SignUpCard = () => {
   const [isANewUser, setIsAnewUser] = useState(false);
-  const {
-    currentUser,
-    setCurrentUser,
-    signinUsingEmail,
-    signupUsingEmail,
-    signinUsingOAuth,
-  } = useAuth();
+  const { currentUser, signinUsingEmail, signupUsingEmail, signinUsingOAuth } =
+    useAuth();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
@@ -73,30 +68,6 @@ const SignUpCard = () => {
       signinUsingEmail({ email, password });
     }
   };
-  useEffect(() => {
-    const pattern = /-auth-token$/;
-    const localStorageKeys = Object.keys(localStorage);
-    const authTokens = localStorageKeys.filter((key) => pattern.test(key))[0];
-    if (typeof window !== "undefined") {
-      const storedItem = localStorage.getItem(authTokens);
-      if (storedItem !== null) {
-        const {
-          user: {
-            id,
-            user_metadata: { avatar_url, full_name, email },
-          },
-          access_token,
-        } = JSON.parse(storedItem);
-
-        setCurrentUser({ id, email, img: avatar_url, name: full_name });
-      }
-    }
-  }, []);
-  useEffect(() => {
-    if (currentUser) {
-      redirect("/dashboard");
-    }
-  }, [currentUser]);
   return (
     <Card className="w-[500px]">
       <CardHeader>

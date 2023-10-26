@@ -1,20 +1,20 @@
-"use client";
-import { useAuth } from "@/contexts/UserContext";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Metadata } from "next";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { useEffect } from "react";
-const Quiz = () => {
-  const { currentUser } = useAuth();
-  // try {
-  //   const { data, error } = await supabase.auth.getSession();
-  //   console.log(data);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  useEffect(() => {
-    if (!currentUser) {
-      redirect("/");
-    }
-  }, [currentUser]);
+
+export const metadata: Metadata = {
+  title: "Quiz",
+};
+const Quiz = async () => {
+  const supabase = createServerComponentClient({
+    cookies,
+  });
+  const session = (await supabase.auth.getSession()).data.session;
+  if (!session) {
+    redirect("/");
+  }
+
   return <div>Mark ist noob</div>;
 };
 
