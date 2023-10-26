@@ -115,16 +115,20 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   const userInfos = async () => {
-    const response = await fetch(
-      "https://intelliq-be.azurewebsites.net/api/getUserSession",
-      {
-        headers: {
-          Authorization: `Bearer ${getUserSessionToken()}`,
-        },
-      }
-    );
-    const { userID, email } = await response.json();
-    setCurrentUser({ id: userID, email, img: null, name: null });
+    try {
+      const response = await fetch(
+        "https://intelliq-be.azurewebsites.net/api/getUserSession",
+        {
+          headers: {
+            Authorization: `Bearer ${getUserSessionToken()}`,
+          },
+        }
+      );
+      const { userID, email } = await response.json();
+      setCurrentUser({ id: userID, email, img: null, name: null });
+    } catch (error) {
+      console.log(error);
+    }
   };
   const value = {
     currentUser,
