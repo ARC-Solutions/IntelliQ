@@ -24,7 +24,7 @@ const CreateQuiz = () => {
               <Label htmlFor="topic">Topic</Label>
               <Input type="text" id="topic" placeholder="Enter a Topic" />
               <CardDescription>
-                Provide a topic you'd like to have a quiz about
+                Provide a topic you&apos;d like to have a quiz about
               </CardDescription>
             </div>
             <div>
