@@ -28,30 +28,6 @@ export const AuthProvider = ({ children }: Props) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const { supabase } = useSupabase();
 
-  const storeSessionToken = (sessionToken: string) => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("current-user", JSON.stringify(sessionToken));
-    }
-  };
-  const removeSessionToken = () => {
-    if (getUserSessionToken()) {
-      localStorage.removeItem("current-user");
-      return;
-    }
-  };
-  function getUserSessionToken() {
-    let user;
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("current-user");
-
-      if (storedUser) {
-        user = JSON.parse(storedUser);
-      } else {
-        user = null;
-      }
-      return user;
-    }
-  }
   const signupUsingEmail = async ({ email, password }: UserInput) => {
     try {
       const {
@@ -117,7 +93,6 @@ export const AuthProvider = ({ children }: Props) => {
     try {
       await supabase.auth.signOut();
       setCurrentUser(null);
-      removeSessionToken();
     } catch (error) {
       console.log(error);
     }
