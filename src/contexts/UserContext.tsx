@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { supabase } from "@/utils/supabaseClient";
+import { useSupabase } from "./SupabaseContext";
 type Props = {
   children: React.ReactNode;
 };
@@ -9,6 +9,7 @@ interface User {
   id: string;
   email: string;
   img: string | null;
+  name: string | null;
 }
 interface UserInput {
   email: string;
@@ -19,123 +20,107 @@ interface AuthContextValue {
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
   signinUsingEmail: ({ email, password }: UserInput) => void;
   signupUsingEmail: ({ email, password }: UserInput) => void;
-  signinUsingOAuth: ({ email, password }: UserInput) => void;
+  signinUsingOAuth: () => void;
   signout: () => void;
 }
+
 const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider = ({ children }: Props) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-
-  const storeSessionToken = (sessionToken: string) => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("current-user", JSON.stringify(sessionToken));
-    }
-  };
-  const removeSessionToken = () => {
-    localStorage.removeItem("current-user");
-  };
-  function getUserSessionToken() {
-    let user;
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("current-user");
-
-      if (storedUser) {
-        user = JSON.parse(storedUser);
-      } else {
-        user = null;
-      }
-
-      return user;
-    }
-  }
+  const { supabase } = useSupabase();
 
   const signupUsingEmail = async ({ email, password }: UserInput) => {
-    const response = await fetch(
-      "https://intelliq-be.azurewebsites.net/api/signup",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    try {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (error) {
+        toast.error(error.message);
+        return;
       }
-    );
-    const data = await response.json();
-    if (data.error) {
-      toast.error(data.error);
-      return;
+      const userEmail = user?.email as string;
+      const userID = user?.id as string;
+      setCurrentUser({
+        email: userEmail,
+        id: userID,
+        img: null,
+        name: null,
+      });
+    } catch (error: any) {
+      toast.error(error);
+      console.log(error);
     }
-
-    setCurrentUser({
-      email: data.email,
-      id: data.userID,
-      img: null,
-    });
-    storeSessionToken(data.sessionToken);
   };
   const signinUsingEmail = async ({ email, password }: UserInput) => {
-    const response = await fetch(
-      "https://intelliq-be.azurewebsites.net/api/signin",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    try {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        toast.error(error.message);
+        return;
       }
-    );
-    const data = await response.json();
-    if (data.error) {
-      toast.error(data.error);
-      return;
+      const userEmail = user?.email as string;
+      const userID = user?.id as string;
+      setCurrentUser({
+        email: userEmail,
+        id: userID,
+        img: null,
+        name: null,
+      });
+    } catch (error: any) {
+      console.log(error);
     }
-    setCurrentUser({
-      email: data.email,
-      id: data.userID,
-      img: null,
-    });
-    storeSessionToken(data.sessionToken);
   };
   const signinUsingOAuth = async () => {
-    const { user, session, error } = await (supabase.auth.signInWithOAuth({
-      provider: 'google'
-    }) as any);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
     if (error) {
       toast.error(error.message);
       return;
     }
-    setCurrentUser({
-      email: user.email,
-      id: user.id,
-      img: null,
-    });
-    storeSessionToken(session.access_token);
   };
-
 
   const signout = async () => {
-    await fetch("https://intelliq-be.azurewebsites.net/api/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setCurrentUser(null);
-    removeSessionToken();
+    try {
+      await supabase.auth.signOut();
+      setCurrentUser(null);
+      toast.info("User signed out");
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  const userInfos = async () => {
-    const response = await fetch(
-      "https://intelliq-be.azurewebsites.net/api/getUserSession",
-      {
-        headers: {
-          Authorization: `Bearer ${getUserSessionToken()}`,
-        },
-      }
-    );
-    const { userID, email } = await response.json();
-    setCurrentUser({ id: userID, email, img: null });
+  const getUserInfo = async () => {
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
+    if (!session) {
+      return;
+    }
+    if (error) {
+      toast.error(error.message);
+    }
+    const user = session?.user;
+    const avatar = user.user_metadata.avatar_url as string;
+    const name = user.user_metadata.full_name as string;
+    const userID = user?.id as string;
+    const userEmail = user?.email as string;
+    setCurrentUser({
+      id: userID,
+      email: userEmail,
+      img: avatar || null,
+      name: name || null,
+    });
   };
   const value = {
     currentUser,
@@ -147,9 +132,7 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   useEffect(() => {
-    if (getUserSessionToken()) {
-      userInfos();
-    }
+    getUserInfo();
   }, []);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
