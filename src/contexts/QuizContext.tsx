@@ -70,7 +70,6 @@ export const QuizProvider = ({ children }: Props) => {
         data: { session },
       } = await supabase.auth.getSession();
       const accessToken = session?.access_token;
-
       dispatch({ type: "FETCH_QUIZ_REQUEST" });
       const response = await fetch(
         "https://intelliq-be.azurewebsites.net/api/quiz",

@@ -12,8 +12,10 @@ const QuizGame = ({ params: { quizID } }: Props) => {
   const { currentQuiz } = useQuiz();
 
   if (!currentQuiz) {
-    redirect("/");
+    redirect("/quiz");
   }
+  console.log(currentQuiz);
+
   return <div>{quizID}</div>;
 };
 

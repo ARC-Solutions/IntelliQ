@@ -30,7 +30,6 @@ const CreateQuiz = () => {
     }
     fetchQuestions(interests, numberOfQuestions);
 
-    console.log(currentQuiz);
   };
 
   useEffect(() => {
