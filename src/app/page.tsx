@@ -12,9 +12,9 @@ export default async function Home() {
   }
   return (
     <div>
-      <h1 className='grid grid-flow-col place-content-center'>
-        Quiz yourself on your chosen topic with
-        <span>IntelliQ</span>.
+      <h1 className='grid grid-flow-col place-content-center text-3xl'>
+        Quiz yourself on your chosen topic with 
+        <span className='text-primary ml-1'>IntelliQ</span>.
       </h1>
 
       <h3 className='grid grid-flow-col place-content-center'>
