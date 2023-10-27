@@ -8,6 +8,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SupabaseProvider } from "@/contexts/SupabaseContext";
 import { QuizProvider } from "@/contexts/QuizContext";
+import QuizLogicContext from "@/contexts/QuizLogicContext";
+import QuizLogicContextProvider from "@/contexts/QuizLogicContext";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "600", "700", "800"],
@@ -54,8 +56,10 @@ export default function RootLayout({
         <SupabaseProvider>
           <AuthProvider>
             <QuizProvider>
-              <Navbar />
-              {children}
+              <QuizLogicContextProvider>
+                <Navbar />
+                {children}
+              </QuizLogicContextProvider>
             </QuizProvider>
           </AuthProvider>
           <ToastContainer position="top-right" autoClose={2000} />

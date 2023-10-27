@@ -12,7 +12,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 type Props = {
   children: React.ReactNode;
 };
-interface Quiz {
+export interface Quiz {
   correctAnswer: string;
   options: string[];
   text: string;
@@ -40,12 +40,38 @@ export interface QuizContextValues extends QuizContextValue {
 }
 const initialState: QuizContextValue = {
   isLoading: false,
-  currentQuiz: null,
+  currentQuiz: {
+    createdAt: "2023-10-27T19:14:19.051Z",
+    id: 17,
+    length: 3,
+    topic: "C#",
+    quiz: [
+      {
+        correctAnswer: "c) string",
+        options: ["a) int", "b) float", "c) string", "d) boolean"],
+        text: "1. Which of the following is NOT a primitive data type in C#?",
+      },
+      {
+        correctAnswer: "a) class",
+        options: ["a) class", "b) struct", "c) interface", "d) enum"],
+        text: "2. Which keyword is used to define a class in C#?",
+      },
+      {
+        correctAnswer: "c) To import a namespace",
+        options: [
+          "a) To declare a new variable.",
+          "b) To define a class",
+          "c) To import a namespace",
+          "d) To create a loop",
+        ],
+        text: "3. What is the purpose of the using directive in C#?",
+      },
+    ],
+  },
   quizHistory: null,
 };
 
 const QuizContext = createContext<QuizContextValues | null>(null);
-
 const quizReducer = (
   state: QuizContextValue,
   action: QuizAction
