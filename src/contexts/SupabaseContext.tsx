@@ -24,9 +24,7 @@ export const SupabaseProvider = ({
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(() => {
-      if (!supabase.auth.getSession()) {
-        router.refresh();
-      }
+      router.refresh();
     });
     return () => {
       subscription.unsubscribe();
