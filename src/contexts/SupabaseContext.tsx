@@ -23,8 +23,14 @@ export const SupabaseProvider = ({
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(() => {
-      router.refresh();
+    } = supabase.auth.onAuthStateChange((event) => {
+      if (
+        event === "SIGNED_IN" ||
+        event === "SIGNED_OUT" ||
+        event === "TOKEN_REFRESHED"
+      ) {
+        router.refresh();
+      }
     });
     return () => {
       subscription.unsubscribe();
