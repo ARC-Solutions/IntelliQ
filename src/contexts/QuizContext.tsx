@@ -70,7 +70,6 @@ export const QuizProvider = ({ children }: Props) => {
         data: { session },
       } = await supabase.auth.getSession();
       const accessToken = session?.access_token;
-      console.log(accessToken);
 
       dispatch({ type: "FETCH_QUIZ_REQUEST" });
       const response = await fetch(
