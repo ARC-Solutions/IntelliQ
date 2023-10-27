@@ -23,6 +23,7 @@ interface AuthContextValue {
   signinUsingOAuth: () => void;
   signout: () => void;
 }
+
 const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider = ({ children }: Props) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);

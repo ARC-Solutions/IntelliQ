@@ -19,12 +19,14 @@ export const SupabaseProvider = ({
 }) => {
   const router = useRouter();
   const [supabase] = useState(() => createPagesBrowserClient());
-
+  
   useEffect(() => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(() => {
-      router.refresh();
+      if (!supabase.auth.getSession()) {
+        router.refresh();
+      }
     });
     return () => {
       subscription.unsubscribe();

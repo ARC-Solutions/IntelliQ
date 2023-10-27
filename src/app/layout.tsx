@@ -12,7 +12,7 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "600", "700", "800"],
 });
-
+export const revalidate = 0;
 export const metadata: Metadata = {
   title: {
     default: "IntelliQ",

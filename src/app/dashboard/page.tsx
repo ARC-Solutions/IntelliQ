@@ -23,7 +23,6 @@ const Dashboard = async () => {
       <h1>
         Dashboard
       </h1>
-      
       <QuizMe />
       <TopPicks />
     </div>

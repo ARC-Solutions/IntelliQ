@@ -11,13 +11,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useQuiz } from "@/contexts/QuizContext";
-import { useRef } from "react";
+import { redirect } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
 const CreateQuiz = () => {
   const interestsRef = useRef<HTMLInputElement>(null);
   const numberOfQuestionsRef = useRef<HTMLInputElement>(null);
-  const { fetchQuestions } = useQuiz();
+  const { fetchQuestions, currentQuiz } = useQuiz();
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -28,7 +29,17 @@ const CreateQuiz = () => {
       return;
     }
     fetchQuestions(interests, numberOfQuestions);
+
+    console.log(currentQuiz);
   };
+
+  useEffect(() => {
+    if (currentQuiz) {
+      const url = `/quiz/${currentQuiz?.id}`;
+      redirect(url);
+    }
+  }, [currentQuiz]);
+
   return (
     <Card className="w-[500px]">
       <CardHeader>
@@ -55,6 +66,8 @@ const CreateQuiz = () => {
               <Input
                 id="number"
                 type="number"
+                min={1}
+                max={10}
                 placeholder="How many Questions?"
                 ref={numberOfQuestionsRef}
               />

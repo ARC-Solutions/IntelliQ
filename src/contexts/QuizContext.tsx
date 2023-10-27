@@ -27,8 +27,8 @@ interface CurrentQuiz {
 interface QuizHistory {}
 interface QuizContextValue {
   isLoading: boolean;
-  currentQuiz: CurrentQuiz | {};
-  quizHistory: QuizHistory[] | [];
+  currentQuiz: CurrentQuiz | null;
+  quizHistory: QuizHistory[] | null;
 }
 type QuizAction =
   | { type: "FETCH_QUIZ_REQUEST" }
@@ -40,8 +40,8 @@ export interface QuizContextValues extends QuizContextValue {
 }
 const initialState: QuizContextValue = {
   isLoading: false,
-  currentQuiz: {},
-  quizHistory: [],
+  currentQuiz: null,
+  quizHistory: null,
 };
 
 const QuizContext = createContext<QuizContextValues | null>(null);
@@ -70,6 +70,8 @@ export const QuizProvider = ({ children }: Props) => {
         data: { session },
       } = await supabase.auth.getSession();
       const accessToken = session?.access_token;
+      console.log(accessToken);
+
       dispatch({ type: "FETCH_QUIZ_REQUEST" });
       const response = await fetch(
         "https://intelliq-be.azurewebsites.net/api/quiz",
