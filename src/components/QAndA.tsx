@@ -19,7 +19,7 @@ const QAndA = ({ quiz, questionNumber }: Props) => {
       <Button>{question}</Button>
       <div className="flex flex-col">
         {answers.map((answer, i) => {
-          return <Answer answer={answer} number={i + 1}></Answer>;
+          return <Answer key={i} answer={answer} number={i + 1}></Answer>;
         })}
       </div>
     </section>
