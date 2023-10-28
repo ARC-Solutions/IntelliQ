@@ -1,14 +1,8 @@
-"use client";
+'use client';
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { toast } from "react-toastify";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import { toast } from 'react-toastify';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 type Props = {
   children: React.ReactNode;
 };
@@ -31,8 +25,8 @@ interface QuizContextValue {
   quizHistory: QuizHistory[] | null;
 }
 type QuizAction =
-  | { type: "FETCH_QUIZ_REQUEST" }
-  | { type: "FETCH_QUIZ_SUCCESS"; payload: CurrentQuiz };
+  | { type: 'FETCH_QUIZ_REQUEST' }
+  | { type: 'FETCH_QUIZ_SUCCESS'; payload: CurrentQuiz };
 
 export interface QuizContextValues extends QuizContextValue {
   dispatch: React.Dispatch<QuizAction>;
@@ -41,30 +35,30 @@ export interface QuizContextValues extends QuizContextValue {
 const initialState: QuizContextValue = {
   isLoading: false,
   currentQuiz: {
-    createdAt: "2023-10-27T19:14:19.051Z",
+    createdAt: '2023-10-27T19:14:19.051Z',
     id: 17,
     length: 3,
-    topic: "C#",
+    topic: 'C#',
     quiz: [
       {
-        correctAnswer: "c) string",
-        options: ["a) int", "b) float", "c) string", "d) boolean"],
-        text: "1. Which of the following is NOT a primitive data type in C#?",
+        correctAnswer: 'c) string',
+        options: ['a) int', 'b) float', 'c) string', 'd) boolean'],
+        text: '1. Which of the following is NOT a primitive data type in C#?',
       },
       {
-        correctAnswer: "a) class",
-        options: ["a) class", "b) struct", "c) interface", "d) enum"],
-        text: "2. Which keyword is used to define a class in C#?",
+        correctAnswer: 'a) class',
+        options: ['a) class', 'b) struct', 'c) interface', 'd) enum'],
+        text: '2. Which keyword is used to define a class in C#?',
       },
       {
-        correctAnswer: "c) To import a namespace",
+        correctAnswer: 'c) To import a namespace',
         options: [
-          "a) To declare a new variable.",
-          "b) To define a class",
-          "c) To import a namespace",
-          "d) To create a loop",
+          'a) To declare a new variable.',
+          'b) To define a class',
+          'c) To import a namespace',
+          'd) To create a loop',
         ],
-        text: "3. What is the purpose of the using directive in C#?",
+        text: '3. What is the purpose of the using directive in C#?',
       },
     ],
   },
@@ -72,13 +66,10 @@ const initialState: QuizContextValue = {
 };
 
 const QuizContext = createContext<QuizContextValues | null>(null);
-const quizReducer = (
-  state: QuizContextValue,
-  action: QuizAction
-): QuizContextValue => {
-  if (action.type === "FETCH_QUIZ_REQUEST") {
+const quizReducer = (state: QuizContextValue, action: QuizAction): QuizContextValue => {
+  if (action.type === 'FETCH_QUIZ_REQUEST') {
     return { ...state, isLoading: true };
-  } else if (action.type === "FETCH_QUIZ_SUCCESS") {
+  } else if (action.type === 'FETCH_QUIZ_SUCCESS') {
     return { ...state, isLoading: false, currentQuiz: action.payload };
   } else {
     return state;
@@ -86,28 +77,26 @@ const quizReducer = (
 };
 export const QuizProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);
-  const supabase = createClientComponentClient();
-  const fetchQuestions = async (
-    interests: string,
-    numberOfQuestions: string
-  ) => {
+  const supabase = createClientComponentClient({
+    supabaseUrl: 'https://zqlyjxjncdapbnvopnnn.supabase.co/',
+    supabaseKey:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxbHlqeGpuY2RhcGJudm9wbm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgyMjI0NzAsImV4cCI6MjAxMzc5ODQ3MH0.suewiHX8bn4G7JP8E5RaQVAkJo_OziefF8Zc31MBcnM',
+  });
+  const fetchQuestions = async (interests: string, numberOfQuestions: string) => {
     try {
       const {
         data: { session },
       } = await supabase.auth.getSession();
       const accessToken = session?.access_token;
-      dispatch({ type: "FETCH_QUIZ_REQUEST" });
-      const response = await fetch(
-        "https://intelliq-be.azurewebsites.net/api/quiz",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({ interests, numberOfQuestions }),
-        }
-      );
+      dispatch({ type: 'FETCH_QUIZ_REQUEST' });
+      const response = await fetch('https://intelliq-be.azurewebsites.net/api/quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ interests, numberOfQuestions }),
+      });
 
       const data = await response.json();
       const { id: quizID, createdAt, topic } = data.newQuiz;
@@ -120,7 +109,7 @@ export const QuizProvider = ({ children }: Props) => {
         createdAt,
         length,
       };
-      dispatch({ type: "FETCH_QUIZ_SUCCESS", payload: quiz });
+      dispatch({ type: 'FETCH_QUIZ_SUCCESS', payload: quiz });
     } catch (error: any) {
       toast.error(error);
     }
@@ -136,7 +125,7 @@ export const QuizProvider = ({ children }: Props) => {
 export const useQuiz = (): QuizContextValues => {
   const quizContext = useContext(QuizContext);
   if (quizContext === undefined) {
-    throw new Error("useQuiz must be used within an QuizProvider");
+    throw new Error('useQuiz must be used within an QuizProvider');
   }
   return quizContext as QuizContextValues;
 };
