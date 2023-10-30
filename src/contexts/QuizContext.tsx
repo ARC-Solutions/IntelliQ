@@ -3,6 +3,7 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { toast } from "react-toastify";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { quizReducer } from "@/utils/reducers/quizReducer";
 type Props = {
   children: React.ReactNode;
 };
@@ -19,13 +20,13 @@ interface CurrentQuiz {
   length: number;
 }
 interface QuizHistory {}
-interface QuizContextValue {
+export interface QuizContextValue {
   isLoading: boolean;
   fetchingFinished: boolean;
   currentQuiz: CurrentQuiz | null;
   quizHistory: QuizHistory[] | null;
 }
-type QuizAction =
+export type QuizAction =
   | { type: "FETCH_QUIZ_REQUEST" }
   | { type: "FETCH_QUIZ_ERROR" }
   | { type: "RESET_QUIZ" }
@@ -71,32 +72,7 @@ const initialState: QuizContextValue = {
 };
 
 const QuizContext = createContext<QuizContextValues | null>(null);
-const quizReducer = (
-  state: QuizContextValue,
-  action: QuizAction
-): QuizContextValue => {
-  if (action.type === "FETCH_QUIZ_REQUEST") {
-    return { ...state, isLoading: true };
-  } else if (action.type === "FETCH_QUIZ_SUCCESS") {
-    return {
-      ...state,
-      isLoading: false,
-      fetchingFinished: true,
-      currentQuiz: action.payload,
-    };
-  } else if (action.type === "FETCH_QUIZ_ERROR") {
-    return { ...state, isLoading: false };
-  } else if (action.type === "RESET_QUIZ") {
-    return {
-      isLoading: false,
-      fetchingFinished: false,
-      currentQuiz: null,
-      quizHistory: null,
-    };
-  } else {
-    return state;
-  }
-};
+
 export const QuizProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);
   const supabase = createClientComponentClient();

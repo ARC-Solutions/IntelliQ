@@ -12,8 +12,10 @@ import {
 import { useAuth } from "@/contexts/UserContext";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
+import { useQuiz } from "@/contexts/QuizContext";
 const UserAvatar = () => {
   const { currentUser, signout } = useAuth();
+  const { dispatch } = useQuiz();
   if (currentUser) {
     return (
       <Avatar>
@@ -40,7 +42,12 @@ const UserAvatar = () => {
             <DropdownMenuLabel>{currentUser.email}</DropdownMenuLabel>
 
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={signout}>
+            <DropdownMenuItem
+              onClick={() => {
+                signout();
+                dispatch({ type: "RESET_QUIZ" });
+              }}
+            >
               Sign out <IoExitOutline />
             </DropdownMenuItem>
           </DropdownMenuContent>
