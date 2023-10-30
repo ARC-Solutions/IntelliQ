@@ -12,13 +12,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useQuiz } from "@/contexts/QuizContext";
 import { redirect } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
+import LoadingQuestions from "./LoadingQuestions";
 
 const CreateQuiz = () => {
   const interestsRef = useRef<HTMLInputElement>(null);
   const numberOfQuestionsRef = useRef<HTMLInputElement>(null);
-  const { fetchQuestions, currentQuiz } = useQuiz();
+  const {
+    fetchQuestions,
+    currentQuiz,
+    isLoading,
+    fetchingFinished: finished,
+  } = useQuiz();
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -28,8 +34,7 @@ const CreateQuiz = () => {
       toast.error("Please fill out all the fields");
       return;
     }
-    fetchQuestions(interests, numberOfQuestions);
-
+    fetchQuestions(interests, Number(numberOfQuestions));
   };
 
   useEffect(() => {
@@ -38,6 +43,10 @@ const CreateQuiz = () => {
       redirect(url);
     }
   }, [currentQuiz]);
+
+  if (isLoading) {
+    return <LoadingQuestions finished={finished} />;
+  }
 
   return (
     <Card className="w-[500px]">

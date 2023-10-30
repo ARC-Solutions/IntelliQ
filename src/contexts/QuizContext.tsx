@@ -27,47 +27,51 @@ interface CurrentQuiz {
 interface QuizHistory {}
 interface QuizContextValue {
   isLoading: boolean;
+  fetchingFinished: boolean;
   currentQuiz: CurrentQuiz | null;
   quizHistory: QuizHistory[] | null;
 }
 type QuizAction =
   | { type: "FETCH_QUIZ_REQUEST" }
+  | { type: "FETCH_QUIZ_ERROR" }
   | { type: "FETCH_QUIZ_SUCCESS"; payload: CurrentQuiz };
 
 export interface QuizContextValues extends QuizContextValue {
   dispatch: React.Dispatch<QuizAction>;
-  fetchQuestions: (interests: string, numberOfQuestions: string) => void;
+  fetchQuestions: (interests: string, numberOfQuestions: number) => void;
 }
 const initialState: QuizContextValue = {
   isLoading: false,
-  currentQuiz: {
-    createdAt: "2023-10-27T19:14:19.051Z",
-    id: 17,
-    length: 3,
-    topic: "C#",
-    quiz: [
-      {
-        correctAnswer: "c) string",
-        options: ["a) int", "b) float", "c) string", "d) boolean"],
-        text: "1. Which of the following is NOT a primitive data type in C#?",
-      },
-      {
-        correctAnswer: "a) class",
-        options: ["a) class", "b) struct", "c) interface", "d) enum"],
-        text: "2. Which keyword is used to define a class in C#?",
-      },
-      {
-        correctAnswer: "c) To import a namespace",
-        options: [
-          "a) To declare a new variable.",
-          "b) To define a class",
-          "c) To import a namespace",
-          "d) To create a loop",
-        ],
-        text: "3. What is the purpose of the using directive in C#?",
-      },
-    ],
-  },
+  fetchingFinished: false,
+  currentQuiz: null,
+  // currentQuiz: {
+  //   createdAt: "2023-10-27T19:14:19.051Z",
+  //   id: 17,
+  //   length: 3,
+  //   topic: "C#",
+  //   quiz: [
+  //     {
+  //       correctAnswer: "c) string",
+  //       options: ["a) int", "b) float", "c) string", "d) boolean"],
+  //       text: "1. Which of the following is NOT a primitive data type in C#?",
+  //     },
+  //     {
+  //       correctAnswer: "a) class",
+  //       options: ["a) class", "b) struct", "c) interface", "d) enum"],
+  //       text: "2. Which keyword is used to define a class in C#?",
+  //     },
+  //     {
+  //       correctAnswer: "c) To import a namespace",
+  //       options: [
+  //         "a) To declare a new variable.",
+  //         "b) To define a class",
+  //         "c) To import a namespace",
+  //         "d) To create a loop",
+  //       ],
+  //       text: "3. What is the purpose of the using directive in C#?",
+  //     },
+  //   ],
+  // },
   quizHistory: null,
 };
 
@@ -79,7 +83,14 @@ const quizReducer = (
   if (action.type === "FETCH_QUIZ_REQUEST") {
     return { ...state, isLoading: true };
   } else if (action.type === "FETCH_QUIZ_SUCCESS") {
-    return { ...state, isLoading: false, currentQuiz: action.payload };
+    return {
+      ...state,
+      isLoading: false,
+      fetchingFinished: true,
+      currentQuiz: action.payload,
+    };
+  } else if (action.type === "FETCH_QUIZ_ERROR") {
+    return { ...state, isLoading: false };
   } else {
     return state;
   }
@@ -89,7 +100,7 @@ export const QuizProvider = ({ children }: Props) => {
   const supabase = createClientComponentClient();
   const fetchQuestions = async (
     interests: string,
-    numberOfQuestions: string
+    numberOfQuestions: number
   ) => {
     try {
       const {
