@@ -13,9 +13,11 @@ import { useAuth } from "@/contexts/UserContext";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { useQuiz } from "@/contexts/QuizContext";
+import { useQuizLogic } from "@/contexts/QuizLogicContext";
 const UserAvatar = () => {
   const { currentUser, signout } = useAuth();
   const { dispatch } = useQuiz();
+  const { setQuestionNumber } = useQuizLogic();
   if (currentUser) {
     return (
       <Avatar>
@@ -46,6 +48,7 @@ const UserAvatar = () => {
               onClick={() => {
                 signout();
                 dispatch({ type: "RESET_QUIZ" });
+                setQuestionNumber(0);
               }}
             >
               Sign out <IoExitOutline />
