@@ -8,7 +8,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SupabaseProvider } from '@/contexts/SupabaseContext';
 import { QuizProvider } from '@/contexts/QuizContext';
-import QuizLogicContext from '@/contexts/QuizLogicContext';
 import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
 const inter = Inter({
   subsets: ['latin'],

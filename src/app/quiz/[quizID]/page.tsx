@@ -51,9 +51,8 @@ const QuizGame = ({ params: { quizID } }: Props) => {
             if (questionNumber >= currentQuiz.quiz.length - 1) {
               return questionNumber;
             }
-            return questionNumber+ 1;
+            return questionNumber + 1;
           });
-          console.log(questionNumber);
         }}
       >
         Next <AiOutlineRight />

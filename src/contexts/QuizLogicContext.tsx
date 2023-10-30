@@ -22,7 +22,7 @@ const QuizLogicContextProvider = ({
 export const useQuizLogic = (): ContextValue => {
   const quizLogicContext = useContext(Context);
   if (quizLogicContext === undefined) {
-    throw new Error("useQuizLogic must be used within an QuizProvider");
+    throw new Error("useQuizLogic must be used within an QuizLogicContextProvider");
   }
   return quizLogicContext as ContextValue;
 };
