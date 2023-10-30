@@ -6,7 +6,7 @@ import CreateQuiz from "@/components/CreateQuiz";
 export const metadata: Metadata = {
   title: "Quiz",
 };
-const Quiz = async () => {
+const QuizCreation = async () => {
   const supabase = createServerComponentClient({
     cookies,
   });
@@ -18,4 +18,4 @@ const Quiz = async () => {
   return <CreateQuiz />;
 };
 
-export default Quiz;
+export default QuizCreation;

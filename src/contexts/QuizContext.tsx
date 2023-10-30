@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { toast } from "react-toastify";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 type Props = {
@@ -34,6 +28,7 @@ interface QuizContextValue {
 type QuizAction =
   | { type: "FETCH_QUIZ_REQUEST" }
   | { type: "FETCH_QUIZ_ERROR" }
+  | { type: "RESET_QUIZ" }
   | { type: "FETCH_QUIZ_SUCCESS"; payload: CurrentQuiz };
 
 export interface QuizContextValues extends QuizContextValue {
@@ -91,6 +86,13 @@ const quizReducer = (
     };
   } else if (action.type === "FETCH_QUIZ_ERROR") {
     return { ...state, isLoading: false };
+  } else if (action.type === "RESET_QUIZ") {
+    return {
+      isLoading: false,
+      fetchingFinished: false,
+      currentQuiz: null,
+      quizHistory: null,
+    };
   } else {
     return state;
   }
@@ -121,6 +123,7 @@ export const QuizProvider = ({ children }: Props) => {
       );
 
       const data = await response.json();
+
       const { id: quizID, createdAt, topic } = data.newQuiz;
       const { count: length } = data.insertedQuestions;
       const currentQuiz = data.rawQuestions;
@@ -133,6 +136,7 @@ export const QuizProvider = ({ children }: Props) => {
       };
       dispatch({ type: "FETCH_QUIZ_SUCCESS", payload: quiz });
     } catch (error: any) {
+      dispatch({ type: "FETCH_QUIZ_ERROR" });
       toast.error(error);
     }
   };
