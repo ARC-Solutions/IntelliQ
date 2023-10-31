@@ -67,10 +67,12 @@ const SignUpCard = () => {
         <div className="border-b-[0.5px] border-white pt-1 pb-1 border-opacity-70"></div>
       </CardHeader>
       <CardContent>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit(false);
-        }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(false);
+          }}
+        >
           <div>
             <div className="mb-5">
               <div className="mb-1.5">
@@ -127,7 +129,7 @@ const SignUpCard = () => {
       </CardContent>
       <CardFooter className="place-content-center font-extralight opacity-70">
         <h3>
-          Already have an account?{" "}
+          {isANewUser ? "Already Have an Account?" : "Don't have an Account?"}{" "}
           <span
             className="cursor-pointer text-primary underline hover:text-primary/90"
             onClick={() => setIsAnewUser(!isANewUser)}
