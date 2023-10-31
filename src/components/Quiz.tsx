@@ -14,7 +14,7 @@ import QAndA from "@/components/QAndA";
 import { useQuizLogic } from "@/contexts/QuizLogicContext";
 
 const Quiz = () => {
-  const { currentQuiz} = useQuiz();
+  const { currentQuiz } = useQuiz();
   const { questionNumber, setQuestionNumber } = useQuizLogic();
 
   if (!currentQuiz) {
@@ -22,7 +22,7 @@ const Quiz = () => {
   }
   return (
     <div>
-      <h1>{currentQuiz.topic}</h1>
+      <h1>{currentQuiz.quiz[questionNumber].questionTitle}</h1>
       <section className="flex">
         <Button>
           <IoTimer /> 1m 5s
@@ -37,7 +37,8 @@ const Quiz = () => {
         </Card>
       </section>
       <CardDescription>
-        <span>{questionNumber + 1}</span> out of {currentQuiz.length} Questions
+        <span>{questionNumber + 1}</span> out of {currentQuiz.quiz.length}{" "}
+        Questions
       </CardDescription>
       <QAndA quiz={currentQuiz.quiz} questionNumber={questionNumber} />
       <Button

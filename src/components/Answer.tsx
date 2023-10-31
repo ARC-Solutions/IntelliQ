@@ -3,13 +3,13 @@ import { Card } from "./ui/card";
 
 type Props = {
   answer: string;
-  number: number;
+  letter: string;
 };
 
-const Answer = ({ answer, number }: Props) => {
+const Answer = ({ answer, letter }: Props) => {
   return (
     <Button className="w-[500px]">
-      <Card>{number}</Card>
+      <Card>{letter}</Card>
       {answer}
     </Button>
   );

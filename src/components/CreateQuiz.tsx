@@ -39,7 +39,7 @@ const CreateQuiz = () => {
 
   useEffect(() => {
     if (currentQuiz) {
-      const url = `/quiz/${currentQuiz?.id}`;
+      const url = `/quiz/play`;
       redirect(url);
     }
   }, [currentQuiz]);

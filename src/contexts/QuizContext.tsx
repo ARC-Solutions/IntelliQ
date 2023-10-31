@@ -11,13 +11,11 @@ export interface Quiz {
   correctAnswer: string;
   options: string[];
   text: string;
+  questionTitle: string;
 }
 interface CurrentQuiz {
-  id: number;
   quiz: Quiz[];
   topic: string;
-  createdAt: string;
-  length: number;
 }
 interface QuizHistory {}
 export interface QuizContextValue {
@@ -86,29 +84,22 @@ export const QuizProvider = ({ children }: Props) => {
       } = await supabase.auth.getSession();
       const accessToken = session?.access_token;
       dispatch({ type: "FETCH_QUIZ_REQUEST" });
-      const response = await fetch(
-        "https://intelliq-be.azurewebsites.net/api/quiz",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({ interests, numberOfQuestions }),
-        }
-      );
+      const url = `https://intelliq-be.azurewebsites.net/api/quiz?numberOfQuestions=${numberOfQuestions}&interests=${interests}`;
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
       const data = await response.json();
 
-      const { id: quizID, createdAt, topic } = data.newQuiz;
-      const { count: length } = data.insertedQuestions;
-      const currentQuiz = data.rawQuestions;
+      const { quizTitle: topic, questions } = data.rawQuestions[0];
+
       const quiz: CurrentQuiz = {
-        id: quizID,
-        quiz: currentQuiz,
+        quiz: questions,
         topic,
-        createdAt,
-        length,
       };
       dispatch({ type: "FETCH_QUIZ_SUCCESS", payload: quiz });
     } catch (error: any) {

@@ -11,15 +11,18 @@ type Props = {
 const QAndA = ({ quiz, questionNumber }: Props) => {
   const questionsAndAnswers = quiz[questionNumber] as Quiz;
   let { correctAnswer, options: answers, text: question } = questionsAndAnswers;
-  question = question.slice(3);
-  correctAnswer = correctAnswer.slice(3);
-  answers = answers.slice(0, 4).map((answer) => answer.slice(3));;
   return (
     <section>
       <Button>{question}</Button>
       <div className="flex flex-col">
         {answers.map((answer, i) => {
-          return <Answer key={i} answer={answer} number={i + 1}></Answer>;
+          return (
+            <Answer
+              key={i}
+              answer={answer.slice(3)}
+              letter={answer.substring(0, 3)}
+            ></Answer>
+          );
         })}
       </div>
     </section>

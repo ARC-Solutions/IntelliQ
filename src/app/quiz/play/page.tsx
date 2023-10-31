@@ -6,13 +6,9 @@ import { redirect } from "next/navigation";
 export const metadata: Metadata = {
   title: "Quiz",
 };
-type Props = {
-  params: {
-    quizID: string;
-  };
-};
 
-const QuizGame = async ({ params: { quizID } }: Props) => {
+
+const QuizGame = async () => {
   const supabase = createServerComponentClient({
     cookies,
   });
