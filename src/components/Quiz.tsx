@@ -23,10 +23,14 @@ const Quiz = () => {
     dispatch,
     correctAnswer,
     wrongAnswer,
+    userAnswer,
+    quizFinished,
   } = useQuizLogic();
+
   if (!currentQuiz) {
     redirect("/quiz");
   }
+
   return (
     <div>
       <h1>{currentQuiz.quiz[questionNumber].questionTitle}</h1>
@@ -51,15 +55,21 @@ const Quiz = () => {
       </CardDescription>
       <QAndA quiz={currentQuiz.quiz} questionNumber={questionNumber} />
       <Button
+        disabled={quizFinished}
         onClick={() => {
           if (selectedAnswer) {
             dispatch({
               type: "VALIDATE_ANSWER",
-              payload: currentQuiz.quiz[questionNumber].correctAnswer.slice(3),
+              payload: {
+                question: currentQuiz.quiz[questionNumber].text.slice(3),
+                correctAnswer:
+                  currentQuiz.quiz[questionNumber].correctAnswer.slice(3),
+                userAnswer: selectedAnswer,
+              },
             });
-
             setQuestionNumber((questionNumber) => {
               if (questionNumber >= currentQuiz.quiz.length - 1) {
+                dispatch({ type: "QUIZ_FINISHED" });
                 return questionNumber;
               }
               return questionNumber + 1;

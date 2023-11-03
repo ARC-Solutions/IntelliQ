@@ -7,13 +7,12 @@ import {
   useEffect,
 } from "react";
 import { quizLogicReducer } from "@/utils/reducers/quizLogicReducer";
-import { useToast } from "@/components/ui/use-toast";
+import { showToast } from "@/utils/showToast";
 
 interface UserAnswer {
   question: string;
   correctAnswer: string;
   userAnswer: string;
-  quizTitle: string;
 }
 export interface QuizLogicValues {
   quizFinished: boolean;
@@ -30,7 +29,8 @@ export interface ContextValue extends QuizLogicValues {
 export type Action =
   | { type: "QUIZ_FINISHED" }
   | { type: "SET_SELECTED_ANSWER"; payload: string | null }
-  | { type: "VALIDATE_ANSWER"; payload: string };
+  | { type: "VALIDATE_ANSWER"; payload: UserAnswer }
+  | { type: "QUIZ_FINISHED" };
 
 const initialState: QuizLogicValues = {
   quizFinished: false,
@@ -48,24 +48,24 @@ const QuizLogicContextProvider = ({
   const [questionNumber, setQuestionNumber] = useState(0);
   const [state, dispatch] = useReducer(quizLogicReducer, initialState);
 
-  
-
-  // useEffect(() => {
-  //   if (state.correctAnswer > 0) {
-  //     toast({
-  //       
-  //     });
-  //   }
-  // }, [state.correctAnswer]);
-  // useEffect(() => {
-  //   if (state.wrongAnswer > 0) {
-  //     toast({
-  //       variant: "destructive",
-  //       title: "INCORRECT!",
-  //       description: "Oops, that's not the correct answer. Keep trying!",
-  //     });
-  //   }
-  // }, [state.wrongAnswer]);
+  useEffect(() => {
+    if (state.correctAnswer > 0) {
+      showToast(
+        "success",
+        "CORRECT!",
+        "You've answered the question correctly"
+      );
+    }
+  }, [state.correctAnswer]);
+  useEffect(() => {
+    if (state.wrongAnswer > 0) {
+      showToast(
+        "destructive",
+        "INCORRECT!",
+        "Oops, that's not the correct answer. Keep trying!"
+      );
+    }
+  }, [state.wrongAnswer]);
 
   return (
     <Context.Provider

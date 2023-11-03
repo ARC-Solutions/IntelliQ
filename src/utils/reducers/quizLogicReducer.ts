@@ -1,4 +1,3 @@
-import { useToast } from "@/components/ui/use-toast";
 import { QuizLogicValues, Action } from "@/contexts/QuizLogicContext";
 import { showToast } from "../showToast";
 
@@ -8,21 +7,27 @@ export const quizLogicReducer = (state: QuizLogicValues, action: Action) => {
   } else if (action.type === "SET_SELECTED_ANSWER") {
     return { ...state, selectedAnswer: action.payload };
   } else if (action.type === "VALIDATE_ANSWER") {
-    if (state.selectedAnswer === action.payload) {
-      showToast(
-        "success",
-        "CORRECT!",
-        "You've answered the question correctly"
-      );
-      return { ...state, correctAnswer: state.correctAnswer + 1 };
+    const { correctAnswer, userAnswer, question } = action.payload;
+    let scoreCORRECT = state.correctAnswer;
+    let scoreINCORRECT = state.wrongAnswer;
+    if (userAnswer === correctAnswer) {
+      scoreCORRECT += 1;
     } else {
-      showToast(
-        "destructive",
-        "INCORRECT!",
-        "Oops, that's not the correct answer. Keep trying!"
-      );
-      return { ...state, wrongAnswer: state.wrongAnswer + 1 };
+      scoreINCORRECT += 1;
     }
+    return {
+      ...state,
+      correctAnswer: scoreCORRECT,
+      wrongAnswer: scoreINCORRECT,
+      userAnswer: [
+        ...state.userAnswer,
+        {
+          question,
+          correctAnswer,
+          userAnswer,
+        },
+      ],
+    };
   } else {
     return state;
   }
