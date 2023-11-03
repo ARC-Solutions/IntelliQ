@@ -13,10 +13,12 @@ import { Card, CardDescription } from "@/components/ui/card";
 import QAndA from "@/components/QAndA";
 import { useQuizLogic } from "@/contexts/QuizLogicContext";
 
+import { useToast } from "./ui/use-toast";
+
 const Quiz = () => {
   const { currentQuiz } = useQuiz();
-  const { questionNumber, setQuestionNumber } = useQuizLogic();
-
+  const { questionNumber, setQuestionNumber, selectedAnswer } = useQuizLogic();
+  const { toast } = useToast();
   if (!currentQuiz) {
     redirect("/quiz");
   }
@@ -29,10 +31,12 @@ const Quiz = () => {
         </Button>
         <Card className="flex max-w-fit">
           <div>
-            <AiFillCheckSquare />4
+            <AiFillCheckSquare />
+            <span>4</span>
           </div>
           <div>
-            <AiFillCloseSquare />3
+            <AiFillCloseSquare />
+            <span>3</span>
           </div>
         </Card>
       </section>
@@ -43,12 +47,20 @@ const Quiz = () => {
       <QAndA quiz={currentQuiz.quiz} questionNumber={questionNumber} />
       <Button
         onClick={() => {
-          setQuestionNumber((questionNumber) => {
-            if (questionNumber >= currentQuiz.quiz.length - 1) {
-              return questionNumber;
-            }
-            return questionNumber + 1;
-          });
+          if (selectedAnswer) {
+            setQuestionNumber((questionNumber) => {
+              if (questionNumber >= currentQuiz.quiz.length - 1) {
+                return questionNumber;
+              }
+              return questionNumber + 1;
+            });
+          } else {
+            toast({
+              variant: "destructive",
+              title: "WARNING!",
+              description: "Please choose an answer before proceeding",
+            });
+          }
         }}
       >
         Next <AiOutlineRight />

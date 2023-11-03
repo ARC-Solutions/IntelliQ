@@ -3,7 +3,8 @@ import { createContext, useContext, useState, useReducer } from "react";
 import { quizLogicReducer } from "@/utils/reducers/quizLogicReducer";
 
 export interface QuizLogicValues {
- quizFinished: boolean;
+  quizFinished: boolean;
+  selectedAnswer: string | null;
 }
 export interface ContextValue extends QuizLogicValues {
   questionNumber: number;
@@ -14,6 +15,8 @@ export type Action = {type: "QUIZ_FINISHED",};
 
 const initialState: QuizLogicValues = {
   quizFinished: false,
+  selectedAnswer: null,
+  
 };
 const Context = createContext<ContextValue | null>(null);
 const QuizLogicContextProvider = ({

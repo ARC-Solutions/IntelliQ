@@ -37,35 +37,35 @@ export interface QuizContextValues extends QuizContextValue {
 const initialState: QuizContextValue = {
   isLoading: false,
   fetchingFinished: false,
-  currentQuiz: null,
-  // currentQuiz: {
-  //   createdAt: "2023-10-27T19:14:19.051Z",
-  //   id: 17,
-  //   length: 3,
-  //   topic: "C#",
-  //   quiz: [
-  //     {
-  //       correctAnswer: "c) string",
-  //       options: ["a) int", "b) float", "c) string", "d) boolean"],
-  //       text: "1. Which of the following is NOT a primitive data type in C#?",
-  //     },
-  //     {
-  //       correctAnswer: "a) class",
-  //       options: ["a) class", "b) struct", "c) interface", "d) enum"],
-  //       text: "2. Which keyword is used to define a class in C#?",
-  //     },
-  //     {
-  //       correctAnswer: "c) To import a namespace",
-  //       options: [
-  //         "a) To declare a new variable.",
-  //         "b) To define a class",
-  //         "c) To import a namespace",
-  //         "d) To create a loop",
-  //       ],
-  //       text: "3. What is the purpose of the using directive in C#?",
-  //     },
-  //   ],
-  // },
+  // currentQuiz: null,
+  currentQuiz: {
+    topic: "C#",
+    quiz: [
+      {
+        questionTitle: "NIce",
+        correctAnswer: "c) string",
+        options: ["a) int", "b) float", "c) string", "d) boolean"],
+        text: "1. Which of the following is NOT a primitive data type in C#?",
+      },
+      {
+        questionTitle: "NIce",
+        correctAnswer: "a) class",
+        options: ["a) class", "b) struct", "c) interface", "d) enum"],
+        text: "2. Which keyword is used to define a class in C#?",
+      },
+      {
+        questionTitle: "NIce",
+        correctAnswer: "c) To import a namespace",
+        options: [
+          "a) To declare a new variable.",
+          "b) To define a class",
+          "c) To import a namespace",
+          "d) To create a loop",
+        ],
+        text: "3. What is the purpose of the using directive in C#?",
+      },
+    ],
+  },
   quizHistory: null,
 };
 
@@ -107,7 +107,7 @@ export const QuizProvider = ({ children }: Props) => {
       toast.error(error);
     }
   };
-  
+
   return (
     <QuizContext.Provider value={{ ...state, dispatch, fetchQuestions }}>
       {children}
