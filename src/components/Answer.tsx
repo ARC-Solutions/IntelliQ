@@ -1,5 +1,6 @@
+"use client";
+import { useQuizLogic } from "@/contexts/QuizLogicContext";
 import { Button } from "./ui/button";
-import { Card } from "./ui/card";
 
 type Props = {
   answer: string;
@@ -7,10 +8,16 @@ type Props = {
 };
 
 const Answer = ({ answer, letter }: Props) => {
+  const { dispatch } = useQuizLogic();
   return (
-    <Button className="w-[500px]">
-      <Card>{letter}</Card>
-      {answer}
+    <Button
+      onClick={() => dispatch({ type: "SET_SELECTED_ANSWER", payload: answer })}
+      className="w-[500px]"
+    >
+      <span id="letter">{letter}</span>
+      <span id="answer" className="capitalize">
+        {answer}
+      </span>
     </Button>
   );
 };

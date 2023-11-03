@@ -11,12 +11,13 @@ export interface ContextValue extends QuizLogicValues {
   setQuestionNumber: React.Dispatch<React.SetStateAction<number>>;
   dispatch: React.Dispatch<Action>;
 }
-export type Action = {type: "QUIZ_FINISHED",};
+export type Action =
+  | { type: "QUIZ_FINISHED" }
+  | { type: "SET_SELECTED_ANSWER"; payload: string | null };
 
 const initialState: QuizLogicValues = {
   quizFinished: false,
   selectedAnswer: null,
-  
 };
 const Context = createContext<ContextValue | null>(null);
 const QuizLogicContextProvider = ({
@@ -27,7 +28,9 @@ const QuizLogicContextProvider = ({
   const [questionNumber, setQuestionNumber] = useState(0);
   const [state, dispatch] = useReducer(quizLogicReducer, initialState);
   return (
-    <Context.Provider value={{...state, questionNumber, setQuestionNumber, dispatch }}>
+    <Context.Provider
+      value={{ ...state, questionNumber, setQuestionNumber, dispatch }}
+    >
       {children}
     </Context.Provider>
   );

@@ -17,7 +17,7 @@ import { useToast } from "./ui/use-toast";
 
 const Quiz = () => {
   const { currentQuiz } = useQuiz();
-  const { questionNumber, setQuestionNumber, selectedAnswer } = useQuizLogic();
+  const { questionNumber, setQuestionNumber, selectedAnswer, dispatch } = useQuizLogic();
   const { toast } = useToast();
   if (!currentQuiz) {
     redirect("/quiz");
@@ -54,6 +54,7 @@ const Quiz = () => {
               }
               return questionNumber + 1;
             });
+            dispatch({ type: "SET_SELECTED_ANSWER", payload: null });
           } else {
             toast({
               variant: "destructive",
