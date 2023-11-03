@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import QuizMe from "@/components/QuizMe";
-import TopPicks from "@/components/TopPicks";
+import DashboardPage from "@/components/DashboardPage";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import type { Metadata } from "next";
@@ -18,15 +17,7 @@ const Dashboard = async () => {
   if (!session) {
     redirect("/");
   }
-  return (
-    <div>
-      <h1>
-        Dashboard
-      </h1>
-      <QuizMe />
-      <TopPicks />
-    </div>
-  );
+  return <DashboardPage />;
 };
 
 export default Dashboard;

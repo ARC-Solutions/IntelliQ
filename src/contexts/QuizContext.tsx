@@ -107,7 +107,7 @@ export const QuizProvider = ({ children }: Props) => {
       toast.error(error);
     }
   };
-
+  
   return (
     <QuizContext.Provider value={{ ...state, dispatch, fetchQuestions }}>
       {children}

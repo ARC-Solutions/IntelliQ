@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 import Lottie from "lottie-react";
 import Loading from "../../public/loading.json";
 import { Progress } from "./ui/progress";
@@ -33,12 +33,12 @@ const LoadingQuestions = ({ finished }: Props) => {
           return 100;
         }
         if (prev === 100) {
-          return 0;
+          return 99;
         }
         if (Math.random() < 0.1) {
-          return prev + 2;
+          return prev + 1;
         }
-        return prev + 0.5;
+        return prev + 0.3;
       });
     }, 100);
     return () => clearInterval(interval);
