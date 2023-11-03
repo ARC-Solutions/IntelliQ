@@ -12,13 +12,18 @@ import {
 import { Card, CardDescription } from "@/components/ui/card";
 import QAndA from "@/components/QAndA";
 import { useQuizLogic } from "@/contexts/QuizLogicContext";
-
-import { useToast } from "./ui/use-toast";
+import { showToast } from "@/utils/showToast";
 
 const Quiz = () => {
   const { currentQuiz } = useQuiz();
-  const { questionNumber, setQuestionNumber, selectedAnswer, dispatch } = useQuizLogic();
-  const { toast } = useToast();
+  const {
+    questionNumber,
+    setQuestionNumber,
+    selectedAnswer,
+    dispatch,
+    correctAnswer,
+    wrongAnswer,
+  } = useQuizLogic();
   if (!currentQuiz) {
     redirect("/quiz");
   }
@@ -32,11 +37,11 @@ const Quiz = () => {
         <Card className="flex max-w-fit">
           <div>
             <AiFillCheckSquare />
-            <span>4</span>
+            <span>{correctAnswer}</span>
           </div>
           <div>
             <AiFillCloseSquare />
-            <span>3</span>
+            <span>{wrongAnswer}</span>
           </div>
         </Card>
       </section>
@@ -48,6 +53,11 @@ const Quiz = () => {
       <Button
         onClick={() => {
           if (selectedAnswer) {
+            dispatch({
+              type: "VALIDATE_ANSWER",
+              payload: currentQuiz.quiz[questionNumber].correctAnswer.slice(3),
+            });
+
             setQuestionNumber((questionNumber) => {
               if (questionNumber >= currentQuiz.quiz.length - 1) {
                 return questionNumber;
@@ -56,11 +66,11 @@ const Quiz = () => {
             });
             dispatch({ type: "SET_SELECTED_ANSWER", payload: null });
           } else {
-            toast({
-              variant: "destructive",
-              title: "WARNING!",
-              description: "Please choose an answer before proceeding",
-            });
+            showToast(
+              "destructive",
+              "WARNING!",
+              "Please choose an answer before proceeding"
+            );
           }
         }}
       >

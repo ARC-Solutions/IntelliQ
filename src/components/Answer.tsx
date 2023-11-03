@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Answer = ({ answer, letter }: Props) => {
-  const { dispatch } = useQuizLogic();
+  const { dispatch} = useQuizLogic();
   return (
     <Button
       onClick={() => dispatch({ type: "SET_SELECTED_ANSWER", payload: answer })}
