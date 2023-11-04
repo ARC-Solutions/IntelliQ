@@ -56,7 +56,7 @@ const SignUpCard = () => {
         <CardDescription className='pt-1 pb-2 text-xl'>Let&apos;s Sign You In</CardDescription>
         <Button
           onClick={() => handleSubmit(true)}
-          className='bg-[#fafafa] hover:bg-[#fafafa]/90 p-5'
+          className='bg-[#fafafa] hover:bg-[#fafafa]/90 active:bg-[#fafafa]/80 p-5'
         >
           <div className='text-3xl place-content-center'>
             <FcGoogle size='' />
