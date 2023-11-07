@@ -1,9 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import { Button } from "./ui/button";
+import React from "react";
 import { Quiz } from "@/contexts/QuizContext";
 import Answer from "./Answer";
-import { Card } from "./ui/card";
 type Props = {
   quiz: Quiz[];
   questionNumber: number;
@@ -11,10 +9,10 @@ type Props = {
 
 const QAndA = ({ quiz, questionNumber }: Props) => {
   const questionsAndAnswers = quiz[questionNumber] as Quiz;
-  let { correctAnswer, options: answers, text: question } = questionsAndAnswers;
+  let { options: answers, text: question } = questionsAndAnswers;
   return (
     <section>
-      <h1 className="w-fit">{question.slice(2)}</h1>
+      <h1 className="w-fit">{question}</h1>
       <div className="flex flex-col">
         {answers.map((answer, i) => {
           return (

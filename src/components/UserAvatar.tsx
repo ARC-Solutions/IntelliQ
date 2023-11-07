@@ -17,7 +17,7 @@ import { useQuizLogic } from "@/contexts/QuizLogicContext";
 const UserAvatar = () => {
   const { currentUser, signout } = useAuth();
   const { dispatch } = useQuiz();
-  const { setQuestionNumber } = useQuizLogic();
+  const { setQuestionNumber, dispatch: dispatchLogic } = useQuizLogic();
   if (currentUser) {
     return (
       <Avatar>
@@ -47,7 +47,8 @@ const UserAvatar = () => {
             <DropdownMenuItem
               onClick={() => {
                 signout();
-                dispatch({ type: "RESET_QUIZ" });
+                dispatch({ type: "RESET_ALL" });
+                dispatchLogic({ type: "RESET_GAME_LOGIC" });
                 setQuestionNumber(0);
               }}
             >

@@ -15,7 +15,7 @@ import { useQuizLogic } from "@/contexts/QuizLogicContext";
 import { showToast } from "@/utils/showToast";
 
 const Quiz = () => {
-  const { currentQuiz } = useQuiz();
+  const { currentQuiz, submitQuiz } = useQuiz();
   const {
     questionNumber,
     setQuestionNumber,
@@ -23,14 +23,16 @@ const Quiz = () => {
     dispatch,
     correctAnswer,
     wrongAnswer,
-    userAnswer,
     quizFinished,
+    userAnswer,
   } = useQuizLogic();
 
   if (!currentQuiz) {
     redirect("/quiz");
   }
-
+  if (quizFinished) {
+    submitQuiz(userAnswer);
+  }
   return (
     <div>
       <h1>{currentQuiz.quiz[questionNumber].questionTitle}</h1>
@@ -68,8 +70,9 @@ const Quiz = () => {
               },
             });
             setQuestionNumber((questionNumber) => {
-              if (questionNumber >= currentQuiz.quiz.length - 1) {
+              if (questionNumber === currentQuiz.quiz.length - 1) {
                 dispatch({ type: "QUIZ_FINISHED" });
+
                 return questionNumber;
               }
               return questionNumber + 1;

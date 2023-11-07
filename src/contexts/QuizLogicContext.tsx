@@ -8,8 +8,9 @@ import {
 } from "react";
 import { quizLogicReducer } from "@/utils/reducers/quizLogicReducer";
 import { showToast } from "@/utils/showToast";
-
-interface UserAnswer {
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useQuiz } from "./QuizContext";
+export interface UserAnswer {
   question: string;
   correctAnswer: string;
   userAnswer: string;
@@ -30,7 +31,8 @@ export type Action =
   | { type: "QUIZ_FINISHED" }
   | { type: "SET_SELECTED_ANSWER"; payload: string | null }
   | { type: "VALIDATE_ANSWER"; payload: UserAnswer }
-  | { type: "QUIZ_FINISHED" };
+  | { type: "QUIZ_FINISHED" }
+  | { type: "RESET_GAME_LOGIC" };
 
 const initialState: QuizLogicValues = {
   quizFinished: false,
@@ -47,7 +49,6 @@ const QuizLogicContextProvider = ({
 }) => {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [state, dispatch] = useReducer(quizLogicReducer, initialState);
-
   useEffect(() => {
     if (state.correctAnswer > 0) {
       showToast(
@@ -69,7 +70,12 @@ const QuizLogicContextProvider = ({
 
   return (
     <Context.Provider
-      value={{ ...state, questionNumber, setQuestionNumber, dispatch }}
+      value={{
+        ...state,
+        questionNumber,
+        setQuestionNumber,
+        dispatch,
+      }}
     >
       {children}
     </Context.Provider>

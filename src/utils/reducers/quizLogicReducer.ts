@@ -28,6 +28,14 @@ export const quizLogicReducer = (state: QuizLogicValues, action: Action) => {
         },
       ],
     };
+  } else if (action.type === "RESET_GAME_LOGIC") {
+    return {
+      quizFinished: false,
+      selectedAnswer: null,
+      correctAnswer: 0,
+      wrongAnswer: 0,
+      userAnswer: [],
+    };
   } else {
     return state;
   }

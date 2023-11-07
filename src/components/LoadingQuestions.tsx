@@ -2,6 +2,7 @@
 
 import Lottie from "lottie-react";
 import Loading from "../../public/loading.json";
+import Loading2 from "../../public/loading2.json";
 import { Progress } from "./ui/progress";
 import { useEffect, useState } from "react";
 
@@ -45,7 +46,7 @@ const LoadingQuestions = ({ finished }: Props) => {
   }, [finished]);
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40] md:w-[30vw] flex flex-col items-center">
-      <Lottie animationData={Loading} />
+      <Lottie animationData={Loading2} />
       <Progress value={progress} />
       <h1 className="mt-2 text-xl">{loadingText}</h1>
     </div>
