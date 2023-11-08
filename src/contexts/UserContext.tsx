@@ -15,6 +15,7 @@ interface UserInput {
   email: string;
   password: string;
 }
+
 interface AuthContextValue {
   currentUser: User | null;
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
