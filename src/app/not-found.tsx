@@ -9,7 +9,7 @@ const ErrorPage = (props: Props) => {
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40] md:w-[30vw] flex flex-col items-center">
       <Lottie animationData={Error} />
-      <Link href={"/"}>
+      <Link href={"https://www.intelliq.arc-solutions.xyz/"}>
         <Button>Back Home</Button>
       </Link>
     </div>

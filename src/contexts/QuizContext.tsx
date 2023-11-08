@@ -38,6 +38,7 @@ export interface QuizContextValue {
   fetchingFinished: boolean;
   currentQuiz: CurrentQuiz | null;
   summaryQuiz: QuizHistory | null;
+  
 }
 export type QuizAction =
   | { type: "FETCH_QUIZ_REQUEST" }
