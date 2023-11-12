@@ -14,7 +14,6 @@ const Dashboard = () => {
       redirect(url);
     }
   }, [currentQuiz]);
-
   if (isLoading) {
     return <LoadingQuestions finished={finished} />;
   }

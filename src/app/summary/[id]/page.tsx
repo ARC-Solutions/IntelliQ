@@ -1,20 +1,12 @@
-"use client";
-import { useQuiz } from "@/contexts/QuizContext";
-import { redirect } from "next/navigation";
-import React, { useEffect } from "react";
+import SummaryPage from "@/components/SummaryPage";
+import { Metadata } from "next";
 
+import React, { useEffect } from "react";
+export const metadata: Metadata = {
+  title: "Summary",
+};
 const Summary = () => {
-  const { summaryQuiz, dispatch } = useQuiz();
-  if (!summaryQuiz) {
-    redirect("/");
-  }
-  useEffect(() => {
-    dispatch({ type: "RESET_QUIZ" });
-    return () => {
-      dispatch({ type: "RESET_ALL" });
-    };
-  }, []);
-  return <div>{summaryQuiz?.rawQuestions.correctAnswersCount}</div>;
+  return <SummaryPage />;
 };
 
 export default Summary;

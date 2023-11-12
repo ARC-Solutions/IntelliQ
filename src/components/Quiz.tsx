@@ -15,11 +15,7 @@ import { useQuizLogic } from "@/contexts/QuizLogicContext";
 import { showToast } from "@/utils/showToast";
 
 const Quiz = () => {
-  const {
-    currentQuiz,
-    submitQuiz,
-    summaryQuiz,
-  } = useQuiz();
+  const { currentQuiz, submitQuiz, summaryQuiz } = useQuiz();
   const [quizFinished, setQuizFinished] = useState(false);
   const {
     questionNumber,
@@ -32,7 +28,7 @@ const Quiz = () => {
   } = useQuizLogic();
 
   if (!currentQuiz) {
-    redirect("/quiz");
+    redirect("/");
   }
   if (summaryQuiz) {
     redirect(`/summary/${summaryQuiz.quiz_id}`);
