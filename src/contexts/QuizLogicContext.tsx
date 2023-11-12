@@ -8,15 +8,12 @@ import {
 } from "react";
 import { quizLogicReducer } from "@/utils/reducers/quizLogicReducer";
 import { showToast } from "@/utils/showToast";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useQuiz } from "./QuizContext";
 export interface UserAnswer {
   question: string;
   correctAnswer: string;
   userAnswer: string;
 }
 export interface QuizLogicValues {
-  quizFinished: boolean;
   selectedAnswer: string | null;
   correctAnswer: number;
   wrongAnswer: number;
@@ -31,11 +28,9 @@ export type Action =
   | { type: "QUIZ_FINISHED" }
   | { type: "SET_SELECTED_ANSWER"; payload: string | null }
   | { type: "VALIDATE_ANSWER"; payload: UserAnswer }
-  | { type: "QUIZ_FINISHED" }
-  | { type: "RESET_GAME_LOGIC" };
+  | { type: "RESET_GAME_LOGIC" } | {type: "INCREMENT_QUESTION_NUMBER"};
 
 const initialState: QuizLogicValues = {
-  quizFinished: false,
   selectedAnswer: null,
   correctAnswer: 0,
   wrongAnswer: 0,

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuiz } from "@/contexts/QuizContext";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,12 @@ import { useQuizLogic } from "@/contexts/QuizLogicContext";
 import { showToast } from "@/utils/showToast";
 
 const Quiz = () => {
-  const { currentQuiz, submitQuiz } = useQuiz();
+  const {
+    currentQuiz,
+    submitQuiz,
+    summaryQuiz,
+  } = useQuiz();
+  const [quizFinished, setQuizFinished] = useState(false);
   const {
     questionNumber,
     setQuestionNumber,
@@ -23,15 +28,26 @@ const Quiz = () => {
     dispatch,
     correctAnswer,
     wrongAnswer,
-    quizFinished,
     userAnswer,
   } = useQuizLogic();
 
   if (!currentQuiz) {
     redirect("/quiz");
   }
+  if (summaryQuiz) {
+    redirect(`/summary/${summaryQuiz.quiz_id}`);
+  }
+  useEffect(() => {
+    if (quizFinished) {
+      setTimeout(() => {
+        submitQuiz(userAnswer);
+        dispatch({ type: "RESET_GAME_LOGIC" });
+      }, 3000);
+    }
+  }, [quizFinished]);
+
   if (quizFinished) {
-    submitQuiz(userAnswer);
+    return <div>Analyzing</div>;
   }
   return (
     <div>
@@ -69,15 +85,15 @@ const Quiz = () => {
                 userAnswer: selectedAnswer,
               },
             });
-            setQuestionNumber((questionNumber) => {
-              if (questionNumber === currentQuiz.quiz.length - 1) {
-                dispatch({ type: "QUIZ_FINISHED" });
-
-                return questionNumber;
-              }
-              return questionNumber + 1;
+            setQuestionNumber((prevQuestionNumber) => {
+              return prevQuestionNumber >= currentQuiz.quiz.length - 1
+                ? prevQuestionNumber
+                : prevQuestionNumber + 1;
             });
-            dispatch({ type: "SET_SELECTED_ANSWER", payload: null });
+
+            if (questionNumber >= currentQuiz.quiz.length - 1) {
+              setQuizFinished(true);
+            }
           } else {
             showToast(
               "destructive",

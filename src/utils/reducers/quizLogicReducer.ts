@@ -1,10 +1,7 @@
 import { QuizLogicValues, Action } from "@/contexts/QuizLogicContext";
-import { showToast } from "../showToast";
 
 export const quizLogicReducer = (state: QuizLogicValues, action: Action) => {
-  if (action.type === "QUIZ_FINISHED") {
-    return { ...state, quizFinished: true };
-  } else if (action.type === "SET_SELECTED_ANSWER") {
+  if (action.type === "SET_SELECTED_ANSWER") {
     return { ...state, selectedAnswer: action.payload };
   } else if (action.type === "VALIDATE_ANSWER") {
     const { correctAnswer, userAnswer, question } = action.payload;
@@ -17,6 +14,7 @@ export const quizLogicReducer = (state: QuizLogicValues, action: Action) => {
     }
     return {
       ...state,
+      selectedAnswer: null,
       correctAnswer: scoreCORRECT,
       wrongAnswer: scoreINCORRECT,
       userAnswer: [
