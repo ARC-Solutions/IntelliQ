@@ -89,7 +89,32 @@ const initialState: QuizContextValue = {
       },
     ],
   },
-  summaryQuiz: null,
+  summaryQuiz: {
+    quiz_id: "blabla",
+    rawQuestions: {
+      correctAnswersCount: 2,
+      questions: [
+        {
+          text: "Which of the following is NOT a primitive data type in C#?",
+          correctAnswer: "string",
+          userAnswer: "string",
+        },
+        {
+          text: "Which keyword is used to define a class in C#?",
+          correctAnswer: "class",
+          userAnswer: "class",
+        },
+        {
+          text: "What is the purpose of the using directive in C#?",
+          correctAnswer: "To import a namespace",
+          userAnswer: "To declare a function",
+        },
+      ],
+      quiz_title: "C#",
+      timeTaken: 180,
+    },
+  },
+  // summaryQuiz: null,
 };
 
 const QuizContext = createContext<QuizContextValues | null>(null);
@@ -179,6 +204,7 @@ export const QuizProvider = React.memo(({ children }: Props) => {
     </QuizContext.Provider>
   );
 });
+QuizProvider.displayName = "QuizProvider";
 
 export const useQuiz = (): QuizContextValues => {
   const quizContext = useContext(QuizContext);

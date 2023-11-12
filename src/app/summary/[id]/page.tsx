@@ -8,7 +8,12 @@ const Summary = () => {
   if (!summaryQuiz) {
     redirect("/");
   }
-  useEffect(() => dispatch({ type: "RESET_QUIZ" }), []);
+  useEffect(() => {
+    dispatch({ type: "RESET_QUIZ" });
+    return () => {
+      dispatch({ type: "RESET_ALL" });
+    };
+  }, []);
   return <div>{summaryQuiz?.rawQuestions.correctAnswersCount}</div>;
 };
 
