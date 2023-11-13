@@ -9,11 +9,12 @@ import { Button } from "./ui/button";
 import { Card, CardDescription, CardHeader } from "./ui/card";
 import SummaryTable from "./SummaryTable";
 
-const SummaryPage = () => {
+const SummaryPage = ({ quizID }: { quizID: string }) => {
   const { summaryQuiz, dispatch } = useQuiz();
   if (!summaryQuiz) {
     redirect("/");
   }
+
   useEffect(() => {
     dispatch({ type: "RESET_QUIZ" });
   }, []);

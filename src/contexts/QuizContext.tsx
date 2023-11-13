@@ -111,7 +111,7 @@ const initialState: QuizContextValue = {
         },
       ],
       quiz_title: "C#",
-      timeTaken: 30,
+      timeTaken: 132,
     },
   },
   // summaryQuiz: null,

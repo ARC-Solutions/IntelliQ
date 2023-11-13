@@ -5,8 +5,8 @@ import React, { useEffect } from "react";
 export const metadata: Metadata = {
   title: "Summary",
 };
-const Summary = () => {
-  return <SummaryPage />;
+const Summary = ({ params }: { params: { id: string } }) => {
+  return <SummaryPage quizID={params.id}/>;
 };
 
 export default Summary;

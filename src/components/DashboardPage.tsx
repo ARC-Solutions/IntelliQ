@@ -6,8 +6,13 @@ import LoadingQuestions from "./LoadingQuestions";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
 const Dashboard = () => {
-  const { isLoading, fetchingFinished: finished, currentQuiz } = useQuiz();
-  
+  const {
+    isLoading,
+    fetchingFinished: finished,
+    currentQuiz,
+    dispatch,
+  } = useQuiz();
+
   useEffect(() => {
     if (currentQuiz) {
       const url = `/quiz/play`;

@@ -34,6 +34,10 @@ const CreateQuiz = () => {
       toast.error("Please fill out all the fields");
       return;
     }
+    if (Number(numberOfQuestions) <= 0 || Number(numberOfQuestions) > 10) {
+      toast.error("Number of questions should be between 1 and 10.");
+      return;
+    }
     fetchQuestions(interests, Number(numberOfQuestions));
   };
 
@@ -80,7 +84,7 @@ const CreateQuiz = () => {
                 ref={numberOfQuestionsRef}
               />
               <CardDescription>
-                Choose the number of quiz questions you want
+                Choose a number between 1 and 10
               </CardDescription>
             </div>
             <Button onClick={handleSubmit}>Create</Button>
