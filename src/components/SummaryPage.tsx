@@ -15,9 +15,8 @@ const SummaryPage = ({ quizID }: { quizID: string }) => {
     redirect("/");
   }
 
-  useEffect(() => {
-    dispatch({ type: "RESET_QUIZ" });
-  }, []);
+  dispatch({ type: "RESET_QUIZ" });
+
   const correctAnswersCount = summaryQuiz.rawQuestions.correctAnswersCount;
   const totalQuestions = summaryQuiz.rawQuestions.questions.length;
   const correctPercentage = (correctAnswersCount / totalQuestions) * 100;
