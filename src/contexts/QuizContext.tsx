@@ -190,7 +190,6 @@ export const QuizProvider = React.memo(({ children }: Props) => {
       });
       const data = await response.json();
       dispatch({ type: "SUBMIT_QUIZ_SUCESS", payload: data });
-      console.log(data);
     } catch (error: any) {
       toast(error.message);
       console.log(error);
