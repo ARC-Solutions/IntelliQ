@@ -13,6 +13,8 @@ import { Card, CardDescription } from "@/components/ui/card";
 import QAndA from "@/components/QAndA";
 import { useQuizLogic } from "@/contexts/QuizLogicContext";
 import { showToast } from "@/utils/showToast";
+import Summarizing from "../../public/summarizing.json";
+import Lottie from "lottie-react";
 
 const Quiz = () => {
   const { currentQuiz, submitQuiz, summaryQuiz } = useQuiz();
@@ -67,7 +69,12 @@ const Quiz = () => {
   }, [quizFinished]);
 
   if (quizFinished) {
-    return <div>Analyzing</div>;
+    return (
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40] md:w-[30vw] flex flex-col items-center">
+        <h1 className="mt-2 text-xl">Summarizing</h1>
+        <Lottie animationData={Summarizing} />
+      </div>
+    );
   }
   return (
     <div>
