@@ -34,6 +34,11 @@ export const quizReducer = (
       ...state,
       summaryQuiz: action.payload,
     };
+  } else if (action.type === "RESET_SUMMARY_QUIZ") {
+    return {
+      ...state,
+      summaryQuiz: null,
+    };
   } else {
     return state;
   }

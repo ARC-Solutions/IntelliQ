@@ -49,6 +49,7 @@ export type QuizAction =
   | { type: "FETCH_QUIZ_ERROR" }
   | { type: "RESET_QUIZ" }
   | { type: "RESET_ALL" }
+  | { type: "RESET_SUMMARY_QUIZ" }
   | { type: "FETCH_QUIZ_SUCCESS"; payload: CurrentQuiz }
   | { type: "SUBMIT_QUIZ_SUCESS"; payload: QuizHistory };
 

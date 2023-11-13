@@ -12,7 +12,9 @@ const Dashboard = () => {
     currentQuiz,
     dispatch,
   } = useQuiz();
-
+  useEffect(() => {
+    dispatch({ type: "RESET_SUMMARY_QUIZ" });
+  }, []);
   useEffect(() => {
     if (currentQuiz) {
       const url = `/quiz/play`;
