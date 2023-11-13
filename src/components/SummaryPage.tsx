@@ -15,7 +15,9 @@ const SummaryPage = ({ quizID }: { quizID: string }) => {
     redirect("/");
   }
 
-  dispatch({ type: "RESET_QUIZ" });
+  useEffect(() => {
+    dispatch({ type: "RESET_QUIZ" });
+  }, []);
 
   const correctAnswersCount = summaryQuiz.rawQuestions.correctAnswersCount;
   const totalQuestions = summaryQuiz.rawQuestions.questions.length;
@@ -29,8 +31,6 @@ const SummaryPage = ({ quizID }: { quizID: string }) => {
   } else if (correctPercentage > 50) {
     descriptionText = "👍 Great job! Keep up the good work. 👍";
   } else {
-    console.log(correctPercentage);
-
     descriptionText = "😊 Nice try! Keep practicing to improve your score. 😊";
   }
 

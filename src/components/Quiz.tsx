@@ -37,7 +37,6 @@ const Quiz = () => {
           const seconds = prevTime.seconds + 1;
           const newMinutes = Math.floor(prevTime.minutes + seconds / 60);
           const newSeconds = seconds % 60;
-          console.log("New Time:", newMinutes, "m", newSeconds, "s");
           return {
             minutes: newMinutes,
             seconds: newSeconds,
@@ -54,6 +53,8 @@ const Quiz = () => {
   if (summaryQuiz) {
     setQuizFinished(false);
     setTime({ minutes: 0, seconds: 0 });
+    dispatch({ type: "RESET_GAME_LOGIC" });
+    setQuestionNumber(0);
     redirect(`/summary/${summaryQuiz.quiz_id}`);
   }
 
@@ -61,7 +62,6 @@ const Quiz = () => {
     if (quizFinished) {
       setTimeout(() => {
         submitQuiz(userAnswer, totalTimeInSeconds);
-        dispatch({ type: "RESET_GAME_LOGIC" });
       }, 3000);
     }
   }, [quizFinished]);
@@ -118,7 +118,6 @@ const Quiz = () => {
             if (questionNumber >= currentQuiz.quiz.length - 1) {
               setQuizFinished(true);
               setTotalTimeInSeconds(time.minutes * 60 + time.seconds);
-              
             }
           } else {
             showToast(
