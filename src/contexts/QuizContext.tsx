@@ -56,7 +56,7 @@ export type QuizAction =
 export interface QuizContextValues extends QuizContextValue {
   dispatch: React.Dispatch<QuizAction>;
   fetchQuestions: (interests: string, numberOfQuestions: number) => void;
-  submitQuiz: (userAnswer: UserAnswer[]) => void;
+  submitQuiz: (userAnswer: UserAnswer[], timeTaken: number) => void;
 }
 const initialState: QuizContextValue = {
   isLoading: false,
@@ -157,7 +157,7 @@ export const QuizProvider = React.memo(({ children }: Props) => {
       toast.error(error);
     }
   };
-  const submitQuiz = async (userAnswer: UserAnswer[]) => {
+  const submitQuiz = async (userAnswer: UserAnswer[], timeTaken: number) => {
     try {
       const {
         data: { session },
@@ -177,7 +177,7 @@ export const QuizProvider = React.memo(({ children }: Props) => {
       const rawQuestions = {
         quizTitle,
         questions,
-        timeTaken: 180,
+        timeTaken,
       };
       const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/submit-quiz`;
       const response = await fetch(URL, {
