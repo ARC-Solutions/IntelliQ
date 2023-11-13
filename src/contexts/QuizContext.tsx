@@ -61,35 +61,35 @@ export interface QuizContextValues extends QuizContextValue {
 const initialState: QuizContextValue = {
   isLoading: false,
   fetchingFinished: false,
-  // currentQuiz: null,
-  currentQuiz: {
-    topic: "C#",
-    quiz: [
-      {
-        questionTitle: "NIce",
-        correctAnswer: "c) string",
-        options: ["a) int", "b) float", "c) string", "d) boolean"],
-        text: "Which of the following is NOT a primitive data type in C#?",
-      },
-      {
-        questionTitle: "NIce",
-        correctAnswer: "a) class",
-        options: ["a) class", "b) struct", "c) interface", "d) enum"],
-        text: "Which keyword is used to define a class in C#?",
-      },
-      {
-        questionTitle: "NIce",
-        correctAnswer: "c) To import a namespace",
-        options: [
-          "a) To declare a new variable.",
-          "b) To define a class",
-          "c) To import a namespace",
-          "d) To create a loop",
-        ],
-        text: "What is the purpose of the using directive in C#?",
-      },
-    ],
-  },
+  currentQuiz: null,
+  // currentQuiz: {
+  //   topic: "C#",
+  //   quiz: [
+  //     {
+  //       questionTitle: "NIce",
+  //       correctAnswer: "c) string",
+  //       options: ["a) int", "b) float", "c) string", "d) boolean"],
+  //       text: "Which of the following is NOT a primitive data type in C#?",
+  //     },
+  //     {
+  //       questionTitle: "NIce",
+  //       correctAnswer: "a) class",
+  //       options: ["a) class", "b) struct", "c) interface", "d) enum"],
+  //       text: "Which keyword is used to define a class in C#?",
+  //     },
+  //     {
+  //       questionTitle: "NIce",
+  //       correctAnswer: "c) To import a namespace",
+  //       options: [
+  //         "a) To declare a new variable.",
+  //         "b) To define a class",
+  //         "c) To import a namespace",
+  //         "d) To create a loop",
+  //       ],
+  //       text: "What is the purpose of the using directive in C#?",
+  //     },
+  //   ],
+  // },
   // summaryQuiz: {
   //   quiz_id: "blabla",
   //   rawQuestions: {
