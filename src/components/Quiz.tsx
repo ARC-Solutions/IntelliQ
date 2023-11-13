@@ -75,7 +75,7 @@ const Quiz = () => {
             dispatch({
               type: "VALIDATE_ANSWER",
               payload: {
-                question: currentQuiz.quiz[questionNumber].text.slice(3),
+                question: currentQuiz.quiz[questionNumber].text,
                 correctAnswer:
                   currentQuiz.quiz[questionNumber].correctAnswer.slice(3),
                 userAnswer: selectedAnswer,

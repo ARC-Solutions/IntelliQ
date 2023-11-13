@@ -12,7 +12,7 @@ const QAndA = ({ quiz, questionNumber }: Props) => {
   let { options: answers, text: question } = questionsAndAnswers;
   return (
     <section>
-      <h1 className="w-fit">{question}</h1>
+      <h1 className="w-fit">{question.slice(3)}</h1>
       <div className="flex flex-col">
         {answers.map((answer, i) => {
           return (

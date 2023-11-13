@@ -17,7 +17,7 @@ type Props = {
 const SummaryTable = ({ summaryQuiz }: Props) => {
   return (
     <Table>
-      <TableCaption>Summary of you recent quiz</TableCaption>
+      <TableCaption>Summary of your recent quiz</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-1/12">No.</TableHead>

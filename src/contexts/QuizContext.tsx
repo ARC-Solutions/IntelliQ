@@ -90,32 +90,32 @@ const initialState: QuizContextValue = {
       },
     ],
   },
-  summaryQuiz: {
-    quiz_id: "blabla",
-    rawQuestions: {
-      correctAnswersCount: 2,
-      questions: [
-        {
-          text: "Which of the following is NOT a primitive data type in C#?",
-          correctAnswer: "string",
-          userAnswer: "string",
-        },
-        {
-          text: "Which keyword is used to define a class in C#?",
-          correctAnswer: "class",
-          userAnswer: "class",
-        },
-        {
-          text: "What is the purpose of the using directive in C#?",
-          correctAnswer: "To import a namespace",
-          userAnswer: "To declare a function",
-        },
-      ],
-      quiz_title: "C#",
-      timeTaken: 132,
-    },
-  },
-  // summaryQuiz: null,
+  // summaryQuiz: {
+  //   quiz_id: "blabla",
+  //   rawQuestions: {
+  //     correctAnswersCount: 2,
+  //     questions: [
+  //       {
+  //         text: "Which of the following is NOT a primitive data type in C#?",
+  //         correctAnswer: "string",
+  //         userAnswer: "string",
+  //       },
+  //       {
+  //         text: "Which keyword is used to define a class in C#?",
+  //         correctAnswer: "class",
+  //         userAnswer: "class",
+  //       },
+  //       {
+  //         text: "What is the purpose of the using directive in C#?",
+  //         correctAnswer: "To import a namespace",
+  //         userAnswer: "To declare a function",
+  //       },
+  //     ],
+  //     quiz_title: "C#",
+  //     timeTaken: 132,
+  //   },
+  // },
+  summaryQuiz: null,
 };
 
 const QuizContext = createContext<QuizContextValues | null>(null);
@@ -132,8 +132,9 @@ export const QuizProvider = React.memo(({ children }: Props) => {
         data: { session },
       } = await supabase.auth.getSession();
       const accessToken = session?.access_token;
+      const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/quiz`;
       dispatch({ type: "FETCH_QUIZ_REQUEST" });
-      const url = `https://intelliq-be.azurewebsites.net/api/quiz?numberOfQuestions=${numberOfQuestions}&interests=${interests}`;
+      const url = `${URL}?numberOfQuestions=${numberOfQuestions}&interests=${interests}`;
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -178,17 +179,15 @@ export const QuizProvider = React.memo(({ children }: Props) => {
         questions,
         timeTaken: 180,
       };
-      const response = await fetch(
-        "https://intelliq-be.azurewebsites.net/api/submit-quiz",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({ rawQuestions }),
-        }
-      );
+      const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/submit-quiz`;
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ rawQuestions }),
+      });
       const data = await response.json();
       dispatch({ type: "SUBMIT_QUIZ_SUCESS", payload: data });
       console.log(data);
