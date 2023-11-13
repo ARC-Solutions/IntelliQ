@@ -20,7 +20,7 @@ export interface Quiz {
   text: string;
   questionTitle: string;
 }
-interface HistoryQuestions {
+export interface HistoryQuestions {
   correctAnswer: string;
   text: string;
   userAnswer: string;
@@ -111,7 +111,7 @@ const initialState: QuizContextValue = {
         },
       ],
       quiz_title: "C#",
-      timeTaken: 180,
+      timeTaken: 30,
     },
   },
   // summaryQuiz: null,
