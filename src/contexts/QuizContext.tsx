@@ -120,7 +120,7 @@ const initialState: QuizContextValue = {
 
 const QuizContext = createContext<QuizContextValues | null>(null);
 
-export const QuizProvider = React.memo(({ children }: Props) => {
+export const QuizProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);
   const supabase = createClientComponentClient();
   const fetchQuestions = async (
@@ -202,8 +202,7 @@ export const QuizProvider = React.memo(({ children }: Props) => {
       {children}
     </QuizContext.Provider>
   );
-});
-QuizProvider.displayName = "QuizProvider";
+};
 
 export const useQuiz = (): QuizContextValues => {
   const quizContext = useContext(QuizContext);
