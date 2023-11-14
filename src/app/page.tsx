@@ -20,7 +20,7 @@ export default async function Home() {
         I am IntelliQ, created and maintained by
         <span className="text-primary"> ARC-Solutions</span>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center m-2">
         <SignUpCard />
       </div>
     </div>
