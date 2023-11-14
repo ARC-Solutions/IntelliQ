@@ -26,9 +26,10 @@ const Dashboard = () => {
   }
   return (
     <div>
-      <h1>Dashboard</h1>
-      <QuizMe />
-      <TopPicks />
+      <h1 className='text-3xl sm:text-4xl text-center font-semibold'>DASHBOARD</h1>
+      
+        <QuizMe />
+        <TopPicks />
     </div>
   );
 };
