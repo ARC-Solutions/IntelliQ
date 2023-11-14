@@ -27,9 +27,13 @@ const Dashboard = () => {
   return (
     <div>
       <h1 className='text-3xl sm:text-4xl text-center font-semibold'>DASHBOARD</h1>
-      
+
+      <div className='flex items-center justify-center m-4 mb-5 sm:mb-10'>
         <QuizMe />
-        <TopPicks />
+      </div>
+      <div className='flex items-center justify-center m-4 mt-5 sm:mt-10'>
+        <TopPicks /> 
+      Q</div>
     </div>
   );
 };
