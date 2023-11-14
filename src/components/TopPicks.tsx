@@ -1,16 +1,10 @@
-import React from "react";
-import { BiSolidBrain } from "react-icons/bi";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Topics from "./Topics";
+import React from 'react';
+import { BiSolidBrain } from 'react-icons/bi';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Topics from './Topics';
 const TopPicks = () => {
   return (
-    <Card className="w-[350px]">
+    <Card className='w-[350px]'>
       <CardHeader>
         <CardTitle>
           Our Top Picks!
@@ -19,7 +13,7 @@ const TopPicks = () => {
       </CardHeader>
       <CardContent>
         <CardDescription>
-          Challenge yourself to a quiz with a topic of your choice
+          Challenge yourself by exploring one of our suggested topics.
         </CardDescription>
         <Topics />
       </CardContent>
