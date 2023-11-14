@@ -20,7 +20,7 @@ const Topics = () => {
     { name: "Agile Management", icon: <RiMicroscopeFill /> },
   ];
   return (
-    <div>
+    <div className='grid grid-cols-2 gap-4'>
       {topics.map((topic, i) => {
         return <Topic key={i} {...topic} />;
       })}

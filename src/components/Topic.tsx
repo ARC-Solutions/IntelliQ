@@ -9,9 +9,9 @@ const Topic = ({ name, icon }: RecommendedTopic) => {
     <Card
       onClick={() => {
         fetchQuestions(name, 4);
-        redirect("/quiz");
+        redirect('/quiz');
       }}
-      className="w-[150px] cursor-pointer"
+      className='w-[150px] cursor-pointer'
     >
       <CardContent>
         <h2>{name}</h2>
