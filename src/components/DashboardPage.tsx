@@ -33,7 +33,7 @@ const Dashboard = () => {
       </div>
       <div className='flex items-center justify-center m-4 mt-5 sm:mt-10'>
         <TopPicks /> 
-      Q</div>
+      </div>
     </div>
   );
 };

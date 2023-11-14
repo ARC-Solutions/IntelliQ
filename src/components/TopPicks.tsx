@@ -4,9 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Topics from './Topics';
 const TopPicks = () => {
   return (
-    <Card className='w-[350px]'>
+    <Card className='w-[350px] '>
       <CardHeader>
-        <CardTitle>
+        <CardTitle className='text-xl sm:text-2xl'>
           Our Top Picks!
           <BiSolidBrain />
         </CardTitle>

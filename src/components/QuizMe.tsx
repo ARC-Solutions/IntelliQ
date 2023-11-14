@@ -11,12 +11,12 @@ import Link from "next/link";
 
 const QuizMe = () => {
   return (
-    <Link href={"/quiz"}>
-      <Card className="w-[350px]">
+    <Link href={'/quiz'}>
+      <Card className='w-[350px]'>
         <CardHeader>
-          <CardTitle>
-            Quiz Me!
-            <BsFillQuestionDiamondFill />
+          <CardTitle className='text-xl sm:text-2xl'>
+              Quiz Me!
+              <BsFillQuestionDiamondFill />
           </CardTitle>
         </CardHeader>
         <CardContent>
