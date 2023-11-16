@@ -10,6 +10,7 @@ import { SupabaseProvider } from '@/contexts/SupabaseContext';
 import { QuizProvider } from '@/contexts/QuizContext';
 import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
 import { Toaster } from '@/components/ui/toaster';
+import GoogleAnalytics from '@/app/googleAnalytics';
 const inter = Inter({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '600', '700', '800'],
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className={cn(inter.className, 'antialiased min-h-screen pt-32')}>
+        <GoogleAnalytics />
         <SupabaseProvider>
           <AuthProvider>
             <QuizProvider>
