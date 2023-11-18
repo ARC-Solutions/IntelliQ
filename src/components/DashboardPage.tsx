@@ -25,7 +25,7 @@ const Dashboard = () => {
     return <LoadingQuestions finished={finished} />;
   }
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <h1 className='text-3xl sm:text-4xl text-center font-semibold'>DASHBOARD</h1>
 
       <div className='flex items-center justify-center m-4 mb-5 sm:mb-10'>
