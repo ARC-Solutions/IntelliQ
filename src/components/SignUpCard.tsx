@@ -50,7 +50,7 @@ const SignUpCard = () => {
     }
   };
   return (
-    <Card className='w-full sm:w-[450px] border-none rounded-lg p-4 shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary'>
+    <Card className='w-auto sm:w-[450px] border-none rounded-lg p-4 shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary'>
       <CardHeader className='pb-5'>
         <CardTitle className='text-3xl'>ARC-Solutions</CardTitle>
         <CardDescription className='pt-1 pb-2 text-xl'>Let&apos;s Sign You In</CardDescription>
@@ -83,7 +83,7 @@ const SignUpCard = () => {
                 id='email'
                 placeholder='Enter your Email Address'
                 ref={emailRef}
-                className='border-2'
+                className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
               />
             </div>
             <div className='mb-5'>
@@ -97,11 +97,11 @@ const SignUpCard = () => {
                 type='password'
                 placeholder='Enter your Password'
                 ref={passwordRef}
-                className='border-2'
+                className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
               />
             </div>
             {isANewUser && (
-              <div className='mb-4'>
+              <div className='mb-5'>
                 <div className='mb-1.5'>
                   <Label htmlFor='confirmPassword' className='font-thin'>
                     Confirm Password
@@ -112,7 +112,7 @@ const SignUpCard = () => {
                   type='password'
                   placeholder='Confirm your Password'
                   ref={confirmPasswordRef}
-                  className='border-2'
+                  className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
                 />
               </div>
             )}
