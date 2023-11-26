@@ -56,7 +56,7 @@ const initialState: QuizContextValue = {
   isLoading: false,
   fetchingFinished: false,
   currentQuiz: null,
-  /* currentQuiz: {
+  /*currentQuiz: {
     topic: 'C#',
     quiz: [
       {
@@ -83,8 +83,8 @@ const initialState: QuizContextValue = {
         text: 'What is the purpose of the using directive in C#?',
       },
     ],
-  },*/
-  /*  summaryQuiz: {
+  },
+/*  summaryQuiz: {
     quiz_id: 'blabla',
     rawQuestions: {
       correctAnswersCount: 2,

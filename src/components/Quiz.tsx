@@ -90,7 +90,7 @@ const Quiz = () => {
               {time.seconds}s
             </span>
           </Button>
-          <Card className='flex items-center text-green-500 text-2xl font-bold'>
+          <Card className='flex items-center text-green-500 text-2xl font-bold border-b-[0.5px] rounded-lg border-white border-opacity-20'>
             <div className='flex items-center mx-2'>
               <AiFillCheckSquare className='text-2xl' />
               <span className='ml-1'>{correctAnswer}</span>
@@ -102,7 +102,7 @@ const Quiz = () => {
           </Card>
         </div>
 
-        <CardDescription>
+        <CardDescription className='flex items-start'>
           <span>{questionNumber + 1}</span> out of {currentQuiz.quiz.length} Questions
         </CardDescription>
         <QAndA quiz={currentQuiz.quiz} questionNumber={questionNumber} />
