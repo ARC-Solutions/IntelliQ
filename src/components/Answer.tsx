@@ -12,11 +12,12 @@ const Answer = ({ answer, letter }: Props) => {
   return (
     <Button
       onClick={() => dispatch({ type: 'SET_SELECTED_ANSWER', payload: answer })}
-      className='w-full my-3 p-7 text-sm sm:text-xl bg-black 
-      text-white border rounded-lg border-white border-opacity-30
-      justify-start hover:text-black hover:border-none font-medium'
+      className='group w-full my-3 p-7 text-sm sm:text-xl bg-black text-white border rounded-lg border-white border-opacity-30 justify-start hover:text-black hover:border-none font-medium'
     >
-      <span id='letter' className='me-4 text-base sm:text-2xl'>
+      <span
+        id='letter'
+        className='me-4 text-base sm:text-2xl border border-white px-2 py-1 border-opacity-[.15] rounded-md group-hover:border-black '
+      >
         {letter}
       </span>
       <span id='answer' className='capitalize'>

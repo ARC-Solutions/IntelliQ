@@ -55,8 +55,8 @@ export interface QuizContextValues extends QuizContextValue {
 const initialState: QuizContextValue = {
   isLoading: false,
   fetchingFinished: false,
-  currentQuiz: null,
-  /*currentQuiz: {
+  //currentQuiz: null,
+  currentQuiz: {
     topic: 'C#',
     quiz: [
       {
