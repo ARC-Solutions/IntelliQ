@@ -52,7 +52,9 @@ const CreateQuiz = () => {
       <Card className='w-auto sm:w-[450px] border-b-[0.5px] border-white pt-1 pb-1 p-4 border-opacity-40'>
         <CardHeader>
           <CardTitle className='text-3xl'>Create a Quiz</CardTitle>
-          <CardDescription className='text-sm font-thin'>Are you ready to be challenged ?</CardDescription>
+          <CardDescription className='text-sm font-thin'>
+            Are you ready to be challenged ?
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form>
@@ -96,7 +98,7 @@ const CreateQuiz = () => {
             </div>
             <Button
               onClick={handleSubmit}
-              className='w-full/50 text-center rounded-sm text-base font-bold p-6 pb-2 pt-2 active:bg-primary/80'
+              className='w-full/50 text-center rounded-sm text-base font-bold p-6 pb-2 pt-2'
             >
               Create
             </Button>

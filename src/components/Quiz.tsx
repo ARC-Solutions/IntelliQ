@@ -128,7 +128,7 @@ const Quiz = () => {
               showToast('destructive', 'WARNING!', 'Please choose an answer before proceeding');
             }
           }}
-          className='mt-4 w-full/50 text-center rounded-lg text-base font-bold px-6 py-2 active:bg-primary/80'
+          className='mt-4 w-full/50 text-center rounded-lg text-base font-bold px-6 py-2 hover:bg-primary/90 active:bg-primary/80'
         >
           Next <AiOutlineRight />
         </Button>
