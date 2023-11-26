@@ -98,7 +98,7 @@ const CreateQuiz = () => {
             </div>
             <Button
               onClick={handleSubmit}
-              className='w-full/50 text-center rounded-sm text-base font-bold p-6 pb-2 pt-2'
+              className='w-full/50 text-center rounded-sm text-base font-bold p-6 pb-2 pt-2 hover:bg-primary/90'
             >
               Create
             </Button>
