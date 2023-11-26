@@ -103,7 +103,7 @@ const Quiz = () => {
         </div>
 
         <CardDescription className='flex items-start'>
-          <span>{questionNumber + 1}</span> out of {currentQuiz.quiz.length} Questions
+          <span>{questionNumber + 1 }</span>&nbsp;out of {currentQuiz.quiz.length} Questions
         </CardDescription>
         <QAndA quiz={currentQuiz.quiz} questionNumber={questionNumber} />
         <Button
