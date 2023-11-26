@@ -73,14 +73,14 @@ const Quiz = () => {
     );
   }
   return (
-    <div className='text-white flex flex-col items-center justify-center p-4'>
-      <header className='text-6xl font-bold mb-4'>
+    <div className='w-[400] sm:w-[800px] mx-auto text-white flex flex-col items-center justify-center p-4 '>
+      <header className='text-4xl sm:text-6xl font-bold mb-4'>
         {currentQuiz.quiz[questionNumber].questionTitle}
       </header>
-      <section className='p-6 rounded-lg shadow-md text-center'>
+      <section className='w-full p-6 rounded-lg shadow-md text-center'>
         <div className='flex justify-between items-center mb-4'>
-          <Button className='text-black text-xl font-medium p-2 pr-3 rounded inline-flex items-center'>
-            <IoTimer className='text-2xl mr-2' />{' '}
+          <Button className='text-black text-sm sm:text-xl font-medium p-2 pr-3 rounded inline-flex items-center'>
+            <IoTimer className='text-base sm:text-2xl mr-2' />{' '}
             <span id='time'>
               {time.minutes > 0 ? `${time.minutes}m ` : ''}
               {time.seconds}s
@@ -88,17 +88,17 @@ const Quiz = () => {
           </Button>
           <Card className='flex items-center text-green-500 text-2xl font-bold border-b-[0.5px] rounded-lg border-white border-opacity-20'>
             <div className='flex items-center mx-2'>
-              <AiFillCheckSquare className='text-2xl' />
-              <span className='ml-1'>{correctAnswer}</span>
+              <AiFillCheckSquare className='text-xl sm:text-2xl' />
+              <span className='ml-1 text-xl sm:text-2xl'>{correctAnswer}</span>
             </div>
             <div className='flex items-center text-red-500 mx-2'>
-              <span className='mr-1'>{wrongAnswer}</span>
-              <AiFillCloseSquare className='text-2xl' />
+              <span className='mr-1 text-xl sm:text-2xl'>{wrongAnswer}</span>
+              <AiFillCloseSquare className='text-xl sm:text-2xl' />
             </div>
           </Card>
         </div>
 
-        <CardDescription className='flex items-start my-3 text-base'>
+        <CardDescription className='flex items-start my-3 text-sm sm:text-base'>
           <span>{questionNumber + 1}</span>&nbsp;out of {currentQuiz.quiz.length} Questions
         </CardDescription>
         <QAndA quiz={currentQuiz.quiz} questionNumber={questionNumber} />

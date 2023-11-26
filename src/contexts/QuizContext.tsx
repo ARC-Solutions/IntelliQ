@@ -63,8 +63,8 @@ const initialState: QuizContextValue = {
         questionTitle: 'Nice',
         correctAnswer: 'c) string',
         options: [
-          'a) int intintintintintintintintintintint',
-          'b) float floatfloatfloatfloatfloat',
+          'a) int',
+          'b) float',
           'c) string',
           'd) boolean',
         ],
