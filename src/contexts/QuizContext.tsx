@@ -62,7 +62,12 @@ const initialState: QuizContextValue = {
       {
         questionTitle: 'Nice',
         correctAnswer: 'c) string',
-        options: ['a) int', 'b) float', 'c) string', 'd) boolean'],
+        options: [
+          'a) int intintintintintintintintintintint',
+          'b) float floatfloatfloatfloatfloat',
+          'c) string',
+          'd) boolean',
+        ],
         text: 'Which of the following is NOT a primitive data type in C#?',
       },
       {
@@ -84,7 +89,7 @@ const initialState: QuizContextValue = {
       },
     ],
   },
-/*  summaryQuiz: {
+  /*  summaryQuiz: {
     quiz_id: 'blabla',
     rawQuestions: {
       correctAnswersCount: 2,
