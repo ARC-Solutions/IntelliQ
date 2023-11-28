@@ -4,6 +4,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useReducer,
   useState,
 } from "react";
@@ -38,11 +39,17 @@ export interface QuizHistory {
     questions: HistoryQuestions[];
   };
 }
+export interface QuizHistories {
+  id: string;
+  quiz_title: string;
+  created_at: string;
+}
 export interface QuizContextValue {
   isLoading: boolean;
   fetchingFinished: boolean;
   currentQuiz: CurrentQuiz | null;
   summaryQuiz: QuizHistory | null;
+  quizzes: QuizHistories[] | null;
 }
 export type QuizAction =
   | { type: "FETCH_QUIZ_REQUEST" }
@@ -51,7 +58,8 @@ export type QuizAction =
   | { type: "RESET_ALL" }
   | { type: "RESET_SUMMARY_QUIZ" }
   | { type: "FETCH_QUIZ_SUCCESS"; payload: CurrentQuiz }
-  | { type: "SUBMIT_QUIZ_SUCESS"; payload: QuizHistory };
+  | { type: "SUBMIT_QUIZ_SUCESS"; payload: QuizHistory }
+  | {type: "STORE_QUIZZES"; payload: QuizHistories[]};
 
 export interface QuizContextValues extends QuizContextValue {
   dispatch: React.Dispatch<QuizAction>;
@@ -62,6 +70,7 @@ const initialState: QuizContextValue = {
   isLoading: false,
   fetchingFinished: false,
   currentQuiz: null,
+  quizzes: null,
   // currentQuiz: {
   //   topic: "C#",
   //   quiz: [
@@ -195,6 +204,11 @@ export const QuizProvider = ({ children }: Props) => {
       console.log(error);
     }
   };
+  
+
+  useEffect(() => {
+    // fetchAllQuizzes();
+  }, []);
   return (
     <QuizContext.Provider
       value={{ ...state, dispatch, fetchQuestions, submitQuiz }}

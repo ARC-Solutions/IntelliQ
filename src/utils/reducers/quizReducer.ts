@@ -28,11 +28,17 @@ export const quizReducer = (
       fetchingFinished: false,
       currentQuiz: null,
       summaryQuiz: null,
+      quizzes: null,
     };
   } else if (action.type === "SUBMIT_QUIZ_SUCESS") {
     return {
       ...state,
       summaryQuiz: action.payload,
+    };
+  } else if (action.type === "STORE_QUIZZES") {
+    return {
+      ...state,
+      quizzes: action.payload,
     };
   } else if (action.type === "RESET_SUMMARY_QUIZ") {
     return {
