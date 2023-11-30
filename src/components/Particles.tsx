@@ -2,7 +2,6 @@
 
 import React, {useRef, useEffect, useState} from "react";
 import {useMousePosition} from "@/utils/mouse";
-import {init} from "tailwindcss/src/oxide/cli/init";
 
 interface ParticlesProps {
     className?: string;
