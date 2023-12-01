@@ -75,7 +75,7 @@ const SignUpCard = () => {
                     className="absolute inset-0 z-0  transition duration-1000 [mask-image:linear-gradient(black,transparent)]"/>
                 {/* Background with motion effect */}
                 <motion.div
-                    className="absolute inset-0 z-10  bg-gradient-to-br opacity-100  via-violet-300/20  transition duration-1000 group-hover:opacity-50"
+                    className="absolute inset-0 z-10  bg-gradient-to-br opacity-100  via-violet-500/30  transition duration-1000 group-hover:opacity-50"
                     style={style}
                 />
                 <motion.div
