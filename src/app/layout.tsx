@@ -11,6 +11,7 @@ import {QuizProvider} from '@/contexts/QuizContext';
 import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
 import {Toaster} from '@/components/ui/toaster';
 import Particles from "@/components/Particles";
+import GoogleAnalytics from "@/app/GoogleAnalytics";
 
 const inter = Inter({
     subsets: ['latin'],
@@ -52,6 +53,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <html lang='en'>
         <body
             className={cn(inter.className, 'antialiased min-h-screen pt-32 bg-gradient-to-tl from-black via-violet-700/10 to-black')}>
+        <GoogleAnalytics />
         <Particles
             className="absolute inset-0 -z-10 animate-fade-in"
             quantity={500}
