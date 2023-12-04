@@ -77,7 +77,7 @@ const Quiz = () => {
       <header className='text-center text-2xl sm:text-4xl font-bold mb-4'>
         {currentQuiz.quiz[questionNumber].questionTitle}
       </header>
-      <section className='w-full p-6 rounded-lg shadow-md text-center'>
+      <section className='w-full p-6 rounded-lg shadow-none text-center'>
         <div className='flex justify-between items-center mb-4'>
           <Button className='text-black text-sm sm:text-xl font-medium p-2 pr-3 rounded inline-flex items-center'>
             <IoTimer className='text-base sm:text-2xl mr-2' />{' '}
