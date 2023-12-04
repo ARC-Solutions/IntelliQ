@@ -1,10 +1,11 @@
 'use client';
 
-import React, { createContext, useCallback, useContext, useReducer, useState } from 'react';
-import { toast } from 'react-toastify';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { quizReducer } from '@/utils/reducers/quizReducer';
-import { UserAnswer } from './QuizLogicContext';
+import React, {createContext, useContext, useReducer} from 'react';
+import {toast} from 'react-toastify';
+import {createClientComponentClient} from '@supabase/auth-helpers-nextjs';
+import {quizReducer} from '@/utils/reducers/quizReducer';
+import {UserAnswer} from './QuizLogicContext';
+
 type Props = {
   children: React.ReactNode;
 };

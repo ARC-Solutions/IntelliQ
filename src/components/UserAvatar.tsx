@@ -1,6 +1,6 @@
 "use client";
-import { IoExitOutline } from "react-icons/io5";
-import { Avatar } from "@/components/ui/avatar";
+import {IoExitOutline} from "react-icons/io5";
+import {Avatar} from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,11 +9,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/contexts/UserContext";
+import {useAuth} from "@/contexts/UserContext";
 import Image from "next/image";
-import { FaUserCircle } from "react-icons/fa";
-import { useQuiz } from "@/contexts/QuizContext";
-import { useQuizLogic } from "@/contexts/QuizLogicContext";
+import {FaUserCircle} from "react-icons/fa";
+import {useQuiz} from "@/contexts/QuizContext";
+import {useQuizLogic} from "@/contexts/QuizLogicContext";
+
 const UserAvatar = () => {
   const { currentUser, signout } = useAuth();
   const { dispatch } = useQuiz();

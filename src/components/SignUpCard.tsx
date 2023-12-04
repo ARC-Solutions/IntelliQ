@@ -1,21 +1,14 @@
 'use client';
 
 import {Button} from '@/components/ui/button';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,} from '@/components/ui/card';
 import {Input} from '@/components/ui/input';
 import {Label} from '@/components/ui/label';
 import {useAuth} from '../contexts/UserContext';
 import {useRef, useState} from 'react';
 import {FcGoogle} from 'react-icons/fc';
 import {toast} from 'react-toastify';
-import {motion, useSpring, useMotionValue, useMotionTemplate} from 'framer-motion';
+import {motion, useMotionTemplate, useSpring} from 'framer-motion';
 
 const SignUpCard = () => {
     const [isANewUser, setIsAnewUser] = useState(false);

@@ -1,7 +1,8 @@
 import React from 'react';
-import { BiSolidBrain } from 'react-icons/bi';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {BiSolidBrain} from 'react-icons/bi';
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import Topics from './Topics';
+
 const TopPicks = () => {
   return (
     <Card className='w-[350px] '>

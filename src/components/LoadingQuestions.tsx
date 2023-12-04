@@ -1,10 +1,9 @@
 "use client";
 
 import Lottie from "lottie-react";
-import Loading from "../../public/loading.json";
 import Loading2 from "../../public/loading2.json";
-import { Progress } from "./ui/progress";
-import { useEffect, useState } from "react";
+import {Progress} from "./ui/progress";
+import {useEffect, useState} from "react";
 
 type Props = {
   finished: boolean;
