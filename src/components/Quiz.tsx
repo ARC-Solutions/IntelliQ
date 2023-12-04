@@ -74,7 +74,7 @@ const Quiz = () => {
   }
   return (
     <div className='w-[400] sm:w-[800px] mx-auto text-white flex flex-col items-center justify-center p-4 '>
-      <header className='text-4xl sm:text-6xl font-bold mb-4'>
+      <header className='text-center text-2xl sm:text-4xl font-bold mb-4'>
         {currentQuiz.quiz[questionNumber].questionTitle}
       </header>
       <section className='w-full p-6 rounded-lg shadow-md text-center'>
@@ -88,12 +88,12 @@ const Quiz = () => {
           </Button>
           <Card className='flex items-center text-green-500 text-2xl font-bold border-b-[0.5px] rounded-lg border-white border-opacity-20'>
             <div className='flex items-center mx-2'>
-              <AiFillCheckSquare className='text-xl sm:text-2xl' />
-              <span className='ml-1 text-xl sm:text-2xl'>{correctAnswer}</span>
+              <AiFillCheckSquare className='text-2xl sm:text-4xl ' />
+              <span className='ml-1 text-2xl sm:text-4xl mb-1'>{correctAnswer}</span>
             </div>
             <div className='flex items-center text-red-500 mx-2'>
-              <span className='mr-1 text-xl sm:text-2xl'>{wrongAnswer}</span>
-              <AiFillCloseSquare className='text-xl sm:text-2xl' />
+              <span className='mr-1 text-2xl sm:text-4xl mb-1'>{wrongAnswer}</span>
+              <AiFillCloseSquare className='text-2xl sm:text-4xl' />
             </div>
           </Card>
         </div>
