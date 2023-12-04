@@ -89,7 +89,7 @@ const initialState: QuizContextValue = {
       },
     ],
   },
-  /*  summaryQuiz: {
+  summaryQuiz: {
     quiz_id: 'blabla',
     rawQuestions: {
       correctAnswersCount: 2,
