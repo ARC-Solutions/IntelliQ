@@ -10,8 +10,6 @@ type Props = {
 };
 
 const SingleQuiz = ({ quiz }: Props) => {
-  console.log(quiz);
-
   return (
     <Card>
       <CardContent>

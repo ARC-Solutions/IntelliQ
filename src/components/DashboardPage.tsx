@@ -12,7 +12,7 @@ const Dashboard = ({
   prevQuizzes: {
     quizzes: QuizHistories[],
     totalCount: number
-  };
+  }
 }) => {
   const {
     isLoading,

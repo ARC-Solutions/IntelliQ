@@ -8,12 +8,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import LoadMore from "./load-more";
 import { useQuiz } from "@/contexts/QuizContext";
 import SingleQuiz from "./SingleQuiz";
 import { ScrollArea } from "./ui/scroll-area";
-const TopPicks = ({ totalQuiz }: { totalQuiz: number }) => {
+const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
   const { quizzes } = useQuiz();
-  console.log(quizzes);
 
   return (
     <Card className="w-[350px] ">
@@ -32,6 +32,7 @@ const TopPicks = ({ totalQuiz }: { totalQuiz: number }) => {
             {quizzes?.map((quiz) => {
               return <SingleQuiz quiz={quiz} key={quiz.id} />;
             })}
+            <LoadMore />
           </div>
         </ScrollArea>
       </CardContent>
@@ -39,4 +40,4 @@ const TopPicks = ({ totalQuiz }: { totalQuiz: number }) => {
   );
 };
 
-export default TopPicks;
+export default QuizHistory;

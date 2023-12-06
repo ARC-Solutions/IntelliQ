@@ -40,6 +40,12 @@ export const quizReducer = (
       ...state,
       quizzes: action.payload,
     };
+  } else if (action.type === "FETCH_MORE_QUIZZES") {
+    if (state.quizzes) {
+      const newQuizzes = [...state.quizzes, ...action.payload];
+      return { ...state, quizzes: newQuizzes };
+    }
+    return state;
   } else if (action.type === "RESET_SUMMARY_QUIZ") {
     return {
       ...state,
