@@ -1,6 +1,14 @@
 import React from 'react';
-import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow,} from '@/components/ui/table';
-import {HistoryQuestions} from '@/contexts/QuizContext';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { HistoryQuestions } from '@/contexts/QuizContext';
 
 type Props = {
   summaryQuiz: HistoryQuestions[];
@@ -27,7 +35,7 @@ const SummaryTable = ({ summaryQuiz }: Props) => {
             <TableRow
               key={i}
               // hover:bg-[#47455b]
-              className={`hover:bg-[#403f50] ${i % 2 !== 0 ? 'bg-primary/20' : ''}`}
+              className={`hover:bg-[#403f50]`}
             >
               <TableCell className='font-medium text-xl hidden sm:table-cell'>{i + 1}</TableCell>
               <TableCell>

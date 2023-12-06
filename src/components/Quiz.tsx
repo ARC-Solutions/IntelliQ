@@ -88,12 +88,12 @@ const Quiz = () => {
           </Button>
           <Card className='flex items-center text-green-500 text-2xl font-bold border-b-[0.5px] rounded-lg border-white border-opacity-20'>
             <div className='flex items-center mx-2'>
-              <AiFillCheckSquare className='text-2xl sm:text-4xl ' />
-              <span className='ml-1 text-2xl sm:text-4xl mb-1'>{correctAnswer}</span>
+              <AiFillCheckSquare className='text-2xl sm:text-3xl ' />
+              <span className='ml-1 text-2xl sm:text-3xl mb-1'>{correctAnswer}</span>
             </div>
             <div className='flex items-center text-red-500 mx-2'>
-              <span className='mr-1 text-2xl sm:text-4xl mb-1'>{wrongAnswer}</span>
-              <AiFillCloseSquare className='text-2xl sm:text-4xl' />
+              <span className='mr-1 text-2xl sm:text-3xl mb-1'>{wrongAnswer}</span>
+              <AiFillCloseSquare className='text-2xl sm:text-3xl' />
             </div>
           </Card>
         </div>
