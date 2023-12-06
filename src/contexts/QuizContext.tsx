@@ -117,7 +117,6 @@ const initialState: QuizContextValue = {
   },
 */
   summaryQuiz: null,
-  quizzes: null
 };
 
 const QuizContext = createContext<QuizContextValues | null>(null);
