@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, {
   createContext,
@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { quizReducer } from "@/utils/reducers/quizReducer";
 import { UserAnswer } from "./QuizLogicContext";
+
 type Props = {
   children: React.ReactNode;
 };
@@ -70,60 +71,65 @@ const initialState: QuizContextValue = {
   isLoading: false,
   fetchingFinished: false,
   currentQuiz: null,
-  quizzes: null,
-  // currentQuiz: {
-  //   topic: "C#",
-  //   quiz: [
-  //     {
-  //       questionTitle: "NIce",
-  //       correctAnswer: "c) string",
-  //       options: ["a) int", "b) float", "c) string", "d) boolean"],
-  //       text: "Which of the following is NOT a primitive data type in C#?",
-  //     },
-  //     {
-  //       questionTitle: "NIce",
-  //       correctAnswer: "a) class",
-  //       options: ["a) class", "b) struct", "c) interface", "d) enum"],
-  //       text: "Which keyword is used to define a class in C#?",
-  //     },
-  //     {
-  //       questionTitle: "NIce",
-  //       correctAnswer: "c) To import a namespace",
-  //       options: [
-  //         "a) To declare a new variable.",
-  //         "b) To define a class",
-  //         "c) To import a namespace",
-  //         "d) To create a loop",
-  //       ],
-  //       text: "What is the purpose of the using directive in C#?",
-  //     },
-  //   ],
-  // },
-  // summaryQuiz: {
-  //   quiz_id: "blabla",
-  //   rawQuestions: {
-  //     correctAnswersCount: 2,
-  //     questions: [
-  //       {
-  //         text: "Which of the following is NOT a primitive data type in C#?",
-  //         correctAnswer: "string",
-  //         userAnswer: "string",
-  //       },
-  //       {
-  //         text: "Which keyword is used to define a class in C#?",
-  //         correctAnswer: "class",
-  //         userAnswer: "class",
-  //       },
-  //       {
-  //         text: "What is the purpose of the using directive in C#?",
-  //         correctAnswer: "To import a namespace",
-  //         userAnswer: "To declare a function",
-  //       },
-  //     ],
-  //     quiz_title: "C#",
-  //     timeTaken: 132,
-  //   },
-  // },
+  /*currentQuiz: {
+    topic: 'C#',
+    quiz: [
+      {
+        questionTitle: 'Nice',
+        correctAnswer: 'c) string',
+        options: [
+          'a) int',
+          'b) float',
+          'c) string',
+          'd) boolean',
+        ],
+        text: 'Which of the following is NOT a primitive data type in C#?',
+      },
+      {
+        questionTitle: 'Nice',
+        correctAnswer: 'a) class',
+        options: ['a) class', 'b) struct', 'c) interface', 'd) enum'],
+        text: 'Which keyword is used to define a class in C#?',
+      },
+      {
+        questionTitle: 'Nice',
+        correctAnswer: 'c) To import a namespace',
+        options: [
+          'a) To declare a new variable.',
+          'b) To define a class',
+          'c) To import a namespace',
+          'd) To create a loop',
+        ],
+        text: 'What is the purpose of the using directive in C#?',
+      },
+    ],
+  },
+  summaryQuiz: {
+    quiz_id: 'blabla',
+    rawQuestions: {
+      correctAnswersCount: 2,
+      questions: [
+        {
+          text: 'Which of the following is NOT a primitive data type in C#?',
+          correctAnswer: 'string',
+          userAnswer: 'string',
+        },
+        {
+          text: 'Which keyword is used to define a class in C#?',
+          correctAnswer: 'class',
+          userAnswer: 'class',
+        },
+        {
+          text: 'What is the purpose of the using directive in C#?',
+          correctAnswer: 'To import a namespace',
+          userAnswer: 'To declare a function',
+        },
+      ],
+      quiz_title: 'C#',
+      timeTaken: 132,
+    },
+  },
+*/
   summaryQuiz: null,
 };
 
@@ -132,22 +138,19 @@ const QuizContext = createContext<QuizContextValues | null>(null);
 export const QuizProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);
   const supabase = createClientComponentClient();
-  const fetchQuestions = async (
-    interests: string,
-    numberOfQuestions: number
-  ) => {
+  const fetchQuestions = async (interests: string, numberOfQuestions: number) => {
     try {
       const {
         data: { session },
       } = await supabase.auth.getSession();
       const accessToken = session?.access_token;
       const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/quiz`;
-      dispatch({ type: "FETCH_QUIZ_REQUEST" });
+      dispatch({ type: 'FETCH_QUIZ_REQUEST' });
       const url = `${URL}?numberOfQuestions=${numberOfQuestions}&interests=${interests}`;
       const response = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
       });
@@ -160,9 +163,9 @@ export const QuizProvider = ({ children }: Props) => {
         quiz: questions,
         topic,
       };
-      dispatch({ type: "FETCH_QUIZ_SUCCESS", payload: quiz });
+      dispatch({ type: 'FETCH_QUIZ_SUCCESS', payload: quiz });
     } catch (error: any) {
-      dispatch({ type: "FETCH_QUIZ_ERROR" });
+      dispatch({ type: 'FETCH_QUIZ_ERROR' });
       toast.error(error);
     }
   };
@@ -177,9 +180,7 @@ export const QuizProvider = ({ children }: Props) => {
       const quizTitle = state.currentQuiz?.topic;
       const questions = userAnswer.map((ans, i) => {
         const { correctAnswer, question, userAnswer } = ans;
-        const options = state.currentQuiz?.quiz[i].options.map((opt) =>
-          opt.slice(3)
-        );
+        const options = state.currentQuiz?.quiz[i].options.map((opt) => opt.slice(3));
         return { text: question, correctAnswer, userAnswer, options };
       });
 
@@ -190,15 +191,15 @@ export const QuizProvider = ({ children }: Props) => {
       };
       const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/submit-quiz`;
       const response = await fetch(URL, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({ rawQuestions }),
       });
       const data = await response.json();
-      dispatch({ type: "SUBMIT_QUIZ_SUCESS", payload: data });
+      dispatch({ type: 'SUBMIT_QUIZ_SUCESS', payload: data });
     } catch (error: any) {
       toast(error.message);
       console.log(error);
@@ -210,9 +211,7 @@ export const QuizProvider = ({ children }: Props) => {
     // fetchAllQuizzes();
   }, []);
   return (
-    <QuizContext.Provider
-      value={{ ...state, dispatch, fetchQuestions, submitQuiz }}
-    >
+    <QuizContext.Provider value={{ ...state, dispatch, fetchQuestions, submitQuiz }}>
       {children}
     </QuizContext.Provider>
   );
@@ -221,7 +220,7 @@ export const QuizProvider = ({ children }: Props) => {
 export const useQuiz = (): QuizContextValues => {
   const quizContext = useContext(QuizContext);
   if (quizContext === undefined) {
-    throw new Error("useQuiz must be used within an QuizProvider");
+    throw new Error('useQuiz must be used within an QuizProvider');
   }
   return quizContext as QuizContextValues;
 };

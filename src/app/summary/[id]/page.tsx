@@ -1,7 +1,8 @@
 import SummaryPage from "@/components/SummaryPage";
-import { Metadata } from "next";
+import {Metadata} from "next";
 
-import React, { useEffect } from "react";
+import React from "react";
+
 export const metadata: Metadata = {
   title: "Summary",
 };

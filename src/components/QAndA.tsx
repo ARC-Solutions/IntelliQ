@@ -12,16 +12,10 @@ const QAndA = ({ quiz, questionNumber }: Props) => {
   let { options: answers, text: question } = questionsAndAnswers;
   return (
     <section>
-      <h1 className="w-fit">{question}</h1>
-      <div className="flex flex-col">
+      <h1 className='bg-primary rounded-md text-base sm:text-2xl text-black p-6 font-bold w-full text-center items-center'>{question}</h1>
+      <div className='w-auto mt-4'>
         {answers.map((answer, i) => {
-          return (
-            <Answer
-              key={i}
-              answer={answer.slice(3)}
-              letter={answer.substring(0, 3)}
-            ></Answer>
-          );
+          return <Answer key={i} answer={answer.slice(3)} letter={answer.substring(0, 3)}></Answer>;
         })}
       </div>
     </section>
