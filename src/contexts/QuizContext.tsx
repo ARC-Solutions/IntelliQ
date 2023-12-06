@@ -1,10 +1,17 @@
 'use client';
 
-import React, {createContext, useContext, useReducer} from 'react';
-import {toast} from 'react-toastify';
-import {createClientComponentClient} from '@supabase/auth-helpers-nextjs';
-import {quizReducer} from '@/utils/reducers/quizReducer';
-import {UserAnswer} from './QuizLogicContext';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import { toast } from "react-toastify";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { quizReducer } from "@/utils/reducers/quizReducer";
+import { UserAnswer } from "./QuizLogicContext";
 
 type Props = {
   children: React.ReactNode;
@@ -33,20 +40,27 @@ export interface QuizHistory {
     questions: HistoryQuestions[];
   };
 }
+export interface QuizHistories {
+  id: string;
+  quiz_title: string;
+  created_at: string;
+}
 export interface QuizContextValue {
   isLoading: boolean;
   fetchingFinished: boolean;
   currentQuiz: CurrentQuiz | null;
   summaryQuiz: QuizHistory | null;
+  quizzes: QuizHistories[] | null;
 }
 export type QuizAction =
-  | { type: 'FETCH_QUIZ_REQUEST' }
-  | { type: 'FETCH_QUIZ_ERROR' }
-  | { type: 'RESET_QUIZ' }
-  | { type: 'RESET_ALL' }
-  | { type: 'RESET_SUMMARY_QUIZ' }
-  | { type: 'FETCH_QUIZ_SUCCESS'; payload: CurrentQuiz }
-  | { type: 'SUBMIT_QUIZ_SUCESS'; payload: QuizHistory };
+  | { type: "FETCH_QUIZ_REQUEST" }
+  | { type: "FETCH_QUIZ_ERROR" }
+  | { type: "RESET_QUIZ" }
+  | { type: "RESET_ALL" }
+  | { type: "RESET_SUMMARY_QUIZ" }
+  | { type: "FETCH_QUIZ_SUCCESS"; payload: CurrentQuiz }
+  | { type: "SUBMIT_QUIZ_SUCESS"; payload: QuizHistory }
+  | {type: "STORE_QUIZZES"; payload: QuizHistories[]};
 
 export interface QuizContextValues extends QuizContextValue {
   dispatch: React.Dispatch<QuizAction>;
@@ -191,6 +205,11 @@ export const QuizProvider = ({ children }: Props) => {
       console.log(error);
     }
   };
+  
+
+  useEffect(() => {
+    // fetchAllQuizzes();
+  }, []);
   return (
     <QuizContext.Provider value={{ ...state, dispatch, fetchQuestions, submitQuiz }}>
       {children}

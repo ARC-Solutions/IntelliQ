@@ -1,13 +1,14 @@
-'use client';
-import React, { useEffect } from 'react';
-import { useQuiz } from '@/contexts/QuizContext';
-import { redirect } from 'next/navigation';
-import { BsFillMortarboardFill } from 'react-icons/bs';
-import { BiSolidDashboard, BiSolidTimer } from 'react-icons/bi';
-import Link from 'next/link';
-import { Button } from './ui/button';
-import { Card, CardDescription, CardHeader } from './ui/card';
-import SummaryTable from './SummaryTable';
+"use client";
+import React, { useEffect } from "react";
+import { useQuiz } from "@/contexts/QuizContext";
+import { redirect } from "next/navigation";
+import { BsFillMortarboardFill } from "react-icons/bs";
+import { BiSolidDashboard, BiSolidTimer } from "react-icons/bi";
+import Link from "next/link";
+import { Button } from "./ui/button";
+import { Card, CardDescription, CardHeader } from "./ui/card";
+import SummaryTable from "./SummaryTable";
+import { formatTime } from "@/utils/formatTime";
 
 const SummaryPage = ({ quizID }: { quizID: string }) => {
   const { summaryQuiz, dispatch } = useQuiz();
@@ -33,18 +34,6 @@ const SummaryPage = ({ quizID }: { quizID: string }) => {
   } else {
     descriptionText = '😊 Nice try! Keep practicing to improve your score. 😊';
   }
-
-  // Function to format seconds to minutes and seconds
-  const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-
-    if (minutes > 0) {
-      return `${minutes}m ${remainingSeconds}s`;
-    } else {
-      return `${remainingSeconds}s`;
-    }
-  };
 
   // Messages based on time taken
   let timeMessage = '';
