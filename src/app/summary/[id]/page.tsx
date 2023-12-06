@@ -1,7 +1,7 @@
 import SummaryPage from "@/components/SummaryPage";
 import { Metadata } from "next";
 import React from "react";
-import { fetchAllQuizzes } from "@/app/dashboard/page";
+import { fetchAllQuizzes } from "@/utils/fetchAllQuizzes";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 export const metadata: Metadata = {
