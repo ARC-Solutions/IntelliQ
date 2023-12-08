@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'IntelliQ',
         description: 'Test your expertise across various subjects with IntelliQ',
-        url: 'www.intelliq.arc-solutions.xyz/',
+        url: 'www.intelliq.dev',
         siteName: 'IntelliQ',
         images: [
             {

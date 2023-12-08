@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { BiSolidBrain } from "react-icons/bi";
+import { BiHistory } from "react-icons/bi";
 import {
   Card,
   CardContent,
@@ -20,7 +20,7 @@ const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
       <CardHeader>
         <CardTitle className="text-xl sm:text-2xl">
           History
-          <BiSolidBrain />
+          <BiHistory />
         </CardTitle>
       </CardHeader>
       <CardContent>
