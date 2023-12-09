@@ -12,6 +12,7 @@ export default async function Home() {
   }
   return (
     <div className="flex flex-col items-center justify-center">
+      <link rel="icon" href="../../public/favicon.png"/>
       <h1 className="text-2xl sm:text-3xl text-center font-candara font-semibold">
         Quiz Yourself on Your Chosen Topic with
         <span className="text-primary"> IntelliQ</span>.
