@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         siteName: 'IntelliQ',
         images: [
             {
-                url: 'https://www.intelliq.arc-solutions.xyz/intelliq_og.png',
+                url: 'https://www.intelliq.dev/intelliq_og.png',
                 width: 1920,
                 height: 1080,
             },
