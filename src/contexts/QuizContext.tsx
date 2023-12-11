@@ -66,65 +66,40 @@ const initialState: QuizContextValue = {
   isLoading: false,
   fetchingFinished: false,
   currentQuiz: null,
-  /*currentQuiz: {
-    topic: 'C#',
-    quiz: [
-      {
-        questionTitle: 'Nice',
-        correctAnswer: 'c) string',
-        options: [
-          'a) int',
-          'b) float',
-          'c) string',
-          'd) boolean',
-        ],
-        text: 'Which of the following is NOT a primitive data type in C#?',
-      },
-      {
-        questionTitle: 'Nice',
-        correctAnswer: 'a) class',
-        options: ['a) class', 'b) struct', 'c) interface', 'd) enum'],
-        text: 'Which keyword is used to define a class in C#?',
-      },
-      {
-        questionTitle: 'Nice',
-        correctAnswer: 'c) To import a namespace',
-        options: [
-          'a) To declare a new variable.',
-          'b) To define a class',
-          'c) To import a namespace',
-          'd) To create a loop',
-        ],
-        text: 'What is the purpose of the using directive in C#?',
-      },
-    ],
-  },
-  summaryQuiz: {
-    quiz_id: 'blabla',
-    rawQuestions: {
-      correctAnswersCount: 2,
-      questions: [
-        {
-          text: 'Which of the following is NOT a primitive data type in C#?',
-          correctAnswer: 'string',
-          userAnswer: 'string',
-        },
-        {
-          text: 'Which keyword is used to define a class in C#?',
-          correctAnswer: 'class',
-          userAnswer: 'class',
-        },
-        {
-          text: 'What is the purpose of the using directive in C#?',
-          correctAnswer: 'To import a namespace',
-          userAnswer: 'To declare a function',
-        },
-      ],
-      quiz_title: 'C#',
-      timeTaken: 132,
-    },
-  },
-*/
+  // currentQuiz: {
+  //   topic: 'C#',
+  //   quiz: [
+  //     {
+  //       questionTitle: 'Nice',
+  //       correctAnswer: 'c) string',
+  //       options: [
+  //         'a) int',
+  //         'b) float',
+  //         'c) string',
+  //         'd) boolean',
+  //       ],
+  //       text: 'Which of the following is NOT a primitive data type in C#?',
+  //     },
+  //     {
+  //       questionTitle: 'Nice',
+  //       correctAnswer: 'a) class',
+  //       options: ['a) class', 'b) struct', 'c) interface', 'd) enum'],
+  //       text: 'Which keyword is used to define a class in C#?',
+  //     },
+  //     {
+  //       questionTitle: 'Nice',
+  //       correctAnswer: 'c) To import a namespace',
+  //       options: [
+  //         'a) To declare a new variable.',
+  //         'b) To define a class',
+  //         'c) To import a namespace',
+  //         'd) To create a loop',
+  //       ],
+  //       text: 'What is the purpose of the using directive in C#?',
+  //     },
+  //   ],
+  // },
+
   summaryQuiz: null,
   quizzes: null,
 };
@@ -201,7 +176,7 @@ export const QuizProvider = ({ children }: Props) => {
       });
       const data = (await response.json()) as QuizHistory;
       console.log(data);
-      
+
       dispatch({ type: "SUBMIT_QUIZ_SUCESS", payload: data });
     } catch (error: any) {
       toast(error.message);
