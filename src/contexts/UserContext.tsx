@@ -2,7 +2,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useSupabase } from "./SupabaseContext";
-import { useRouter } from "next/navigation";
 type Props = {
   children: React.ReactNode;
 };
@@ -30,7 +29,6 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export const AuthProvider = ({ children }: Props) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const { supabase } = useSupabase();
-  const router = useRouter();
   const signupUsingEmail = async ({ email, password }: UserInput) => {
     try {
       const {
@@ -52,7 +50,6 @@ export const AuthProvider = ({ children }: Props) => {
         img: null,
         name: null,
       });
-      router.refresh();
     } catch (error: any) {
       toast.error(error);
       console.log(error);
@@ -80,7 +77,6 @@ export const AuthProvider = ({ children }: Props) => {
         img: null,
         name: null,
       });
-      router.refresh();
     } catch (error: any) {
       console.log(error);
     }
@@ -89,9 +85,6 @@ export const AuthProvider = ({ children }: Props) => {
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: {
-          redirectTo: "http://localhost:3000/dashboard",
-        },
       });
 
       if (error) {
@@ -108,7 +101,6 @@ export const AuthProvider = ({ children }: Props) => {
       await supabase.auth.signOut();
       setCurrentUser(null);
       toast.info("User signed out");
-      router.push("/");
     } catch (error) {
       console.log(error);
     }
