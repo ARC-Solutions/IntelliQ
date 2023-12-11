@@ -60,6 +60,7 @@ export interface QuizContextValues extends QuizContextValue {
   dispatch: React.Dispatch<QuizAction>;
   fetchQuestions: (interests: string, numberOfQuestions: number) => void;
   submitQuiz: (userAnswer: UserAnswer[], timeTaken: number) => void;
+  fetchSingleQuiz: (quizID: string) => void;
 }
 const initialState: QuizContextValue = {
   isLoading: false,
@@ -198,7 +199,34 @@ export const QuizProvider = ({ children }: Props) => {
         },
         body: JSON.stringify({ rawQuestions }),
       });
-      const data = await response.json();
+      const data = (await response.json()) as QuizHistory;
+      console.log(data);
+      
+      dispatch({ type: "SUBMIT_QUIZ_SUCESS", payload: data });
+    } catch (error: any) {
+      toast(error.message);
+      console.log(error);
+    }
+  };
+
+  const fetchSingleQuiz = async (quizID: string) => {
+    try {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      const accessToken = session?.access_token;
+      const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/quizzes/${quizID}`;
+      const response = await fetch(URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      const data = (await response.json()) as QuizHistory;
+      console.log(data);
       dispatch({ type: "SUBMIT_QUIZ_SUCESS", payload: data });
     } catch (error: any) {
       toast(error.message);
@@ -207,7 +235,13 @@ export const QuizProvider = ({ children }: Props) => {
   };
   return (
     <QuizContext.Provider
-      value={{ ...state, dispatch, fetchQuestions, submitQuiz }}
+      value={{
+        ...state,
+        dispatch,
+        fetchQuestions,
+        submitQuiz,
+        fetchSingleQuiz,
+      }}
     >
       {children}
     </QuizContext.Provider>

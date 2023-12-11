@@ -19,6 +19,7 @@ const Dashboard = ({
     fetchingFinished: finished,
     currentQuiz,
     dispatch,
+    summaryQuiz
   } = useQuiz();
   useEffect(() => {
     dispatch({ type: "RESET_SUMMARY_QUIZ" });
@@ -29,7 +30,10 @@ const Dashboard = ({
       const url = `/quiz/play`;
       redirect(url);
     }
-  }, [currentQuiz]);
+    if(summaryQuiz){
+      redirect(`/summary/${summaryQuiz.quiz_id}`);
+    }
+  }, [currentQuiz, summaryQuiz]);
   
 
   if (isLoading) {
