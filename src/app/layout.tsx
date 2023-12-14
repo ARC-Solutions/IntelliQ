@@ -12,6 +12,7 @@ import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
 import {Toaster} from '@/components/ui/toaster';
 import Particles from "@/components/Particles";
 import GoogleAnalytics from "@/app/GoogleAnalytics";
+import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({
     subsets: ['latin'],
@@ -70,7 +71,6 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                     className="absolute inset-0 -z-10 animate-fade-in"
                     quantity={500}
                 />
-                <GoogleAnalytics/>
                 <SupabaseProvider>
                     <AuthProvider>
                         <QuizProvider>
@@ -83,6 +83,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                     </AuthProvider>
                     <ToastContainer position='top-right' autoClose={2000}/>
                 </SupabaseProvider>
+                <CookieConsent/>
             </body>
         </html>
     );
