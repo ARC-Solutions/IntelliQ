@@ -44,6 +44,7 @@
     "eslint-config-next": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
+    "tailwindcss-debug-screens": "^2.2.1",
     "typescript": "latest"
   }
 }
