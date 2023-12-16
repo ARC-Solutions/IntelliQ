@@ -22,7 +22,7 @@ const QuizMe = () => {
             <CardContent className='p-4'>
                 <Link href={'/quiz'}>
                     <div className="flex justify-center items-center">
-                        <Button className="w-full text-sm bg-[#c8b6ff]" variant="outline">
+                        <Button className="w-full text-sm bg-[#c8b6ff]">
                             <div className="flex items-center justify-center">
                                 <p>Discover Your AI Quiz</p>
                                 <FaArrowRight className="w-4 h-4 ml-2"/>
