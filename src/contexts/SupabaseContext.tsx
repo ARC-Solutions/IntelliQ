@@ -21,22 +21,22 @@ export const SupabaseProvider = ({
   const router = useRouter();
   const [supabase] = useState(() => createPagesBrowserClient());
 
-  useEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event) => {
-      if (
-        event === "SIGNED_IN" ||
-        event === "SIGNED_OUT" ||
-        event === "TOKEN_REFRESHED"
-      ) {
-        router.refresh();
-      }
-    });
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [supabase, router]);
+  // useEffect(() => {
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((event) => {
+  //     if (
+  //       event === "SIGNED_IN" ||
+  //       event === "SIGNED_OUT" ||
+  //       event === "TOKEN_REFRESHED"
+  //     ) {
+  //       router.refresh();
+  //     }
+  //   });
+  //   return () => {
+  //     subscription.unsubscribe();
+  //   };
+  // }, [supabase, router]);
   return (
     <Context.Provider value={{ supabase }}>
       <>{children}</>
