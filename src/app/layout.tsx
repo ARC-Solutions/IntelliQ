@@ -12,6 +12,7 @@ import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
 import {Toaster} from '@/components/ui/toaster';
 import Particles from "@/components/Particles";
 import GoogleAnalytics from "@/app/GoogleAnalytics";
+import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({
     subsets: ['latin'],

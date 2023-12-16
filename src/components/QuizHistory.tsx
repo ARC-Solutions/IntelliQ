@@ -16,7 +16,7 @@ const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
   const { quizzes } = useQuiz();
 
   return (
-    <Card className="w-[350px] ">
+    <Card className="w-[450px] h-[615px]">
       <CardHeader>
         <CardTitle className="text-xl sm:text-2xl">
           History
@@ -27,7 +27,7 @@ const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
         <CardDescription>
           You have played a total of {totalQuiz} quizzes
         </CardDescription>
-        <ScrollArea className="h-72">
+        <ScrollArea className="h-[460px]">
           <div className="p-4">
             {quizzes?.map((quiz) => {
               return <SingleQuiz quiz={quiz} key={quiz.id} />;

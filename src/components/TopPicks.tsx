@@ -5,11 +5,11 @@ import Topics from './Topics';
 
 const TopPicks = () => {
   return (
-    <Card className='w-[350px] '>
+    <Card className='w-[480px]'>
       <CardHeader>
         <CardTitle className='text-xl sm:text-2xl'>
-          Our Top Picks!
-          <BiSolidBrain />
+          Our Top Picks! <BiSolidBrain />
+
         </CardTitle>
       </CardHeader>
       <CardContent>
