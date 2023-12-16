@@ -83,7 +83,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                     </AuthProvider>
                     <ToastContainer position='top-right' autoClose={2000}/>
                 </SupabaseProvider>
-                <CookieConsent/>
+                {/*<CookieConsent/>*/}
             </body>
         </html>
     );
