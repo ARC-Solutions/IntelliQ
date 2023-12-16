@@ -11,8 +11,6 @@ import {QuizProvider} from '@/contexts/QuizContext';
 import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
 import {Toaster} from '@/components/ui/toaster';
 import Particles from "@/components/Particles";
-import GoogleAnalytics from "@/app/GoogleAnalytics";
-import CookieConsent from "@/components/CookieConsent";
 
 const inter = Inter({
     subsets: ['latin'],
@@ -66,7 +64,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang='en'>
         <body
-            className={cn(inter.className, `antialiased min-h-screen pt-32 bg-gradient-to-tl from-black via-violet-700/10 to-black ${process.env.NODE_ENV === 'development' ? 'debug-screens' : undefined}`)}>
+            className={cn(inter.className, `antialiased min-h-screen pt-32 bg-gradient-to-tl from-black via-violet-700/10 to-black debug-screens`)}>
         <Particles
             className="absolute inset-0 -z-10 animate-fade-in"
             quantity={500}
@@ -83,7 +81,6 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             </AuthProvider>
             <ToastContainer position='top-right' autoClose={2000}/>
         </SupabaseProvider>
-        {/*<CookieConsent/>*/}
         </body>
         </html>
     );
