@@ -12,7 +12,7 @@ import Link from "next/link";
 const QuizMe = () => {
   return (
     <Link href={'/quiz'}>
-      <Card className='w-[350px]'>
+      <Card className='w-[96]'>
         <CardHeader>
           <CardTitle className='text-xl sm:text-2xl'>
               Quiz Me!
@@ -21,7 +21,7 @@ const QuizMe = () => {
         </CardHeader>
         <CardContent>
           <CardDescription>
-            Challenge yourself to a quiz with a topic of your choice
+            Challenge yourself to a quiz with a topic of your choice.
           </CardDescription>
         </CardContent>
       </Card>
