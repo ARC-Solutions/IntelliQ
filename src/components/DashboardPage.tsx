@@ -52,7 +52,7 @@ const Dashboard = ({
                 <div className='row-span-2 col-span-1'>
                     <TopPicks/>
                 </div>
-                <div className='row-span-3'>
+                <div className='row-span-3 ml-2'>
                     <QuizHistory totalQuiz={prevQuizzes.totalCount}/>
                 </div>
             </div>
