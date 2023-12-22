@@ -14,12 +14,12 @@ const Topic = ({name, icon}: RecommendedTopic) => {
           fetchQuestions(name, 4);
           redirect('/quiz');
         }}
-        className='w-full xl:w-[200px] cursor-pointer block'
+        className='w-full lg:w-[175px] xl:w-[200px] cursor-pointer block'
       >
-        <CardContent className='flex items-center space-x-2 p-6 h-auto'>
+        <CardContent className='flex items-center space-x-2 lg:space-x-0 xl:space-x-2 p-4 lg:p-4 xl:p-6 h-auto'>
           {sizeIcon}
 
-          <CardTitle className='text-[1rem]'>{name}</CardTitle>
+          <CardTitle className='text-[1rem] lg:text-[15px]'>{name}</CardTitle>
         </CardContent>
       </Card>
     );

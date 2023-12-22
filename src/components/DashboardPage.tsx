@@ -42,12 +42,12 @@ const Dashboard = ({
     }
     return (
       <div className='flex flex-col items-center justify-center'>
-        <h1 className='text-3xl lg:text-4xl text-center font-semibold'>DASHBOARD</h1>
-        <div className='lg:grid lg:grid-flow-col gap-5 mt-12 '>
+        <h1 className='text-3xl lg:text-4xl text-center fonyt-semibold'>DASHBOARD</h1>
+        <div className='lg:grid lg:grid-flow-col gap-2 mt-12 '>
           <div className='col-span-1 m-4 lg:m-0'>
             <QuizMe />
           </div>
-          <div className='row-span-2 col-span-1 mt-10 lg:mt-10 m-4 lg:m-0'>
+          <div className='row-span-2 col-span-1 m-4 lg:m-0'>
             <TopPicks />
           </div>
           <div className='row-span-3 mt-10 lg:mt-0 m-4 lg:m-0'>

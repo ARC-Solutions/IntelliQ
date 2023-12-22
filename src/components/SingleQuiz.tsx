@@ -13,16 +13,19 @@ type Props = {
 const SingleQuiz = ({quiz}: Props) => {
     const {fetchSingleQuiz} = useQuiz();
     return (
-        <Card className="flex flex-row items-center gap-6 p-4 cursor-pointer" onClick={() => {
-            fetchSingleQuiz(quiz.id)
-        }}>
-            <FaBookOpen className="w-4 h-4"/>
-            <CardTitle className="flex-grow">{quiz.quiz_title}</CardTitle>
-            <Button>
-                <MdAccessTimeFilled/>
-                {quiz.created_at}
-            </Button>
-        </Card>
+      <Card
+        className='flex flex-row items-center gap-6 p-4 cursor-pointer'
+        onClick={() => {
+          fetchSingleQuiz(quiz.id);
+        }}
+      >
+        <FaBookOpen className='hidden sm:inline-block w-4 h-4' />
+        <CardTitle className='flex-grow '>{quiz.quiz_title}</CardTitle>
+        <Button>
+          <MdAccessTimeFilled />
+          {quiz.created_at}
+        </Button>
+      </Card>
     );
 };
 

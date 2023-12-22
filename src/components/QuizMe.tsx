@@ -7,34 +7,30 @@ import {FaArrowRight} from "react-icons/fa6";
 
 const QuizMe = () => {
     return (
+      <Card className='w-full shadow-lg'>
+        <CardHeader className='pb-0'>
+          <div className='flex items-center space-x-2'>
+            <BsFillQuestionDiamondFill className='w-6 h-6' />
+            <CardTitle className='text-[1.5rem]'>Quiz Me!</CardTitle>
+          </div>
+          <CardDescription className='text-base xl:text-base lg:text-xs'>
+            Challenge yourself to a quiz with a topic of your choice.
+          </CardDescription>
+        </CardHeader>
 
-        <Card className='w-full shadow-lg'>
-            <CardHeader className='pb-0'>
-                <div className='flex items-center space-x-2'>
-                    <BsFillQuestionDiamondFill className='w-6 h-6'/>
-                    <CardTitle className='text-[1.5rem]'>Quiz Me!</CardTitle>
+        <CardContent className='p-4'>
+          <Link href={'/quiz'}>
+            <div className='flex justify-center items-center'>
+              <Button className='w-full text-sm bg-[#c8b6ff]'>
+                <div className='flex items-center justify-center'>
+                  <p>Discover Your AI Quiz</p>
+                  <FaArrowRight className='w-4 h-4 ml-2' />
                 </div>
-                <CardDescription>
-                    Challenge yourself to a quiz with a topic of your choice.
-                </CardDescription>
-            </CardHeader>
-
-            <CardContent className='p-4'>
-                <Link href={'/quiz'}>
-                    <div className="flex justify-center items-center">
-                        <Button className="w-full text-sm bg-[#c8b6ff]">
-                            <div className="flex items-center justify-center">
-                                <p>Discover Your AI Quiz</p>
-                                <FaArrowRight className="w-4 h-4 ml-2"/>
-                            </div>
-                        </Button>
-
-                    </div>
-                </Link>
-            </CardContent>
-
-        </Card>
-
+              </Button>
+            </div>
+          </Link>
+        </CardContent>
+      </Card>
     );
 };
 
