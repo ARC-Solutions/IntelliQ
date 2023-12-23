@@ -16,6 +16,7 @@
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
     "@supabase/auth-helpers-nextjs": "^0.8.2",
@@ -43,6 +44,7 @@
     "eslint-config-next": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
+    "tailwindcss-debug-screens": "^2.2.1",
     "typescript": "latest"
   }
 }
