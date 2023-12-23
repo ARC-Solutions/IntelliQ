@@ -12,7 +12,7 @@ export interface RecommendedTopic {
 
 const Topics = () => {
   const topics: Array<RecommendedTopic> = [
-    { name: "Formula One", icon: <GiRaceCar class/> },
+    { name: "Formula One", icon: <GiRaceCar /> },
     { name: "Anime", icon: <GiJasonMask /> },
     { name: "Gaming", icon: <IoGameController /> },
     { name: "CSS", icon: <FaCss3Alt /> },
@@ -20,7 +20,7 @@ const Topics = () => {
     { name: "Agile Management", icon: <RiMicroscopeFill /> },
   ];
   return (
-    <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
+    <div className='grid grid-cols-2 gap-4'>
       {topics.map((topic, i) => {
         return <Topic key={i} {...topic} />;
       })}
