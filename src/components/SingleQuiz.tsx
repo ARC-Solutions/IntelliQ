@@ -20,7 +20,7 @@ const SingleQuiz = ({quiz}: Props) => {
         }}
       >
         <FaBookOpen className='hidden sm:inline-block w-4 h-4' />
-        <CardTitle className='flex-grow '>{quiz.quiz_title}</CardTitle>
+        <CardTitle className='flex-grow'>{quiz.quiz_title}</CardTitle>
         <Button>
           <MdAccessTimeFilled />
           {quiz.created_at}
