@@ -10,9 +10,12 @@ import {useRef, useState} from 'react';
 import {FcGoogle} from 'react-icons/fc';
 import {toast} from 'react-toastify';
 import {useMotionTemplate, useSpring} from 'framer-motion';
+import {FaRegEye, FaRegEyeSlash} from "react-icons/fa6";
 
 const SignUpCard = () => {
     const [isANewUser, setIsAnewUser] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const {signinUsingEmail, signupUsingEmail, signinUsingOAuth} = useAuth();
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
@@ -133,7 +136,7 @@ const SignUpCard = () => {
                                             className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
                                         />
                                     </div>
-                                    <div className='mb-5'>
+                                    <div className='relative mb-5'>
                                         <div className='mb-1.5'>
                                             <Label htmlFor='password' className='font-thin'>
                                                 Your Password
@@ -141,11 +144,20 @@ const SignUpCard = () => {
                                         </div>
                                         <Input
                                             id='password'
-                                            type='password'
+                                            type={showPassword ? 'text' : 'password'}
                                             placeholder='Enter your Password'
                                             ref={passwordRef}
-                                            className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
+                                            className='placeholder:text-white font-medium placeholder:opacity-70 border-2 pr-8'
                                         />
+                                        <Button
+                                            type='button'
+                                            className='absolute bottom-1 right-1 h-7 w-7'
+                                            size='icon'
+                                            variant='ghost'
+                                            onClick={() => setShowPassword(!showPassword)}>
+                                            {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                                            <span className="sr-only">Toggle password visibility</span>
+                                        </Button>
                                     </div>
                                 </div>
                                 <Button
@@ -197,7 +209,7 @@ const SignUpCard = () => {
                                             className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
                                         />
                                     </div>
-                                    <div className='mb-5'>
+                                    <div className='relative mb-5'>
                                         <div className='mb-1.5'>
                                             <Label htmlFor='password' className='font-thin'>
                                                 Your Password
@@ -205,13 +217,22 @@ const SignUpCard = () => {
                                         </div>
                                         <Input
                                             id='password'
-                                            type='password'
+                                            type={showPassword ? 'text' : 'password'}
                                             placeholder='Enter your Password'
                                             ref={passwordRef}
-                                            className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
+                                            className='placeholder:text-white font-medium placeholder:opacity-70 border-2 pr-8'
                                         />
+                                        <Button
+                                            type='button'
+                                            className='absolute bottom-1 right-1 h-7 w-7'
+                                            size='icon'
+                                            variant='ghost'
+                                            onClick={() => setShowPassword(!showPassword)}>
+                                            {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                                            <span className="sr-only">Toggle password visibility</span>
+                                        </Button>
                                     </div>
-                                    <div className='mb-5'>
+                                    <div className='relative mb-5'>
                                         <div className='mb-1.5'>
                                             <Label htmlFor='confirmPassword' className='font-thin'>
                                                 Confirm Password
@@ -219,11 +240,20 @@ const SignUpCard = () => {
                                         </div>
                                         <Input
                                             id='confirmPassword'
-                                            type='password'
+                                            type={showConfirmPassword ? 'text' : 'password'}
                                             placeholder='Confirm your Password'
                                             ref={confirmPasswordRef}
-                                            className='placeholder:text-white font-medium placeholder:opacity-70 border-2'
+                                            className='placeholder:text-white font-medium placeholder:opacity-70 border-2 pr-8'
                                         />
+                                        <Button
+                                            type='button'
+                                            className='absolute bottom-1 right-1 h-7 w-7'
+                                            size='icon'
+                                            variant='ghost'
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                                            {showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                                            <span className="sr-only">Toggle password visibility</span>
+                                        </Button>
                                     </div>
                                 </div>
                                 <Button
