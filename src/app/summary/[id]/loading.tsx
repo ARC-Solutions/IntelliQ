@@ -8,75 +8,73 @@ const loading = () => {
                 <Skeleton className="h-[48px] w-[225px] rounded-lg"/>
                 <Skeleton className="h-[36px] w-[190px] rounded-lg"/>
             </div>
-            <div className=' w-full flex flex-wrap justify-between gap-4'>
-                <Skeleton className="h-[200px] md:w-5/12 rounded-lg"/>
-                <Skeleton className="h-[200px] md:w-5/12 rounded-lg"/>
+            <div className='w-full flex flex-wrap justify-between gap-4 pb-14'>
+                <Skeleton className="h-[200px] md:w-5/12 rounded-lg sm:h-[180px] sm:w-[570px]"/>
+                <Skeleton className="h-[200px] md:w-5/12 rounded-lg sm:h-[180px] sm:w-[570px]"/>
             </div>
-            <div className="space-y-2">
-                <Skeleton className="h-4 w-full"/>
-                <Skeleton className="h-4 w-full"/>
+            <div className='relative w-full overflow-auto'>
+                <Table className="w-full caption-bottom text-sm overflow-x-auto mt-14">
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>
+                                <Skeleton className="h-8 w-[100px]"/>
+                            </TableHead>
+                            <TableHead>
+                                <Skeleton className="h-8 w-[100px]"/>
+                            </TableHead>
+                            <TableHead>
+                                <Skeleton className="h-8 w-[100px]"/>
+                            </TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                            <TableCell>
+                                <Skeleton className="h-8 w-full"/>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
             </div>
-            <Table className="mt-4">
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>
-                            <Skeleton className="h-8 w-[100px]"/>
-                        </TableHead>
-                        <TableHead>
-                            <Skeleton className="h-8 w-[100px]"/>
-                        </TableHead>
-                        <TableHead>
-                            <Skeleton className="h-8 w-[100px]"/>
-                        </TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    <TableRow>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                        <TableCell>
-                            <Skeleton className="h-8 w-full"/>
-                        </TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
         </div>
     );
 };
