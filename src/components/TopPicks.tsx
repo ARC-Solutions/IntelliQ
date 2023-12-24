@@ -5,15 +5,15 @@ import Topics from './Topics';
 
 const TopPicks = () => {
   return (
-    <Card className='w-[350px] '>
-      <CardHeader>
-        <CardTitle className='text-xl sm:text-2xl'>
-          Our Top Picks!
-          <BiSolidBrain />
-        </CardTitle>
+    <Card className='w-full h-auto'>
+      <CardHeader className='pb-0'>
+        <div className='flex items-center space-x-2'>
+          <BiSolidBrain className='w-6 h-6' />
+          <CardTitle className='text-[1.5rem]'>Our Top Picks!</CardTitle>
+        </div>
       </CardHeader>
       <CardContent>
-        <CardDescription>
+        <CardDescription className='pb-3 text-base xl:text-base lg:text-xs'>
           Challenge yourself by exploring one of our suggested topics.
         </CardDescription>
         <Topics />
