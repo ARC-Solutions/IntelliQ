@@ -1,6 +1,6 @@
-projectKey=ARC-Solutions_IntelliQ_AYy35qOq-YP91VLw1uNS
+projectKey=IntelliQ
 serverUrl=http://localhost:9000
 serverVersion=10.3.0.82913
-dashboardUrl=http://localhost:9000/dashboard?id=ARC-Solutions_IntelliQ_AYy35qOq-YP91VLw1uNS
-ceTaskId=AYy4H7plLCK6XLCKDqwK
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYy4H7plLCK6XLCKDqwK
+dashboardUrl=http://localhost:9000/dashboard?id=IntelliQ
+ceTaskId=AYzcbo5OLCK6XLCKDqw3
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYzcbo5OLCK6XLCKDqw3
