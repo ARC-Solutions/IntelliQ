@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 import { FaGithub } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiTailwindcss } from 'react-icons/si';
+import Image from 'next/image';
+
 const Modal = () => {
   return (
     <div className='flex items-center justify-center h-[76.5vh]'>
@@ -36,37 +38,36 @@ const Modal = () => {
 
           <div className='grid grid-cols-2 md:grid-cols-4 gap-6 w-full mt-2 justify-content-between  '>
             <div className='flex items-center'>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
 
+              <Image src='/nextjs.png' width={36} height={36} alt='NextJs_Logo' className='mr-2' />
               <p className='font-extralight text-xl'>Next.js</p>
             </div>
             <div className='flex items-center'>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
+              <Image src='/aws.png' width={36} height={36} alt='AWS_Logo' className='mr-2' />
               <p className='font-extralight text-xl'>AWS</p>
             </div>
             <div className='flex items-center'>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
+              <Image src='/tailwind.png' width={36} height={36} alt='TailwindCSS_Logo' className='mr-2' />
               <p className='font-extralight text-lg'>Tailwind</p>
             </div>
             <div className='flex items-center'>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
+              <Image src='/openai.png' width={36} height={36} alt='OpenAI_Logo' className='mr-2' />
               <p className='font-extralight text-lg'>OpenAI</p>
             </div>
             <div className='flex items-center md:pt-5 '>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
-
+              <Image src='/typescript.png' width={36} height={36} alt='TypeScript_Logo' className='mr-2' />
               <p className='font-extralight text-xl'>TypeScript</p>
             </div>
             <div className='flex items-center md:pt-5'>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
+              <Image src='/supabase.png' width={36} height={36} alt='Supabase_Logo' className='mr-2' />
               <p className='font-extralight text-xl'>Supabase</p>
             </div>
             <div className='flex items-center md:pt-5'>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
+              <Image src='/shadcn.png' width={36} height={36} alt='Shadcn_Logo' className='mr-2' />
               <p className='font-extralight text-lg'>Shadcn</p>
             </div>
             <div className='flex items-center md:pt-5'>
-              <SiTailwindcss className='w-9 h-9 mr-2' />
+              <Image src='/azure.png' width={36} height={36} alt='Azure_Logo' className='mr-2' />
               <p className='font-extralight text-lg'>Azure</p>
             </div>
           </div>
