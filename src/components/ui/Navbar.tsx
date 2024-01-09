@@ -12,7 +12,7 @@ const Navbar = async () => {
         <Link href="/" className="flex items-center gap-2">
           <Image
             priority
-            src="/intelliq_logo.png"
+            src="/IntelliQ_Logo.png"
             width={150}
             height={150}
             alt="IntelliQ_Logo"
