@@ -9,7 +9,6 @@ import QuizHistory from './QuizHistory';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaQuestionCircle } from 'react-icons/fa';
-import Modal from './Modal';
 const Dashboard = ({
   prevQuizzes,
 }: {
@@ -49,7 +48,6 @@ const Dashboard = ({
           </Button>
         </div>
       </Link>
-    <Modal/>
       <div className='lg:grid lg:grid-flow-col gap-8 mt-12 m-2'>
         <div className='col-span-1 m-4 lg:m-0'>
           <QuizMe />
