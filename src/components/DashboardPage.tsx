@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaQuestionCircle } from 'react-icons/fa';
 import Modal from "@/components/Modal";
+import InfoDialog from "@/components/Info-Dialog";
 const Dashboard = ({
   prevQuizzes,
 }: {
@@ -39,17 +40,7 @@ const Dashboard = ({
   return (
     <div className='flex flex-col items-center justify-center'>
       <h1 className='text-3xl lg:text-4xl text-center font-semibold'>DASHBOARD</h1>
-      <Link href={'/modal'} className='p-0 m-0'>
-        <div className='flex justify-center items-center p-1'>
-          <Button className='w-full text-sm bg-[#c8b6ff] rounded-xl'>
-            <div className='flex items-center justify-center'>
-              <p className='font-bold mr-2 '>What is IntelliQ</p>
-              <FaQuestionCircle />
-            </div>
-          </Button>
-        </div>
-      </Link>
-        <Modal/>
+      <InfoDialog />
       <div className='lg:grid lg:grid-flow-col gap-8 mt-12 m-2'>
         <div className='col-span-1 m-4 lg:m-0'>
           <QuizMe />
