@@ -1,9 +1,6 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { redirect } from 'next/navigation';
-import { FaGithub } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
-import { SiTailwindcss } from 'react-icons/si';
+import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
+import {FaGithub} from 'react-icons/fa';
+import {FaXTwitter} from 'react-icons/fa6';
 import Image from 'next/image';
 
 const Modal = () => {
