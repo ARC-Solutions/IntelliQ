@@ -107,6 +107,9 @@ const SignUpCard = () => {
                             <Button
                                 onClick={() => handleSubmit(true)}
                                 className='bg-[#fafafa] hover:bg-[#fafafa]/90 active:bg-[#fafafa]/80 p-5'
+                                aria-label='Sign in with Google'
+                                aria-labelledby='Sign in with Google'
+                                title='Sign in with Google'
                             >
                                 <div className='text-3xl place-content-center'>
                                     <FcGoogle size=''/>
@@ -180,6 +183,9 @@ const SignUpCard = () => {
                             <Button
                                 onClick={() => handleSubmit(true)}
                                 className='bg-[#fafafa] hover:bg-[#fafafa]/90 active:bg-[#fafafa]/80 p-5'
+                                aria-label='Sign up with Google'
+                                aria-labelledby='Sign up with Google'
+                                title='Sign up with Google'
                             >
                                 <div className='text-3xl place-content-center'>
                                     <FcGoogle size=''/>
