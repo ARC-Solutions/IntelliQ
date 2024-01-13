@@ -16,10 +16,10 @@ const InfoDialog = () => {
         <Dialog>
             <DialogTrigger asChild>
                 <Button className='text-sm bg-[#c8b6ff] rounded-xl font-bold'>
-                    What Is IntelliQ? <FaQuestionCircle className='ml-2'/>
+                    What Is IntelliQ <FaQuestionCircle className='ml-2'/>
                 </Button>
             </DialogTrigger>
-            <DialogContent className='md:max-w-auto lg:max-w-[970px] sm:max-w-[700px] max-w-[333px]'>
+            <DialogContent className='md:max-w-auto lg:max-w-[970px] sm:max-w-[700px] max-w-[333px] border-primary rounded-none shadow-[0_0px_18px_-4px_rgba(0,0,0,0.24)] shadow-primary'>
                 <DialogHeader>
                     <DialogTitle>
                         Welcome To IntelliQ!
@@ -28,12 +28,12 @@ const InfoDialog = () => {
                         <div className='flex items-center'>
                             <FaGithub className='w-6 h-6 sm:w-7 sm:h-7 mr-2 text-white'/>
                             <a href='https://github.com/ARC-Solutions' target='_blank'>
-                                <p className='text-sm sm:text-lg font-extralight text-white'>ARC-Solutions</p>
+                                <p className='text-sm sm:text-lg font-extralight text-white'>GitHub</p>
                             </a>
                             &nbsp; &nbsp;
                             <FaXTwitter className='w-6 h-6 sm:w-7 sm:h-7  mr-2 text-white'/>
                             <a href='https://twitter.com/ARCTeamGroup' target='_blank'>
-                                <p className='text-sm sm:text-lg font-extralight text-white'>ARCTeamGroup</p>
+                                <p className='text-sm sm:text-lg font-extralight text-white'>Twitter</p>
                             </a>
                         </div>
                         <p className='text-sm sm:text-base lg:text-lg font-extralight pt-3 text-white'>
@@ -53,8 +53,8 @@ const InfoDialog = () => {
                         <p className='font-extralight text-xl'>Next.js</p>
                     </div>
                     <div className='flex items-center'>
-                        <Image src='/svgs/aws.svg' width={36} height={36} alt='AWS_Logo' className='mr-2'/>
-                        <p className='font-extralight text-xl'>AWS</p>
+                        <Image src='/svgs/aws-amplify.svg' width={36} height={36} alt='AWS_Logo' className='mr-2'/>
+                        <p className='font-extralight text-xl'>Amplify</p>
                     </div>
                     <div className='flex items-center'>
                         <Image src='/svgs/tailwindcss.svg' width={36} height={36} alt='TailwindCSS_Logo'
