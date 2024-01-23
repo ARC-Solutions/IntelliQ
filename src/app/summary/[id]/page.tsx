@@ -21,7 +21,7 @@ const Summary = async ({ params }: { params: { id: string } }) => {
     <Particles
         className="absolute inset-0 -z-10 animate-fade-in"
         quantity={500}
-    />`
+    />
     <SummaryPage quizID={params.id} createdQuiz={data} />
   </div>;
 };

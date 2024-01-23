@@ -20,7 +20,7 @@ const SignUpPage = async() => {
             <Particles
                 className="absolute inset-0 -z-10 animate-fade-in"
                 quantity={500}
-            />`
+            />
             <h1 className='text-2xl sm:text-3xl text-center font-candara font-semibold'>
                 Quiz Yourself on Your Chosen Topic with
                 <span className='text-primary'> IntelliQ</span>.
