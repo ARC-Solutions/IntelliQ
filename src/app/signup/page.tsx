@@ -3,6 +3,7 @@ import {Metadata} from "next";
 import {createServerComponentClient} from "@supabase/auth-helpers-nextjs";
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
+import Particles from "@/components/Particles";
 export const metadata:Metadata = {
     title: 'Sign Up'
 }
@@ -16,6 +17,10 @@ const SignUpPage = async() => {
     }
     return (
         <div className='flex flex-col items-center justify-center'>
+            <Particles
+                className="absolute inset-0 -z-10 animate-fade-in"
+                quantity={500}
+            />`
             <h1 className='text-2xl sm:text-3xl text-center font-candara font-semibold'>
                 Quiz Yourself on Your Chosen Topic with
                 <span className='text-primary'> IntelliQ</span>.

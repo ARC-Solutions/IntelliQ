@@ -4,6 +4,7 @@ import DashboardPage from "@/components/DashboardPage";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import type { Metadata } from "next";
 import { fetchAllQuizzes } from "@/utils/fetchAllQuizzes";
+import Particles from "@/components/Particles";
 export const metadata: Metadata = {
   title: "Dashboard",
 };
@@ -19,7 +20,13 @@ const Dashboard = async () => {
   if (!session) {
     redirect("/");
   }
-  return <DashboardPage prevQuizzes={data}/>;
+  return <div>
+    <DashboardPage prevQuizzes={data}/>
+    <Particles
+        className="absolute inset-0 -z-10 animate-fade-in"
+        quantity={500}
+    />
+  </div>;
 };
 
 export default Dashboard;

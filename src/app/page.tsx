@@ -5,6 +5,7 @@ import {Button} from "@/components/ui/button";
 import {Card, CardContent} from "@/components/ui/card";
 import Link from "next/link";
 import {LuBrain, LuPuzzle} from "react-icons/lu";
+import Particles from "@/components/Particles";
 
 export default async function Home() {
     const supabase = createServerComponentClient({
@@ -15,7 +16,12 @@ export default async function Home() {
         redirect('/dashboard');
     }
     const currentYear = new Date().getFullYear();
-    return (<div className="min-h-screen bg-transparent">
+    return (
+        <div className="min-h-screen bg-transparent">
+            <Particles
+                className="absolute inset-0 -z-10 animate-fade-in"
+                quantity={500}
+            />`
         <main className="flex flex-col items-center justify-center px-8 py-16 space-y-8">
             <h2 className="text-5xl font-bold text-center">Welcome to <span
                 className='text-primary'> IntelliQ</span></h2>

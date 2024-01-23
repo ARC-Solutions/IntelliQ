@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import CreateQuiz from "@/components/CreateQuiz";
+import Particles from "@/components/Particles";
 export const metadata: Metadata = {
   title: "Quiz",
 };
@@ -15,7 +16,13 @@ const QuizCreation = async () => {
     redirect("/");
   }
 
-  return <CreateQuiz />;
+  return <div>
+    <CreateQuiz />
+    <Particles
+        className="absolute inset-0 -z-10 animate-fade-in"
+        quantity={500}
+    />`
+  </div>;
 };
 
 export default QuizCreation;

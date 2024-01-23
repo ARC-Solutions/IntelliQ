@@ -64,26 +64,22 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang='en'>
-        <body
-            className={cn(inter.className, `antialiased min-h-screen pt-32 bg-gradient-to-tl from-black via-violet-700/10 to-black`)}>
-        <Particles
-            className="absolute inset-0 -z-10 animate-fade-in"
-            quantity={500}
-        />
-        <GoogleAnalytics />
-        <SupabaseProvider>
-            <AuthProvider>
-                <QuizProvider>
-                    <QuizLogicContextProvider>
-                        <Navbar/>
-                        {children}
-                        <Toaster/>
-                    </QuizLogicContextProvider>
-                </QuizProvider>
-            </AuthProvider>
-            <ToastContainer position='top-right' autoClose={2000}/>
-        </SupabaseProvider>
-        </body>
+            <body
+                className={cn(inter.className, `antialiased min-h-screen pt-32 bg-gradient-to-tl from-black via-violet-700/10 to-black`)}>
+                <GoogleAnalytics/>
+                <SupabaseProvider>
+                    <AuthProvider>
+                        <QuizProvider>
+                            <QuizLogicContextProvider>
+                                <Navbar/>
+                                {children}
+                                <Toaster/>
+                            </QuizLogicContextProvider>
+                        </QuizProvider>
+                    </AuthProvider>
+                    <ToastContainer position='top-right' autoClose={2000}/>
+                </SupabaseProvider>
+            </body>
         </html>
     );
 }
