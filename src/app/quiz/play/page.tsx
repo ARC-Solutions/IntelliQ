@@ -3,6 +3,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Particles from "@/components/Particles";
 export const metadata: Metadata = {
   title: "Quiz",
 };
@@ -16,7 +17,13 @@ const QuizGame = async () => {
   if (!session) {
     redirect("/");
   }
-  return <Quiz />;
+  return <div>
+    <Quiz />
+    <Particles
+        className="absolute inset-0 -z-10 animate-fade-in"
+        quantity={500}
+    />`
+  </div>;
 };
 
 export default QuizGame;
