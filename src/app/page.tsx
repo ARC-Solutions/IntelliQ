@@ -1,6 +1,3 @@
-import {createServerComponentClient} from '@supabase/auth-helpers-nextjs';
-import {cookies} from 'next/headers';
-import {redirect} from 'next/navigation';
 import {Button} from "@/components/ui/button";
 import {Card, CardContent} from "@/components/ui/card";
 import Link from "next/link";
@@ -8,13 +5,6 @@ import {LuBrain, LuPuzzle} from "react-icons/lu";
 import Particles from "@/components/Particles";
 
 export default async function Home() {
-    const supabase = createServerComponentClient({
-        cookies,
-    });
-    const session = (await supabase.auth.getSession()).data.session;
-    if (session) {
-        redirect('/dashboard');
-    }
     const currentYear = new Date().getFullYear();
     return (
         <div className="min-h-screen bg-transparent">

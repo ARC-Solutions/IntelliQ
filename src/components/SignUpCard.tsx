@@ -9,7 +9,6 @@ import {Tabs, TabsContent, TabsList, TabsTrigger,} from "@/components/ui/tabs"
 import {useRef, useState} from 'react';
 import {FcGoogle} from 'react-icons/fc';
 import {toast} from 'react-toastify';
-import {useMotionTemplate, useSpring} from 'framer-motion';
 import {FaRegEye, FaRegEyeSlash} from "react-icons/fa6";
 
 const SignUpCard = () => {
@@ -48,40 +47,10 @@ const SignUpCard = () => {
             signinUsingEmail({email, password});
         }
     };
-    const mouseX = useSpring(0, {stiffness: 500, damping: 100});
-    const mouseY = useSpring(0, {stiffness: 500, damping: 100});
-
-    function onMouseMove({currentTarget, clientX, clientY}: any) {
-        const {left, top} = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    }
-
-    let maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
-    let style = {
-        maskImage,
-        WebkitMaskImage: maskImage,
-        // // Adjusted background color with lower alpha, for example 0.5 for 50% transparency
-        // backgroundColor: 'rgba(200, 182, 255, 0.09)'
-    };
 
     return (
-        <div onMouseMove={onMouseMove}
+        <div
              className='relative w-auto sm:w-[450px] duration-700 hover:bg-violet-800/10 group hover:border-violet-400/50'>
-            {/*<div className='pointer-events-none'>*/}
-            {/*    <div*/}
-            {/*        className="absolute inset-0 z-0  transition duration-1000 [mask-image:linear-gradient(black,transparent)]"/>*/}
-            {/*    /!* Background with motion effect *!/*/}
-            {/*    <motion.div*/}
-            {/*        className="absolute inset-0 z-10  bg-gradient-to-br opacity-100  via-violet-500/30  transition duration-1000 group-hover:opacity-50"*/}
-            {/*        style={style}*/}
-            {/*    />*/}
-            {/*    <motion.div*/}
-            {/*        className="absolute inset-0 z-10 opacity-0 mix-blend-overlay transition duration-1000 group-hover:opacity-100"*/}
-            {/*        style={style}*/}
-            {/*    />*/}
-            {/*</div>*/}
-
             <Tabs defaultValue="signup" className='w-auto sm:w-[450px]'>
                 <TabsList
                     className='grid w-full grid-cols-2 border-none rounded-lg shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary bg-[#0e0e0e]'>
