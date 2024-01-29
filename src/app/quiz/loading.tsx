@@ -12,9 +12,9 @@ const loading = () => {
                 <Skeleton className="h-[80px] rounded-lg w-full text-center items-center"/>
                 <div className='w-auto mt-4'>
                     <Skeleton className="h-[58px] w-[720px] rounded-lg mb-5 inline-flex items-center"/>
-                    <Skeleton className="h-[58px] w-[720px] rounded-lg mb-5"/>
-                    <Skeleton className="h-[58px] w-[720px] rounded-lg mb-5"/>
-                    <Skeleton className="h-[58px] w-[720px] rounded-lg mb-5"/>
+                    {Array.from({ length: 3}, (_, index) => (
+                        <Skeleton className="h-[58px] w-[720px] rounded-lg mb-5" key={index}/>
+                    ))}
                 </div>
                 <Skeleton className="h-[36px] w-[100px] rounded-lg"/>
             </div>

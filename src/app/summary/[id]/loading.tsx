@@ -16,62 +16,23 @@ const loading = () => {
                 <Table className="w-full caption-bottom text-sm overflow-x-auto mt-14">
                     <TableHeader>
                         <TableRow>
-                            <TableHead>
-                                <Skeleton className="h-8 w-[100px]"/>
-                            </TableHead>
-                            <TableHead>
-                                <Skeleton className="h-8 w-[100px]"/>
-                            </TableHead>
-                            <TableHead>
-                                <Skeleton className="h-8 w-[100px]"/>
-                            </TableHead>
+                            {Array.from({ length: 3 }, (_, index) => (
+                                <TableHead key={index}>
+                                    <Skeleton className="h-8 w-[100px]"/>
+                                </TableHead>
+                            ))}
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                            <TableCell>
-                                <Skeleton className="h-8 w-full"/>
-                            </TableCell>
-                        </TableRow>
+                        {Array.from({ length: 4 }, (_, index) => (
+                            <TableRow key={index}>
+                                {Array.from({ length: 3 }, (_, index) => (
+                                    <TableCell key={index}>
+                                        <Skeleton className="w-full h-8"/>
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </div>
