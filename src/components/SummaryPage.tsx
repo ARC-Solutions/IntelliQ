@@ -22,7 +22,7 @@ const SummaryPage = ({
 }) => {
   const { summaryQuiz, dispatch } = useQuiz();
   if (!summaryQuiz) {
-    redirect("/");
+    redirect("/dashboard");
   }
   useEffect(() => {
     dispatch({ type: "RESET_QUIZ" });
@@ -62,7 +62,7 @@ const SummaryPage = ({
     <div className="w-full sm:w-10/12 mx-auto text-white flex flex-col items-center justify-center px-6 py-4">
       <header className="w-full flex flex-row justify-between items-center mb-14">
         <h1 className="text-4xl sm:text-5xl font-bold">Summary</h1>
-        <Link href={"/"}>
+        <Link href={"/dashboard"}>
           <Button className="text-black text-sm sm:text-base p-2 pr-3 rounded-lg inline-flex items-center justify-center active:bg-primary/80">
             <BiSolidDashboard className="text-lg sm:text-xl font-semibold" />
             &nbsp;
