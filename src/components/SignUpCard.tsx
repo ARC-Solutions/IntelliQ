@@ -10,6 +10,7 @@ import {useRef, useState} from 'react';
 import {FcGoogle} from 'react-icons/fc';
 import {toast} from 'react-toastify';
 import {FaRegEye, FaRegEyeSlash} from "react-icons/fa6";
+import { showToast } from "@/utils/showToast";
 
 const SignUpCard = () => {
     const [isANewUser, setIsAnewUser] = useState(false);
@@ -40,9 +41,22 @@ const SignUpCard = () => {
         }
 
         if (isANewUser) {
-            confirmPassword === password
-                ? signupUsingEmail({email, password})
-                : toast.error('Your Password does not match');
+            if (password !== confirmPassword) {
+                toast.error('Your Password does not match');
+                return;
+            } else {
+                try {
+                    signupUsingEmail({ email, password });
+                    showToast(
+                        "success",
+                        "Account Created",
+                        "Your account has been created! Please check your inbox for a confirmation email."
+                    );
+                }
+                catch (error) {
+                    toast.error('Error signing up. Please try again.');
+                }
+            }
         } else {
             signinUsingEmail({email, password});
         }
