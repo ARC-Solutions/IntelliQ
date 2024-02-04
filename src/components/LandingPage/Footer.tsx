@@ -1,16 +1,7 @@
 import {FaInstagram, FaXTwitter} from "react-icons/fa6";
 import {SiBuymeacoffee} from "react-icons/si";
 import {FaGithub} from "react-icons/fa";
-
-interface SocialIconProps {
-    IconComponent: React.ComponentType<{ size: number, color: string }>;
-    url: string;
-}
-const SocialIcon = ({ IconComponent, url }: SocialIconProps) => (
-    <a href={url} className="hover:-translate-y-2 duration-300">
-        <IconComponent size={32} color='text-gray-800' />
-    </a>
-);
+import SocialIcon from "@/components/ui/social-icon";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -27,7 +18,6 @@ const Footer = () => {
                     Copyright © {currentYear}. ARC-Solutions. All rights reserved.
                 </p>
             </div>
-
         </footer>
     )
 };
