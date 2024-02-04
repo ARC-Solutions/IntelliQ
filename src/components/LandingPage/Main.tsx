@@ -1,16 +1,19 @@
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const Main = () => {
     return (
-        <main className="flex flex-col items-center justify-center px-8 py-16 space-y-8">
-            <h2 className="text-5xl font-bold text-center">Welcome to <span
-                className='text-primary'> IntelliQ</span></h2>
-            <p className="text-xl text-center max-w-lg">
+        <main className='flex flex-col items-center justify-center space-y-8 px-8 py-16'>
+            <h2 className='text-center text-5xl font-bold'>
+                Welcome to <span className='text-primary'> IntelliQ</span>
+            </h2>
+            <p className='max-w-lg text-center text-xl'>
                 We create quizzes based on your interests.
             </p>
             <Link href='/signup'>
-                <Button className="bg-[#c8b6ff] text-[#040404] px-8 py-2 rounded">Get Started</Button>
+                <Button className='rounded bg-[#c8b6ff] px-8 py-2 text-[#040404]'>
+                    Get Started
+                </Button>
             </Link>
         </main>
     );
