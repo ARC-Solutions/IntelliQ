@@ -43,7 +43,10 @@
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "eslint-config-prettier": "^9.1.0",
     "postcss": "latest",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "latest",
     "tailwindcss-debug-screens": "^2.2.1",
     "typescript": "latest"
