@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 const Spinner = (props: Props) => {
-  return (
-    <div className='h-8 w-8 inline-block rounded-full border-4 border-r-black border-solid animate-spin'>
+    return (
+        <div className='inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-r-black'></div>
+    );
+};
 
-    </div>
-  )
-}
-
-export default Spinner
+export default Spinner;

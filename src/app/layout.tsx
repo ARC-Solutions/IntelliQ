@@ -1,17 +1,16 @@
 import './globals.css';
-import {Metadata} from 'next';
-import {Inter} from 'next/font/google';
-import {cn} from '@/lib/utils';
+import { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { cn } from '@/lib/utils';
 import Navbar from '@/components/ui/Navbar';
-import {AuthProvider} from '@/contexts/UserContext';
-import {ToastContainer} from 'react-toastify';
+import { AuthProvider } from '@/contexts/UserContext';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {SupabaseProvider} from '@/contexts/SupabaseContext';
-import {QuizProvider} from '@/contexts/QuizContext';
+import { SupabaseProvider } from '@/contexts/SupabaseContext';
+import { QuizProvider } from '@/contexts/QuizContext';
 import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
-import {Toaster} from '@/components/ui/toaster';
-import Particles from "@/components/Particles";
-import GoogleAnalytics from "@/app/GoogleAnalytics";
+import { Toaster } from '@/components/ui/toaster';
+import GoogleAnalytics from '@/app/GoogleAnalytics';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -45,9 +44,9 @@ export const metadata: Metadata = {
         googleBot: {
             index: true,
             follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
         },
     },
     twitter: {
@@ -61,23 +60,27 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({children}: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='en'>
             <body
-                className={cn(inter.className, `antialiased min-h-screen pt-32 bg-gradient-to-tl from-black via-violet-700/10 to-black`)}>
-                <GoogleAnalytics/>
+                className={cn(
+                    inter.className,
+                    `min-h-screen bg-gradient-to-tl from-black via-violet-700/10 to-black pt-32 antialiased`,
+                )}
+            >
+                <GoogleAnalytics />
                 <SupabaseProvider>
                     <AuthProvider>
                         <QuizProvider>
                             <QuizLogicContextProvider>
-                                <Navbar/>
+                                <Navbar />
                                 {children}
-                                <Toaster/>
+                                <Toaster />
                             </QuizLogicContextProvider>
                         </QuizProvider>
                     </AuthProvider>
-                    <ToastContainer position='top-right' autoClose={2000}/>
+                    <ToastContainer position='top-right' autoClose={2000} />
                 </SupabaseProvider>
             </body>
         </html>

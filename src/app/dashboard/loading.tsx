@@ -1,19 +1,19 @@
-import {Skeleton} from "@/components/ui/skeleton";
+import { Skeleton } from '@/components/ui/skeleton';
 
 const loading = () => {
     return (
         <div className='flex flex-col items-center justify-center'>
-            <Skeleton className='flex h-9 w-56 mb-5 rounded-full'/>
-            <Skeleton className='flex h-9 w-40 mb-5 rounded-full'/>
-            <div className='lg:grid lg:grid-flow-col gap-8 mt-12 m-2'>
+            <Skeleton className='mb-5 flex h-9 w-56 rounded-full' />
+            <Skeleton className='mb-5 flex h-9 w-40 rounded-full' />
+            <div className='m-2 mt-12 gap-8 lg:grid lg:grid-flow-col'>
                 <div className='col-span-1 m-4 lg:m-0'>
-                    <Skeleton className='w-full h-[150px] rounded-lg'/>
+                    <Skeleton className='h-[150px] w-full rounded-lg' />
                 </div>
-                <div className='row-span-2 mt-10 col-span-1 m-4 lg:m-0'>
-                    <Skeleton className='lg:w-[410px] w-full h-[370px] rounded-lg'/>
+                <div className='col-span-1 row-span-2 m-4 mt-10 lg:m-0'>
+                    <Skeleton className='h-[370px] w-full rounded-lg lg:w-[410px]' />
                 </div>
-                <div className='row-span-3 mt-10 lg:mt-0 m-4 lg:m-0'>
-                    <Skeleton className='w-[546px] h-[554px] rounded-lg'/>
+                <div className='row-span-3 m-4 mt-10 lg:m-0 lg:mt-0'>
+                    <Skeleton className='h-[554px] w-[546px] rounded-lg' />
                 </div>
             </div>
         </div>

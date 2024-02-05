@@ -7,31 +7,31 @@ import { useQuiz } from '@/contexts/QuizContext';
 import SingleQuiz from './SingleQuiz';
 import { ScrollArea } from './ui/scroll-area';
 const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
-  const { quizzes } = useQuiz();
+    const { quizzes } = useQuiz();
 
-  return (
-    <Card className='w-full h-full lg:h-[556px] xl:h-[621px]'>
-      <CardHeader className='pb-0'>
-        <div className='flex items-center space-x-2'>
-          <BiHistory className='w-6 h-6' />
-          <CardTitle className='text-[1.5rem]'>History</CardTitle>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <CardDescription className='pb-3'>
-          You have played a total of {totalQuiz} quizzes
-        </CardDescription>
-        <ScrollArea className='h-[474px] lg:h-[425px] xl:h-[500px]'>
-          <div className='space-y-4'>
-            {quizzes?.map((quiz) => {
-              return <SingleQuiz quiz={quiz} key={quiz.id} />;
-            })}
-            <LoadMore />
-          </div>
-        </ScrollArea>
-      </CardContent>
-    </Card>
-  );
+    return (
+        <Card className='h-full w-full lg:h-[556px] xl:h-[621px]'>
+            <CardHeader className='pb-0'>
+                <div className='flex items-center space-x-2'>
+                    <BiHistory className='h-6 w-6' />
+                    <CardTitle className='text-[1.5rem]'>History</CardTitle>
+                </div>
+            </CardHeader>
+            <CardContent>
+                <CardDescription className='pb-3'>
+                    You have played a total of {totalQuiz} quizzes
+                </CardDescription>
+                <ScrollArea className='h-[474px] lg:h-[425px] xl:h-[500px]'>
+                    <div className='space-y-4'>
+                        {quizzes?.map((quiz) => {
+                            return <SingleQuiz quiz={quiz} key={quiz.id} />;
+                        })}
+                        <LoadMore />
+                    </div>
+                </ScrollArea>
+            </CardContent>
+        </Card>
+    );
 };
 
 export default QuizHistory;

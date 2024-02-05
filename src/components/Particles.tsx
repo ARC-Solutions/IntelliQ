@@ -1,7 +1,7 @@
 'use client';
 
-import React, {useEffect, useRef} from "react";
-import {useMousePosition} from "@/utils/mouse";
+import React, { useEffect, useRef } from 'react';
+import { useMousePosition } from '@/utils/mouse';
 
 interface ParticlesProps {
     className?: string;
@@ -12,20 +12,20 @@ interface ParticlesProps {
 }
 
 export default function Particles({
-                                      className = "",
-                                      quantity = 3000,
-                                      staticity = 20,
-                                      ease = 50,
-                                      refresh = false,
-                                  }: ParticlesProps) {
+    className = '',
+    quantity = 3000,
+    staticity = 20,
+    ease = 50,
+    refresh = false,
+}: ParticlesProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasContainerRef = useRef<HTMLDivElement>(null);
     const context = useRef<CanvasRenderingContext2D | null>(null);
     const circles = useRef<any[]>([]);
     const mousePosition = useMousePosition();
-    const mouse = useRef<{ x: number; y: number }>({x: 0, y: 0});
-    const canvasSize = useRef<{ w: number; h: number }>({w: 0, h: 0});
-    const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+    const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+    const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
+    const dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
     useEffect(() => {
         if (canvasRef.current) {
@@ -68,16 +68,16 @@ export default function Particles({
     };
 
     type Circle = {
-        x: number,
-        y: number,
-        translateX: number,
-        translateY: number,
-        size: number,
-        alpha: number,
-        targetAlpha: number,
-        dx: number,
-        dy: number,
-        magnetism: number,
+        x: number;
+        y: number;
+        translateX: number;
+        translateY: number;
+        size: number;
+        alpha: number;
+        targetAlpha: number;
+        dx: number;
+        dy: number;
+        magnetism: number;
     };
 
     const resizeCanvas = () => {
@@ -138,12 +138,7 @@ export default function Particles({
 
     const clearContext = () => {
         if (context.current) {
-            context.current.clearRect(
-                0,
-                0,
-                canvasSize.current.w,
-                canvasSize.current.h,
-            );
+            context.current.clearRect(0, 0, canvasSize.current.w, canvasSize.current.h);
         }
     };
 
@@ -163,8 +158,7 @@ export default function Particles({
         start2: number,
         end2: number,
     ): number => {
-        const remapped =
-            ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
+        const remapped = ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
         return remapped > 0 ? remapped : 0;
     };
 
@@ -179,9 +173,7 @@ export default function Particles({
                 canvasSize.current.h - circle.y - circle.translateY - circle.size, // distance from bottom edge
             ];
             const closestEdge = edge.reduce((a, b) => Math.min(a, b));
-            const remapClosestEdge = parseFloat(
-                remapValue(closestEdge, 0, 20, 0, 1).toFixed(2),
-            );
+            const remapClosestEdge = parseFloat(remapValue(closestEdge, 0, 20, 0, 1).toFixed(2));
             if (remapClosestEdge > 1) {
                 circle.alpha += 0.02;
                 if (circle.alpha > circle.targetAlpha) {
@@ -193,11 +185,9 @@ export default function Particles({
             circle.x += circle.dx;
             circle.y += circle.dy;
             circle.translateX +=
-                (mouse.current.x / (staticity / circle.magnetism) - circle.translateX) /
-                ease;
+                (mouse.current.x / (staticity / circle.magnetism) - circle.translateX) / ease;
             circle.translateY +=
-                (mouse.current.y / (staticity / circle.magnetism) - circle.translateY) /
-                ease;
+                (mouse.current.y / (staticity / circle.magnetism) - circle.translateY) / ease;
             // circle gets out of the canvas
             if (
                 circle.x < -circle.size ||
@@ -229,7 +219,7 @@ export default function Particles({
     };
 
     return (
-        <div className={className} ref={canvasContainerRef} aria-hidden="true">
+        <div className={className} ref={canvasContainerRef} aria-hidden='true'>
             <canvas ref={canvasRef} />
         </div>
     );

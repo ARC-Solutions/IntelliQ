@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface MousePosition {
     x: number;
@@ -16,10 +16,10 @@ export function useMousePosition(): MousePosition {
             setMousePosition({ x: event.clientX, y: event.clientY });
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener('mousemove', handleMouseMove);
 
-        return()=>{
-            window.removeEventListener("mousemove", handleMouseMove);
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
 

@@ -1,24 +1,31 @@
-import {Skeleton} from "@/components/ui/skeleton"
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
+import { Skeleton } from '@/components/ui/skeleton';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 
 const loading = () => {
     return (
-        <div className="w-full sm:w-10/12 mx-auto text-white flex flex-col items-center justify-center px-6 py-4">
-            <div className='w-full flex flex-row justify-between items-center mb-14'>
-                <Skeleton className="h-[48px] w-[225px] rounded-lg"/>
-                <Skeleton className="h-[36px] w-[190px] rounded-lg"/>
+        <div className='mx-auto flex w-full flex-col items-center justify-center px-6 py-4 text-white sm:w-10/12'>
+            <div className='mb-14 flex w-full flex-row items-center justify-between'>
+                <Skeleton className='h-[48px] w-[225px] rounded-lg' />
+                <Skeleton className='h-[36px] w-[190px] rounded-lg' />
             </div>
-            <div className='w-full flex flex-wrap justify-between gap-4 pb-14'>
-                <Skeleton className="h-[200px] md:w-5/12 rounded-lg sm:h-[180px] sm:w-[570px]"/>
-                <Skeleton className="h-[200px] md:w-5/12 rounded-lg sm:h-[180px] sm:w-[570px]"/>
+            <div className='flex w-full flex-wrap justify-between gap-4 pb-14'>
+                <Skeleton className='h-[200px] rounded-lg sm:h-[180px] sm:w-[570px] md:w-5/12' />
+                <Skeleton className='h-[200px] rounded-lg sm:h-[180px] sm:w-[570px] md:w-5/12' />
             </div>
             <div className='relative w-full overflow-auto'>
-                <Table className="w-full caption-bottom text-sm overflow-x-auto mt-14">
+                <Table className='mt-14 w-full caption-bottom overflow-x-auto text-sm'>
                     <TableHeader>
                         <TableRow>
                             {Array.from({ length: 3 }, (_, index) => (
                                 <TableHead key={index}>
-                                    <Skeleton className="h-8 w-[100px]"/>
+                                    <Skeleton className='h-8 w-[100px]' />
                                 </TableHead>
                             ))}
                         </TableRow>
@@ -28,7 +35,7 @@ const loading = () => {
                             <TableRow key={index}>
                                 {Array.from({ length: 3 }, (_, index) => (
                                     <TableCell key={index}>
-                                        <Skeleton className="w-full h-8"/>
+                                        <Skeleton className='h-8 w-full' />
                                     </TableCell>
                                 ))}
                             </TableRow>

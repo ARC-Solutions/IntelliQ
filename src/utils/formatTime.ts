@@ -3,8 +3,8 @@ export const formatTime = (seconds: number) => {
     const remainingSeconds = seconds % 60;
 
     if (minutes > 0) {
-      return `${minutes}m ${remainingSeconds}s`;
+        return `${minutes}m ${remainingSeconds}s`;
     } else {
-      return `${remainingSeconds}s`;
+        return `${remainingSeconds}s`;
     }
-  };
+};
