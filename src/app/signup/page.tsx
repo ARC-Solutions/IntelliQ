@@ -1,9 +1,9 @@
-import SignUpCard from '@/components/SignUpCard';
+import SignUpCard from '@/components/sign-up-card';
 import { Metadata } from 'next';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import Particles from '@/components/Particles';
+import Particles from '@/components/particles';
 export const metadata: Metadata = {
     title: 'Sign Up',
 };

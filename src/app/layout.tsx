@@ -2,15 +2,15 @@ import './globals.css';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
-import Navbar from '@/components/ui/Navbar';
-import { AuthProvider } from '@/contexts/UserContext';
+import Navbar from '@/components/ui/navbar';
+import { AuthProvider } from '@/contexts/user-context';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { SupabaseProvider } from '@/contexts/SupabaseContext';
-import { QuizProvider } from '@/contexts/QuizContext';
-import QuizLogicContextProvider from '@/contexts/QuizLogicContext';
+import { SupabaseProvider } from '@/contexts/supabase-context';
+import { QuizProvider } from '@/contexts/quiz-context';
+import QuizLogicContextProvider from '@/contexts/quiz-logic-context';
 import { Toaster } from '@/components/ui/toaster';
-import GoogleAnalytics from '@/app/GoogleAnalytics';
+import GoogleAnalytics from '@/app/google-analytics';
 
 const inter = Inter({
     subsets: ['latin'],

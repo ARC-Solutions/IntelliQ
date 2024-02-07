@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { QuizHistories, useQuiz } from '@/contexts/QuizContext';
+import { QuizHistories, useQuiz } from '@/contexts/quiz-context';
 import { useInView } from 'react-intersection-observer';
 import Spinner from './ui/spinner';
-import { fetchAllQuizzes } from '@/utils/fetchAllQuizzes';
+import { fetchAllQuizzes } from '@/utils/fetch-all-quizzes';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 const LoadMore = () => {

@@ -9,11 +9,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useAuth } from '@/contexts/UserContext';
+import { useAuth } from '@/contexts/user-context';
 import Image from 'next/image';
 import { FaUserCircle } from 'react-icons/fa';
-import { useQuiz } from '@/contexts/QuizContext';
-import { useQuizLogic } from '@/contexts/QuizLogicContext';
+import { useQuiz } from '@/contexts/quiz-context';
+import { useQuizLogic } from '@/contexts/quiz-logic-context';
 
 const UserAvatar = () => {
     const { currentUser, signout } = useAuth();

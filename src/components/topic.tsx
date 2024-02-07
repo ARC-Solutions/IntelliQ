@@ -1,6 +1,6 @@
 'use client';
-import { useQuiz } from '@/contexts/QuizContext';
-import { RecommendedTopic } from './Topics';
+import { useQuiz } from '@/contexts/quiz-context';
+import { RecommendedTopic } from './topics';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { redirect } from 'next/navigation';
 import { cloneElement } from 'react';

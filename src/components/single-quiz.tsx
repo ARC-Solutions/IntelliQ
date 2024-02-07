@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { QuizHistories, useQuiz } from '@/contexts/QuizContext';
+import { QuizHistories, useQuiz } from '@/contexts/quiz-context';
 import { FaBookOpen } from 'react-icons/fa6';
 import { MdAccessTimeFilled } from 'react-icons/md';
 

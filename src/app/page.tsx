@@ -1,4 +1,4 @@
-import Particles from '@/components/Particles';
+import Particles from '@/components/particles';
 import Main from '@/components/LandingPage/main';
 import Features from '@/components/LandingPage/features';
 import About from '@/components/LandingPage/about';

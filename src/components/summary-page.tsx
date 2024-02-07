@@ -1,14 +1,14 @@
 'use client';
 import React, { useEffect } from 'react';
-import { QuizHistories, useQuiz } from '@/contexts/QuizContext';
+import { QuizHistories, useQuiz } from '@/contexts/quiz-context';
 import { redirect } from 'next/navigation';
 import { BsFillMortarboardFill } from 'react-icons/bs';
 import { BiSolidDashboard, BiSolidTimer } from 'react-icons/bi';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Card, CardDescription, CardHeader } from './ui/card';
-import SummaryTable from './SummaryTable';
-import { formatTime } from '@/utils/formatTime';
+import SummaryTable from './summary-table';
+import { formatTime } from '@/utils/format-time';
 
 const SummaryPage = ({
     quizID,

@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useSupabase } from './SupabaseContext';
+import { useSupabase } from './supabase-context';
 import { useRouter } from 'next/navigation';
 type Props = {
     children: React.ReactNode;

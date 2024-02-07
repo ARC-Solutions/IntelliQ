@@ -1,12 +1,12 @@
 'use client';
-import QuizMe from '@/components/QuizMe';
-import TopPicks from '@/components/TopPicks';
-import { QuizHistories, useQuiz } from '@/contexts/QuizContext';
-import LoadingQuestions from './LoadingQuestions';
+import QuizMe from '@/components/quiz-me';
+import TopPicks from '@/components/top-picks';
+import { QuizHistories, useQuiz } from '@/contexts/quiz-context';
+import LoadingQuestions from './loading-questions';
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
-import QuizHistory from './QuizHistory';
-import InfoDialog from '@/components/Info-Dialog';
+import QuizHistory from './quiz-history';
+import InfoDialog from '@/components/info-dialog';
 
 const Dashboard = ({
     prevQuizzes,

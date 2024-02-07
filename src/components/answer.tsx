@@ -1,5 +1,5 @@
 'use client';
-import { useQuizLogic } from '@/contexts/QuizLogicContext';
+import { useQuizLogic } from '@/contexts/quiz-logic-context';
 import { Button } from './ui/button';
 
 type Props = {

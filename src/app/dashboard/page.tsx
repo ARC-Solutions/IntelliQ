@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import DashboardPage from '@/components/DashboardPage';
+import DashboardPage from '@/components/dashboard-page';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { Metadata } from 'next';
-import { fetchAllQuizzes } from '@/utils/fetchAllQuizzes';
-import Particles from '@/components/Particles';
+import { fetchAllQuizzes } from '@/utils/fetch-all-quizzes';
+import Particles from '@/components/particles';
 
 export const metadata: Metadata = {
     title: 'Dashboard',

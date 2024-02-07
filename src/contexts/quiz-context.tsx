@@ -3,8 +3,8 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { toast } from 'react-toastify';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { quizReducer } from '@/utils/reducers/quizReducer';
-import { UserAnswer } from './QuizLogicContext';
+import { quizReducer } from '@/utils/reducers/quiz-reducer';
+import { UserAnswer } from './quiz-logic-context';
 
 type Props = {
     children: React.ReactNode;

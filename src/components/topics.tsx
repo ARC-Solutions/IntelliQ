@@ -4,7 +4,7 @@ import { IoGameController } from 'react-icons/io5';
 import { FaCss3Alt } from 'react-icons/fa';
 import { SiJavascript } from 'react-icons/si';
 import { RiMicroscopeFill } from 'react-icons/ri';
-import Topic from './Topic';
+import Topic from './topic';
 export interface RecommendedTopic {
     name: string;
     icon: React.ReactElement;

@@ -1,10 +1,10 @@
-import SummaryPage from '@/components/SummaryPage';
+import SummaryPage from '@/components/summary-page';
 import { Metadata } from 'next';
 import React from 'react';
-import { fetchAllQuizzes } from '@/utils/fetchAllQuizzes';
+import { fetchAllQuizzes } from '@/utils/fetch-all-quizzes';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import Particles from '@/components/Particles';
+import Particles from '@/components/particles';
 
 export const metadata: Metadata = {
     title: 'Summary',

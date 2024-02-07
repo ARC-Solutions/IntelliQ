@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useState, useReducer, useEffect } from 'react';
-import { quizLogicReducer } from '@/utils/reducers/quizLogicReducer';
-import { showToast } from '@/utils/showToast';
+import { quizLogicReducer } from '@/utils/reducers/quiz-logic-reducer';
+import { showToast } from '@/utils/show-toast';
 export interface UserAnswer {
     question: string;
     correctAnswer: string;

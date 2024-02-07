@@ -1,7 +1,7 @@
 import React from 'react';
 import { BiSolidBrain } from 'react-icons/bi';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import Topics from './Topics';
+import Topics from './topics';
 
 const TopPicks = () => {
     return (

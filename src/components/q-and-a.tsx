@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { Quiz } from '@/contexts/QuizContext';
-import Answer from './Answer';
+import { Quiz } from '@/contexts/quiz-context';
+import Answer from './answer';
 type Props = {
     quiz: Quiz[];
     questionNumber: number;

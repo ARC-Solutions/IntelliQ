@@ -1,4 +1,4 @@
-import { QuizLogicValues, Action } from '@/contexts/QuizLogicContext';
+import { QuizLogicValues, Action } from '@/contexts/quiz-logic-context';
 
 export const quizLogicReducer = (state: QuizLogicValues, action: Action) => {
     if (action.type === 'SET_SELECTED_ANSWER') {

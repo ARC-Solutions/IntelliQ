@@ -8,7 +8,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { HistoryQuestions } from '@/contexts/QuizContext';
+import { HistoryQuestions } from '@/contexts/quiz-context';
 
 type Props = {
     summaryQuiz: HistoryQuestions[];

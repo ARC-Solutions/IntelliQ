@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
-import UserAvatar from '../UserAvatar';
+import UserAvatar from '../user-avatar';
 
 type Props = {};
 

@@ -3,8 +3,8 @@ import React from 'react';
 import { BiHistory } from 'react-icons/bi';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import LoadMore from './load-more';
-import { useQuiz } from '@/contexts/QuizContext';
-import SingleQuiz from './SingleQuiz';
+import { useQuiz } from '@/contexts/quiz-context';
+import SingleQuiz from './single-quiz';
 import { ScrollArea } from './ui/scroll-area';
 const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
     const { quizzes } = useQuiz();

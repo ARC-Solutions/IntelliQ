@@ -4,13 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useAuth } from '@/contexts/UserContext';
+import { useAuth } from '@/contexts/user-context';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRef, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
-import { showToast } from '@/utils/showToast';
+import { showToast } from '@/utils/show-toast';
 
 const SignUpCard = () => {
     const [isANewUser, setIsAnewUser] = useState(false);

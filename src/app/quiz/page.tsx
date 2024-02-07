@@ -2,8 +2,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import CreateQuiz from '@/components/CreateQuiz';
-import Particles from '@/components/Particles';
+import CreateQuiz from '@/components/create-quiz';
+import Particles from '@/components/particles';
 
 export const metadata: Metadata = {
     title: 'Quiz',

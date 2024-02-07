@@ -10,11 +10,11 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useQuiz } from '@/contexts/QuizContext';
+import { useQuiz } from '@/contexts/quiz-context';
 import { redirect } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
-import LoadingQuestions from './LoadingQuestions';
+import LoadingQuestions from './loading-questions';
 
 const CreateQuiz = () => {
     const interestsRef = useRef<HTMLInputElement>(null);

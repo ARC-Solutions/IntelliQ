@@ -1,14 +1,14 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useQuiz } from '@/contexts/QuizContext';
+import { useQuiz } from '@/contexts/quiz-context';
 import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { IoTimer } from 'react-icons/io5';
 import { AiFillCheckSquare, AiFillCloseSquare, AiOutlineRight } from 'react-icons/ai';
 import { Card, CardDescription } from '@/components/ui/card';
-import QAndA from '@/components/QAndA';
-import { useQuizLogic } from '@/contexts/QuizLogicContext';
-import { showToast } from '@/utils/showToast';
+import QAndA from '@/components/q-and-a';
+import { useQuizLogic } from '@/contexts/quiz-logic-context';
+import { showToast } from '@/utils/show-toast';
 import Summarizing from '../../public/summarizing.json';
 import Lottie from 'lottie-react';
 
