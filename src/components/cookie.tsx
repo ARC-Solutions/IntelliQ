@@ -100,7 +100,7 @@ const CookieConsent = ({ className }: CookieConsentProps) => {
         setLocalStorage('cookie_consent', cookieConsent);
 
         //For Testing
-        //console.log('Cookie Consent: ', cookieConsent);
+        console.log('Cookie Consent: ', cookieConsent);
     }, [cookieConsent]);
 
     if (!isVisible) return null;
@@ -154,7 +154,7 @@ const CookieConsent = ({ className }: CookieConsentProps) => {
                                 Cookie Settings
                             </Button>
                         </DialogTrigger>
-                        <DialogContent className='flex h-svh flex-col border-none sm:h-auto sm:border-solid'>
+                        <DialogContent className='h-svh flex flex-col border-none sm:h-auto sm:border-solid'>
                             <div className='flex flex-col overflow-auto'>
                                 <DialogHeader className='space-y-4'>
                                     <DialogTitle className='text-left text-2xl'>

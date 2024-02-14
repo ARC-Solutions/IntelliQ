@@ -8,7 +8,7 @@ import Footer from '@/components/LandingPage/footer';
 export default async function Home() {
     return (
         <div className='min-h-screen bg-transparent'>
-            <Particles className='animate-fade-in absolute inset-0 -z-10' quantity={500} />
+            <Particles className='absolute inset-0 -z-10 animate-fade-in' quantity={500} />
             <Main />
             <Features />
             <About />
