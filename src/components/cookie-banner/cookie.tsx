@@ -54,7 +54,7 @@ const CookieConsent = ({ className }: CookieConsentProps) => {
     const onSubmit = (data: z.infer<typeof formSchema>) => {
         console.log(data);
         if (data.analytics) {
-            setCookieConsent(true);
+            setAnalyticsConsent(true);
         }
         toast({
             title: 'You submitted the following values:',
@@ -66,7 +66,7 @@ const CookieConsent = ({ className }: CookieConsentProps) => {
         });
     };
 
-    const { isFadingOut, isVisible, removeComponent, setCookieConsent, setIsFadingOut } =
+    const { isFadingOut, isVisible, removeComponent, setAnalyticsConsent, setIsFadingOut } =
         useCookieConsent();
 
     if (!isVisible) return null;

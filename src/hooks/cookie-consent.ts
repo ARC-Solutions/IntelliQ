@@ -4,26 +4,26 @@ import { useEffect, useState } from 'react';
 const useCookieConsent = () => {
     const [isFadingOut, setIsFadingOut] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
-    const [cookieConsent, setCookieConsent] = useState(getLocalStorage('cookie_consent', false));
+    const [analyticsConsent, setAnalyticsConsent] = useState(getLocalStorage('analytics_consent', false));
 
     useEffect(() => {
-        const storedCookieConsent = getLocalStorage('cookie_consent', false);
-        setCookieConsent(storedCookieConsent);
+        const storedCookieConsent = getLocalStorage('analytics_consent', false);
+        setAnalyticsConsent(storedCookieConsent);
         setIsVisible(!storedCookieConsent);
     }, []);
 
     useEffect(() => {
-        const newValue = cookieConsent ? 'granted' : 'denied';
+        const newValue = analyticsConsent ? 'granted' : 'denied';
 
         window.gtag('consent', 'update', {
             analytics_storage: newValue,
         });
 
-        setLocalStorage('cookie_consent', cookieConsent);
+        setLocalStorage('analytics_consent', analyticsConsent);
 
         //For Testing
-        console.log('Cookie Consent: ', cookieConsent);
-    }, [cookieConsent]);
+        console.log('Cookie Consent: ', analyticsConsent);
+    }, [analyticsConsent]);
 
     const removeComponent = () => {
         setIsFadingOut(true);
@@ -33,7 +33,7 @@ const useCookieConsent = () => {
         }, 1000);
     };
 
-    return { isFadingOut, isVisible, removeComponent, setCookieConsent, setIsFadingOut };
+    return { isFadingOut, isVisible, removeComponent, setAnalyticsConsent, setIsFadingOut };
 };
 
 export default useCookieConsent;
