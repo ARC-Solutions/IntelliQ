@@ -23,7 +23,7 @@ const Dashboard = async () => {
     return (
         <div>
             <DashboardPage prevQuizzes={data} />
-            <Particles className='animate-fade-in absolute inset-0 -z-10' quantity={500} />
+            <Particles className='absolute inset-0 -z-10 animate-fade-in' quantity={500} />
         </div>
     );
 };

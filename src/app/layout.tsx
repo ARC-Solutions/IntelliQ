@@ -11,7 +11,7 @@ import { QuizProvider } from '@/contexts/quiz-context';
 import QuizLogicContextProvider from '@/contexts/quiz-logic-context';
 import { Toaster } from '@/components/ui/toaster';
 import GoogleAnalytics from '@/components/google-analytics';
-import CookieConsent from '@/components/cookie';
+import CookieConsent from '@/components/cookie-banner/cookie';
 
 const inter = Inter({
     subsets: ['latin'],

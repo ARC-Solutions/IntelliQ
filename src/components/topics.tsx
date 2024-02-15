@@ -12,7 +12,7 @@ export interface RecommendedTopic {
 
 const Topics = () => {
     const topics: Array<RecommendedTopic> = [
-        { name: 'Formula One', icon: <GiRaceCar class /> },
+        { name: 'Formula One', icon: <GiRaceCar /> },
         { name: 'Anime', icon: <GiJasonMask /> },
         { name: 'Gaming', icon: <IoGameController /> },
         { name: 'CSS', icon: <FaCss3Alt /> },

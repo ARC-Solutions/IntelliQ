@@ -1,9 +1,9 @@
 import Particles from '@/components/particles';
-import Main from '@/components/LandingPage/main';
-import Features from '@/components/LandingPage/features';
-import About from '@/components/LandingPage/about';
-import Contact from '@/components/LandingPage/contact';
-import Footer from '@/components/LandingPage/footer';
+import Main from '@/components/landing-page/main';
+import Features from '@/components/landing-page/features';
+import About from '@/components/landing-page/about';
+import Contact from '@/components/landing-page/contact';
+import Footer from '@/components/landing-page/footer';
 
 export default async function Home() {
     return (
