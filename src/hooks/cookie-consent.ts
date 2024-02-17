@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react';
 const useCookieConsent = () => {
     const [isFadingOut, setIsFadingOut] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
-    const [analyticsConsent, setAnalyticsConsent] = useState(getLocalStorage('analytics_consent', false));
+    const [analyticsConsent, setAnalyticsConsent] = useState(
+        getLocalStorage('analytics_consent', false),
+    );
 
     useEffect(() => {
         const storedCookieConsent = getLocalStorage('analytics_consent', false);

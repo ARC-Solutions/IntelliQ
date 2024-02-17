@@ -1,4 +1,10 @@
-import { DialogClose, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import {
+    DialogClose,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
 interface DialogContentsProps {
@@ -11,18 +17,20 @@ interface DialogFooterProps {
     removeComponent: () => void;
 }
 
-const DialogContents = ({rejectAllCookies, acceptAllCookies, removeComponent}:DialogContentsProps) =>{
+const DialogContents = ({
+    rejectAllCookies,
+    acceptAllCookies,
+    removeComponent,
+}: DialogContentsProps) => {
     return (
         <>
             <div className='flex flex-col overflow-auto'>
                 <DialogHeader className='space-y-4'>
-                    <DialogTitle className='text-left text-2xl'>
-                        Cookie Settings
-                    </DialogTitle>
+                    <DialogTitle className='text-left text-2xl'>Cookie Settings</DialogTitle>
                     <hr className='my-4' />
                     <DialogDescription className='text-left'>
-                        IntelliQ uses cookies to offer you a better experience. See
-                        Cookie Policy for more details.
+                        IntelliQ uses cookies to offer you a better experience. See Cookie Policy
+                        for more details.
                     </DialogDescription>
                     <div className='flex gap-3'>
                         <DialogClose asChild>
@@ -55,7 +63,7 @@ const DialogContents = ({rejectAllCookies, acceptAllCookies, removeComponent}:Di
     );
 };
 
-const ContentsFooter = ({removeComponent}:DialogFooterProps) => {
+const ContentsFooter = ({ removeComponent }: DialogFooterProps) => {
     return (
         <>
             <DialogFooter className='mt-4 flex justify-end space-x-2'>
