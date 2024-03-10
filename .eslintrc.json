@@ -1,12 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier"
-  ],
-  "plugins": [
-    "prettier",
-    "unicorn"
-  ],
+  "extends": ["next/core-web-vitals", "prettier"],
+  "plugins": ["prettier", "unicorn"],
   "rules": {
     "prettier/prettier": "error",
     "unicorn/filename-case": "error"
