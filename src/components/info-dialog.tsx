@@ -15,7 +15,7 @@ const InfoDialog = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className='rounded-xl bg-[#c8b6ff] text-sm font-bold'>
+                <Button className='rounded-lg bg-[#c8b6ff] text-sm font-bold mt-2'>
                     What Is IntelliQ <FaQuestionCircle className='ml-2' />
                 </Button>
             </DialogTrigger>
@@ -47,8 +47,8 @@ const InfoDialog = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <div className='border-b-[0.5px] border-primary pb-1 pt-1 opacity-30'></div>
-                <h1 className='mt-4 py-2 text-lg'>Built with</h1>
-                <div className='justify-content-between mt-2 grid w-full grid-cols-2 gap-6 md:grid-cols-4'>
+                <h1 className='mt-3 py-2 text-lg'>Built with</h1>
+                <div className='justify-content-between grid w-full grid-cols-2 gap-2 md:grid-cols-4'>
                     <div className='flex items-center'>
                         <Image
                             src='/svgs/nextjs.svg'

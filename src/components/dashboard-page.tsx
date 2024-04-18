@@ -36,7 +36,7 @@ const Dashboard = ({
     }
     return (
         <div className='flex flex-col items-center justify-center'>
-            <h1 className='text-center text-3xl font-semibold lg:text-4xl'>DASHBOARD</h1>
+            <h1 className='text-center text-3xl font-semibold lg:text-4xl mb-4'>DASHBOARD</h1>
             <InfoDialog />
             <div className='m-2 mt-12 gap-8 lg:grid lg:grid-flow-col'>
                 <div className='col-span-1 m-4 lg:m-0'>

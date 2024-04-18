@@ -18,7 +18,7 @@ const QuizMe = () => {
                 </CardDescription>
             </CardHeader>
 
-            <CardContent className='p-4'>
+            <CardContent className='p-3'>
                 <Link href={'/quiz'}>
                     <div className='flex items-center justify-center'>
                         <Button className='w-full bg-[#c8b6ff] text-sm'>

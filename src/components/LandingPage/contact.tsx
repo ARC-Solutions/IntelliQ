@@ -8,7 +8,7 @@ const Contact = () => {
             id='contact'
         >
             <h2 className='text-center text-4xl font-bold'>Contact Us</h2>
-            <p className='max-w-lg text-center text-lg'>
+            <p className='max-w-xl text-center text-lg'>
                 Have any questions or feedback? We&apos;d love to hear from you.
             </p>
             <Link href='mailto:contact@arc-solutions.xyz'>

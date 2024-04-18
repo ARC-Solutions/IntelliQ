@@ -22,7 +22,7 @@ const SingleQuiz = ({ quiz }: Props) => {
             <FaBookOpen className='hidden h-4 w-4 sm:inline-block' />
             <CardTitle className='flex-grow'>{quiz.quiz_title}</CardTitle>
             <Button>
-                <MdAccessTimeFilled />
+                <MdAccessTimeFilled className='mx-2'/>
                 {quiz.created_at}
             </Button>
         </Card>
