@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { SetStateAction, createContext, useContext, useReducer, useState } from 'react';
 import { toast } from 'react-toastify';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { quizReducer } from '@/utils/reducers/quiz-reducer';
@@ -55,12 +55,19 @@ export type QuizAction =
     | { type: 'SUBMIT_QUIZ_SUCESS'; payload: QuizHistory }
     | { type: 'STORE_QUIZZES'; payload: QuizHistories[] }
     | { type: 'FETCH_MORE_QUIZZES'; payload: QuizHistories[] };
-
+export interface videoContext {
+    summary: string;
+    topics: string[];
+}
 export interface QuizContextValues extends QuizContextValue {
     dispatch: React.Dispatch<QuizAction>;
     fetchQuestions: (interests: string, numberOfQuestions: number) => void;
     submitQuiz: (userAnswer: UserAnswer[], timeTaken: number) => void;
     fetchSingleQuiz: (quizID: string) => void;
+    videoLoading: boolean;
+    setVideoLoading: React.Dispatch<SetStateAction<boolean>>;
+    videoTranscriptsAndTopics: videoContext | {};
+    setVideoTranscriptsAndTopics: React.Dispatch<SetStateAction<videoContext>>;
 }
 const initialState: QuizContextValue = {
     isLoading: false,
@@ -108,6 +115,8 @@ const QuizContext = createContext<QuizContextValues | null>(null);
 
 export const QuizProvider = ({ children }: Props) => {
     const [state, dispatch] = useReducer(quizReducer, initialState);
+    const [videoLoading, setVideoLoading] = useState(false);
+    const [videoTranscriptsAndTopics, setVideoTranscriptsAndTopics] = useState({});
     const supabase = createClientComponentClient();
     const fetchQuestions = async (interests: string, numberOfQuestions: number) => {
         try {
@@ -211,6 +220,10 @@ export const QuizProvider = ({ children }: Props) => {
                 fetchQuestions,
                 submitQuiz,
                 fetchSingleQuiz,
+                videoLoading,
+                setVideoLoading,
+                videoTranscriptsAndTopics,
+                setVideoTranscriptsAndTopics,
             }}
         >
             {children}

@@ -10,7 +10,7 @@ const TopPicks = () => {
                 <div className='flex items-center space-x-2'>
                     <BiSolidBrain className='h-6 w-6' />
                     <CardTitle className='text-[1.5rem]'>Our Top Picks!</CardTitle>
-                </div>
+                    </div>
             </CardHeader>
             <CardContent>
                 <CardDescription className='pb-3 text-base lg:text-xs xl:text-base'>

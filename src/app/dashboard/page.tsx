@@ -16,7 +16,7 @@ const Dashboard = async () => {
     const { session } = (await supabase.auth.getSession()).data;
     const accessToken = session?.access_token as string;
     const data = await fetchAllQuizzes(accessToken, 0);
-
+    
     if (!session) {
         redirect('/');
     }

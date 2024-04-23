@@ -8,7 +8,7 @@ import { FaArrowRight } from 'react-icons/fa6';
 const QuizMe = () => {
     return (
         <Card className='w-full shadow-lg'>
-            <CardHeader className='pb-0'>
+            <CardHeader className='pb-2'>
                 <div className='flex items-center space-x-2'>
                     <BsFillQuestionDiamondFill className='h-6 w-6' />
                     <CardTitle className='text-[1.5rem]'>Quiz Me!</CardTitle>
@@ -18,7 +18,7 @@ const QuizMe = () => {
                 </CardDescription>
             </CardHeader>
 
-            <CardContent className='p-3'>
+            <CardContent className=''>
                 <Link href={'/quiz'}>
                     <div className='flex items-center justify-center'>
                         <Button className='w-full bg-[#c8b6ff] text-sm'>

@@ -10,7 +10,7 @@ const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
     const { quizzes } = useQuiz();
 
     return (
-        <Card className='h-full w-full lg:h-[556px] xl:h-[621px]'>
+        <Card className='h-full w-full'>
             <CardHeader className='pb-0'>
                 <div className='flex items-center space-x-2'>
                     <BiHistory className='h-6 w-6' />
@@ -21,7 +21,7 @@ const QuizHistory = ({ totalQuiz }: { totalQuiz: number }) => {
                 <CardDescription className='pb-3'>
                     You have played a total of {totalQuiz} quizzes
                 </CardDescription>
-                <ScrollArea className='h-[474px] lg:h-[425px] xl:h-[500px]'>
+                <ScrollArea className='h-[304px] lg:h-[255px] xl:h-[310px]'>
                     <div className='space-y-4'>
                         {quizzes?.map((quiz) => {
                             return <SingleQuiz quiz={quiz} key={quiz.id} />;
