@@ -15,7 +15,7 @@ const InfoDialog = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className='rounded-lg bg-[#c8b6ff] text-sm font-bold mt-2'>
+                <Button className='mt-2 rounded-lg bg-[#c8b6ff] text-sm font-bold'>
                     What Is IntelliQ <FaQuestionCircle className='ml-2' />
                 </Button>
             </DialogTrigger>
