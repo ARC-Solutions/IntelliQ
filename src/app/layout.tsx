@@ -18,6 +18,7 @@ const inter = Inter({
 });
 export const revalidate = 0;
 export const metadata: Metadata = {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_WEBAPP_URL ?? 'http://localhost:3000'),
     title: {
         default: 'IntelliQ',
         template: '%s | IntelliQ',
