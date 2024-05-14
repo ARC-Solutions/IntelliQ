@@ -26,6 +26,7 @@ const Quiz = () => {
         wrongAnswer,
         userAnswer,
     } = useQuizLogic();
+    console.log(userAnswer);
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
@@ -48,6 +49,7 @@ const Quiz = () => {
     if (!currentQuiz) {
         redirect('/');
     }
+
     if (summaryQuiz) {
         setQuizFinished(false);
         setTime({ minutes: 0, seconds: 0 });
@@ -72,10 +74,11 @@ const Quiz = () => {
             </div>
         );
     }
+    console.log(currentQuiz);
     return (
         <div className='mx-auto flex w-[400] flex-col items-center justify-center p-4 text-white sm:w-[800px] '>
             <header className='mb-4 text-center text-2xl font-bold sm:text-4xl'>
-                {currentQuiz.quiz[questionNumber].questionTitle}
+                {currentQuiz.topic}
             </header>
             <section className='w-full rounded-lg p-6 text-center shadow-none'>
                 <div className='mb-4 flex items-center justify-between'>
@@ -102,27 +105,34 @@ const Quiz = () => {
                     <span>{questionNumber + 1}</span>&nbsp;out of {currentQuiz.quiz.length}{' '}
                     Questions
                 </CardDescription>
-                <QAndA quiz={currentQuiz.quiz} questionNumber={questionNumber} />
+                <QAndA
+                    quiz={currentQuiz.quiz}
+                    questionNumber={questionNumber}
+                    quizType={currentQuiz.quizType}
+                />
                 <Button
                     disabled={quizFinished}
                     onClick={() => {
-                        if (selectedAnswer) {
+                        if (selectedAnswer || currentQuiz.quizType === 'Fill in the Blank') {
+                            // Validate answer for both quiz types. For fill-in-the-blank,
+                            // the input field directly modifies selectedAnswer in state.
                             dispatch({
                                 type: 'VALIDATE_ANSWER',
                                 payload: {
                                     question: currentQuiz.quiz[questionNumber].text,
                                     correctAnswer:
-                                        currentQuiz.quiz[questionNumber].correctAnswer.slice(3),
+                                        currentQuiz.quizType === 'Multiple Choice'
+                                            ? currentQuiz.quiz[questionNumber].correctAnswer.slice(
+                                                  3,
+                                              )
+                                            : currentQuiz.quiz[questionNumber].correctAnswer,
                                     userAnswer: selectedAnswer,
                                 },
                             });
-                            setQuestionNumber((prevQuestionNumber) => {
-                                return prevQuestionNumber >= currentQuiz.quiz.length - 1
-                                    ? prevQuestionNumber
-                                    : prevQuestionNumber + 1;
-                            });
 
-                            if (questionNumber >= currentQuiz.quiz.length - 1) {
+                            if (questionNumber < currentQuiz.quiz.length - 1) {
+                                setQuestionNumber(questionNumber + 1);
+                            } else {
                                 setQuizFinished(true);
                                 setTotalTimeInSeconds(time.minutes * 60 + time.seconds);
                             }
@@ -130,7 +140,7 @@ const Quiz = () => {
                             showToast(
                                 'destructive',
                                 'WARNING!',
-                                'Please choose an answer before proceeding',
+                                'Please provide an answer before proceeding',
                             );
                         }
                     }}

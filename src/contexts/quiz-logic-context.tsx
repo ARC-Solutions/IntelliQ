@@ -8,7 +8,7 @@ export interface UserAnswer {
     userAnswer: string;
 }
 export interface QuizLogicValues {
-    selectedAnswer: string | null;
+    selectedAnswer: string;
     correctAnswer: number;
     wrongAnswer: number;
     userAnswer: UserAnswer[] | [];
@@ -20,13 +20,13 @@ export interface ContextValue extends QuizLogicValues {
 }
 export type Action =
     | { type: 'QUIZ_FINISHED' }
-    | { type: 'SET_SELECTED_ANSWER'; payload: string | null }
+    | { type: 'SET_SELECTED_ANSWER'; payload: string }
     | { type: 'VALIDATE_ANSWER'; payload: UserAnswer }
     | { type: 'RESET_GAME_LOGIC' }
     | { type: 'INCREMENT_QUESTION_NUMBER' };
 
 const initialState: QuizLogicValues = {
-    selectedAnswer: null,
+    selectedAnswer: "",
     correctAnswer: 0,
     wrongAnswer: 0,
     userAnswer: [],

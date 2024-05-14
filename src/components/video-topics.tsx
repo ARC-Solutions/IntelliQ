@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/carousel';
 import { videoContext } from '@/contexts/quiz-context';
 import { useRouter } from 'next/navigation';
-const CreateQuiz = () => {
+const CreateQuizVideo = () => {
     const interestsRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
     const numberOfQuestionsRef = useRef<HTMLInputElement>(null);
@@ -36,15 +36,16 @@ const CreateQuiz = () => {
     } = useQuiz();
     const [currentIndex, setCurrentIndex] = useState(0);
     const topics = (videoTranscriptsAndTopics as videoContext).topics as string[];
-    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const summary = (videoTranscriptsAndTopics as videoContext).summary as string;
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>, wholeVideo: Boolean) => {
         e.preventDefault();
-        const interests = topics[currentIndex];
+        const interests = wholeVideo ? summary : topics[currentIndex];
         const numberOfQuestions = 4;
         // if (Number(numberOfQuestions) <= 0 || Number(numberOfQuestions) > 10) {
         //     toast.error('Number of questions should be between 1 and 10.');
         //     return;
         // }
-        fetchQuestions(interests, Number(numberOfQuestions));
+        fetchQuestions(interests, Number(numberOfQuestions), 'Multiple Choice');
     };
     useEffect(() => {
         if (!topics) {
@@ -64,7 +65,6 @@ const CreateQuiz = () => {
     const handlePrevious = () => {
         setCurrentIndex(currentIndex - 1);
     };
-    console.log(currentIndex);
     if (isLoading) {
         return <LoadingQuestions finished={finished} />;
     }
@@ -106,12 +106,16 @@ const CreateQuiz = () => {
                         </span>
                     </Carousel>
                 </CardContent>
-                <CardFooter className='flex items-center justify-center'>
-                    <Button onClick={handleSubmit}>Create Quiz</Button>
+                <CardFooter>
+                    <div className='flex-col'>
+                        <Button onClick={(e) => handleSubmit(e, false)}>Create Quiz</Button>
+                        <p>Or</p>
+                        <Button onClick={(e) => handleSubmit(e, true)}>Quiz on Entire Video</Button>
+                    </div>
                 </CardFooter>
             </Card>
         </div>
     );
 };
 
-export default CreateQuiz;
+export default CreateQuizVideo;

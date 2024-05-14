@@ -11,7 +11,7 @@ const Topic = ({ name, icon }: RecommendedTopic) => {
     return (
         <Card
             onClick={() => {
-                fetchQuestions(name, 4);
+                fetchQuestions(name, 4, 'Multiple Choice');
                 redirect('/quiz');
             }}
             className='block w-full cursor-pointer'

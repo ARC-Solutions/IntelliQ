@@ -21,8 +21,6 @@ const VideoQuiz = () => {
             !inputRef.current?.value ||
             !inputRef.current?.value.startsWith('https://www.youtube.com/watch?v=')
         ) {
-            console.log(inputRef.current?.value);
-
             showToast('destructive', 'WARNING!', 'Please Enter A Valid Youtube Url');
             return;
         }
@@ -44,6 +42,8 @@ const VideoQuiz = () => {
                 }),
             });
             const data = await response.json();
+            console.log(data);
+            
             setVideoTranscriptsAndTopics(data);
             router.push('/quiz/video');
         } catch (error) {

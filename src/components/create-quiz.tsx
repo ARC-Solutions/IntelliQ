@@ -12,15 +12,18 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useQuiz } from '@/contexts/quiz-context';
 import { redirect } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import LoadingQuestions from './loading-questions';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
+type choices = 'Multiple Choice' | 'Fill in the blank';
 const CreateQuiz = () => {
     const interestsRef = useRef<HTMLInputElement>(null);
     const numberOfQuestionsRef = useRef<HTMLInputElement>(null);
     const { fetchQuestions, currentQuiz, isLoading, fetchingFinished: finished } = useQuiz();
-
+    const quizChoices = ['Multiple Choice', 'Fill in the blank'];
+    const [userChoice, setUserChoice] = useState<choices>('Multiple Choice');
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         const interests = interestsRef.current?.value as string;
@@ -33,7 +36,7 @@ const CreateQuiz = () => {
             toast.error('Number of questions should be between 1 and 10.');
             return;
         }
-        fetchQuestions(interests, Number(numberOfQuestions));
+        fetchQuestions(interests, Number(numberOfQuestions), userChoice);
     };
 
     useEffect(() => {
@@ -91,9 +94,31 @@ const CreateQuiz = () => {
                                     ref={numberOfQuestionsRef}
                                     className='border-b-[0.5px] border-white border-opacity-40 pb-1 pt-1 font-medium placeholder:text-white placeholder:opacity-70'
                                 />
+
                                 <CardDescription className='mt-1 text-xs font-thin sm:text-sm'>
                                     Choose a number between 1 and 10
                                 </CardDescription>
+                                <RadioGroup defaultValue='Multiple Choice'>
+                                    {quizChoices.map((choice) => {
+                                        return (
+                                            <div
+                                                className='flex items-center space-x-2'
+                                                key={choice}
+                                            >
+                                                <RadioGroupItem
+                                                    onClick={() => setUserChoice(choice as choices)}
+                                                    value={choice}
+                                                    id='r1'
+                                                />
+                                                <Label htmlFor='r1'>{choice}</Label>
+                                            </div>
+                                        );
+                                    })}
+                                    {/* <div className='flex items-center space-x-2'>
+                                        <RadioGroupItem value='Fill in the blank' id='r2' />
+                                        <Label htmlFor='r2'>Fill in the blank</Label>
+                                    </div> */}
+                                </RadioGroup>
                             </div>
                         </div>
                         <Button

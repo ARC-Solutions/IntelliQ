@@ -15,6 +15,7 @@ const Dashboard = ({
 }: {
     prevQuizzes: {
         quizzes: QuizHistories[];
+        topFiveTopics: string[];
         totalCount: number;
     };
 }) => {
@@ -27,6 +28,7 @@ const Dashboard = ({
         dispatch,
         summaryQuiz,
     } = useQuiz();
+    console.log(prevQuizzes);
 
     useEffect(() => {
         dispatch({ type: 'RESET_SUMMARY_QUIZ' });
@@ -67,6 +69,14 @@ const Dashboard = ({
 
                 <div className='col-span-1 m-4 lg:m-0'>
                     <QuizHistory totalQuiz={prevQuizzes.totalCount} />
+                </div>
+                <div className='col-span-1 m-4 lg:m-0'>
+                    <h1>Top Trending Topics</h1>
+                    <ul>
+                        {prevQuizzes.topFiveTopics.map((topic) => {
+                            return <li key={topic}>{topic}</li>;
+                        })}
+                    </ul>
                 </div>
             </div>
         </div>

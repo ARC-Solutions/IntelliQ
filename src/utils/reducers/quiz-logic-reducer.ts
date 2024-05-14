@@ -7,14 +7,14 @@ export const quizLogicReducer = (state: QuizLogicValues, action: Action) => {
         const { correctAnswer, userAnswer, question } = action.payload;
         let scoreCORRECT = state.correctAnswer;
         let scoreINCORRECT = state.wrongAnswer;
-        if (userAnswer === correctAnswer) {
+        if (userAnswer.toLowerCase() === correctAnswer.toLocaleLowerCase()) {
             scoreCORRECT += 1;
         } else {
             scoreINCORRECT += 1;
         }
         return {
             ...state,
-            selectedAnswer: null,
+            selectedAnswer: '',
             correctAnswer: scoreCORRECT,
             wrongAnswer: scoreINCORRECT,
             userAnswer: [
@@ -29,7 +29,7 @@ export const quizLogicReducer = (state: QuizLogicValues, action: Action) => {
     } else if (action.type === 'RESET_GAME_LOGIC') {
         return {
             quizFinished: false,
-            selectedAnswer: null,
+            selectedAnswer: '',
             correctAnswer: 0,
             wrongAnswer: 0,
             userAnswer: [],

@@ -23,6 +23,7 @@ export interface HistoryQuestions {
 interface CurrentQuiz {
     quiz: Quiz[];
     topic: string;
+    quizType: string;
 }
 export interface QuizHistory {
     quiz_id: string;
@@ -61,7 +62,7 @@ export interface videoContext {
 }
 export interface QuizContextValues extends QuizContextValue {
     dispatch: React.Dispatch<QuizAction>;
-    fetchQuestions: (interests: string, numberOfQuestions: number) => void;
+    fetchQuestions: (interests: string, numberOfQuestions: number, userChoice: string) => void;
     submitQuiz: (userAnswer: UserAnswer[], timeTaken: number) => void;
     fetchSingleQuiz: (quizID: string) => void;
     videoLoading: boolean;
@@ -115,16 +116,23 @@ const QuizContext = createContext<QuizContextValues | null>(null);
 
 export const QuizProvider = ({ children }: Props) => {
     const [state, dispatch] = useReducer(quizReducer, initialState);
+    const [currentQuizTopic, setCurrentQuizTopic] = useState('');
     const [videoLoading, setVideoLoading] = useState(false);
     const [videoTranscriptsAndTopics, setVideoTranscriptsAndTopics] = useState({});
     const supabase = createClientComponentClient();
-    const fetchQuestions = async (interests: string, numberOfQuestions: number) => {
+    const fetchQuestions = async (
+        interests: string,
+        numberOfQuestions: number,
+        userChoice: string,
+    ) => {
         try {
             const {
                 data: { session },
             } = await supabase.auth.getSession();
             const accessToken = session?.access_token;
-            const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/quiz`;
+            const URL = `${process.env.NEXT_PUBLIC_BASE_URL}${
+                userChoice === 'Multiple Choice' ? '/api/quiz' : '/api/blank-quiz'
+            }`;
             dispatch({ type: 'FETCH_QUIZ_REQUEST' });
             const url = `${URL}?numberOfQuestions=${numberOfQuestions}&interests=${interests}`;
             const response = await fetch(url, {
@@ -142,7 +150,9 @@ export const QuizProvider = ({ children }: Props) => {
             const quiz: CurrentQuiz = {
                 quiz: questions,
                 topic,
+                quizType: userChoice,
             };
+            setCurrentQuizTopic(interests);
             dispatch({ type: 'FETCH_QUIZ_SUCCESS', payload: quiz });
         } catch (error: any) {
             dispatch({ type: 'FETCH_QUIZ_ERROR' });
@@ -158,14 +168,17 @@ export const QuizProvider = ({ children }: Props) => {
             const accessToken = session?.access_token;
 
             const quizTitle = state.currentQuiz?.topic;
+
             const questions = userAnswer.map((ans, i) => {
                 const { correctAnswer, question, userAnswer } = ans;
-                const options = state.currentQuiz?.quiz[i].options.map((opt) => opt.slice(3));
+                const options =
+                    state.currentQuiz?.quiz[i].options?.map((opt) => opt.slice(3)) || [];
                 return { text: question, correctAnswer, userAnswer, options };
             });
-
+            const quizTopics = currentQuizTopic.split(',');
             const rawQuestions = {
                 quizTitle,
+                quizTopics,
                 questions,
                 timeTaken,
             };
@@ -179,7 +192,6 @@ export const QuizProvider = ({ children }: Props) => {
                 body: JSON.stringify({ rawQuestions }),
             });
             const data = (await response.json()) as QuizHistory;
-            console.log(data);
 
             dispatch({ type: 'SUBMIT_QUIZ_SUCESS', payload: data });
         } catch (error: any) {
@@ -205,7 +217,7 @@ export const QuizProvider = ({ children }: Props) => {
             });
 
             const data = (await response.json()) as QuizHistory;
-            console.log(data);
+
             dispatch({ type: 'SUBMIT_QUIZ_SUCESS', payload: data });
         } catch (error: any) {
             toast(error.message);
