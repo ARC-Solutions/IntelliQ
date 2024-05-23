@@ -26,7 +26,7 @@ export type Action =
     | { type: 'INCREMENT_QUESTION_NUMBER' };
 
 const initialState: QuizLogicValues = {
-    selectedAnswer: "",
+    selectedAnswer: '',
     correctAnswer: 0,
     wrongAnswer: 0,
     userAnswer: [],

@@ -75,7 +75,7 @@ const CreateQuizVideo = () => {
                 <CardHeader>
                     <CardTitle className='text-3xl'>Choose a Topic</CardTitle>
                     <CardDescription className='text-sm font-thin'>
-                        We've analyzed the topics in your provided video, covering each subject
+                        We&apos;ve analyzed the topics in your provided video, covering each subject
                         thoroughly.
                     </CardDescription>
                 </CardHeader>

@@ -9,6 +9,10 @@ import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import QuizHistory from './quiz-history';
 import InfoDialog from '@/components/info-dialog';
+import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import UserAnalytics from '@/components/user-analytics';
+import { Card } from '@/components/ui/card';
 
 const Dashboard = ({
     prevQuizzes,
@@ -51,6 +55,7 @@ const Dashboard = ({
     if (videoLoading) {
         return <VideoLoading />;
     }
+    const data = prevQuizzes.topFiveTopics;
     return (
         <div className='flex flex-col items-center justify-center'>
             <h1 className='mb-4 text-center text-3xl font-semibold lg:text-4xl'>DASHBOARD</h1>
@@ -59,24 +64,37 @@ const Dashboard = ({
                 <div className='col-span-1 m-4 lg:m-0'>
                     <QuizMe />
                 </div>
-
                 <div className='row-cols-2 col-span-1  m-4 lg:m-0'>
                     <VideoQuiz />
                 </div>
                 <div className='col-span-1 m-4 lg:m-0'>
-                    <TopPicks />
+                    <Card>
+                        <Tabs defaultValue='analytics'>
+                            <TabsList className='grid w-full grid-cols-2 rounded-xl bg-[#0e0e0e]'>
+                                <TabsTrigger
+                                    value='toppicks'
+                                    className='data-[state=active]:bg-[#c8b6ff]'
+                                >
+                                    Our Top Picks
+                                </TabsTrigger>
+                                <TabsTrigger
+                                    value='analytics'
+                                    className='data-[state=active]:bg-[#c8b6ff]'
+                                >
+                                    Your Analysis
+                                </TabsTrigger>
+                            </TabsList>
+                            <TabsContent value='toppicks'>
+                                <TopPicks />
+                            </TabsContent>
+                            <TabsContent value='analytics'>
+                                <UserAnalytics data={prevQuizzes.topFiveTopics} />
+                            </TabsContent>
+                        </Tabs>
+                    </Card>
                 </div>
-
                 <div className='col-span-1 m-4 lg:m-0'>
                     <QuizHistory totalQuiz={prevQuizzes.totalCount} />
-                </div>
-                <div className='col-span-1 m-4 lg:m-0'>
-                    <h1>Top Trending Topics</h1>
-                    <ul>
-                        {prevQuizzes.topFiveTopics.map((topic) => {
-                            return <li key={topic}>{topic}</li>;
-                        })}
-                    </ul>
                 </div>
             </div>
         </div>

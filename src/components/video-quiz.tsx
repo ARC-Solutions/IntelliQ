@@ -43,7 +43,7 @@ const VideoQuiz = () => {
             });
             const data = await response.json();
             console.log(data);
-            
+
             setVideoTranscriptsAndTopics(data);
             router.push('/quiz/video');
         } catch (error) {
