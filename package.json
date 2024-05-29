@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
+    "@types/gtag.js": "^0.0.19",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
