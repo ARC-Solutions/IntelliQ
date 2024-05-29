@@ -10,7 +10,8 @@ import { SupabaseProvider } from '@/contexts/supabase-context';
 import { QuizProvider } from '@/contexts/quiz-context';
 import QuizLogicContextProvider from '@/contexts/quiz-logic-context';
 import { Toaster } from '@/components/ui/toaster';
-import GoogleAnalytics from '@/app/google-analytics';
+import GoogleAnalytics from '@/components/google-analytics';
+import CookieConsent from '@/components/cookie';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <QuizLogicContextProvider>
                                 <Navbar />
                                 {children}
+                                <CookieConsent className='animate-fade-in' />
                                 <Toaster />
                             </QuizLogicContextProvider>
                         </QuizProvider>
