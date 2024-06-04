@@ -41,10 +41,6 @@ const CreateQuizVideo = () => {
         e.preventDefault();
         const interests = wholeVideo ? summary : topics[currentIndex];
         const numberOfQuestions = 4;
-        // if (Number(numberOfQuestions) <= 0 || Number(numberOfQuestions) > 10) {
-        //     toast.error('Number of questions should be between 1 and 10.');
-        //     return;
-        // }
         fetchQuestions(interests, Number(numberOfQuestions), 'Multiple Choice');
     };
     useEffect(() => {
@@ -71,7 +67,7 @@ const CreateQuizVideo = () => {
 
     return (
         <div className='flex h-[76.5vh] items-center justify-center'>
-            <Card className='w-max border-b-[0.5px] border-white border-opacity-40 p-4 pb-1 pt-1 sm:w-[450px]'>
+            <Card className='w-[500px] border-b-[0.5px] border-white border-opacity-40 p-4 pb-1 pt-1'>
                 <CardHeader>
                     <CardTitle className='text-3xl'>Choose a Topic</CardTitle>
                     <CardDescription className='text-sm font-thin'>
@@ -80,7 +76,7 @@ const CreateQuizVideo = () => {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Carousel className='w-full'>
+                    <Carousel className='w-auto'>
                         <CarouselContent>
                             {topics?.map((topic, i) => {
                                 return (
@@ -106,12 +102,14 @@ const CreateQuizVideo = () => {
                         </span>
                     </Carousel>
                 </CardContent>
-                <CardFooter>
-                    <div className='flex-col'>
-                        <Button onClick={(e) => handleSubmit(e, false)}>Create Quiz</Button>
-                        <p>Or</p>
-                        <Button onClick={(e) => handleSubmit(e, true)}>Quiz on Entire Video</Button>
-                    </div>
+                <CardFooter className='flex flex-col items-center space-y-2'>
+                    <Button className='w-full ' onClick={(e) => handleSubmit(e, false)}>
+                        Create Quiz
+                    </Button>
+                    <p>Or</p>
+                    <Button className='w-full ' onClick={(e) => handleSubmit(e, true)}>
+                        Quiz on Entire Video
+                    </Button>
                 </CardFooter>
             </Card>
         </div>
