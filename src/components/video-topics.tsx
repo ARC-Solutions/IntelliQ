@@ -75,7 +75,7 @@ const CreateQuizVideo = () => {
                         thoroughly.
                     </CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent className='p-12'>
                     <Carousel className='w-auto'>
                         <CarouselContent>
                             {topics?.map((topic, i) => {
@@ -94,12 +94,8 @@ const CreateQuizVideo = () => {
                                 );
                             })}
                         </CarouselContent>
-                        <span onClick={handlePrevious}>
-                            <CarouselPrevious />
-                        </span>
-                        <span onClick={handleNext}>
-                            <CarouselNext />
-                        </span>
+                        <CarouselPrevious />
+                        <CarouselNext />
                     </Carousel>
                 </CardContent>
                 <CardFooter className='flex flex-col items-center space-y-2'>
