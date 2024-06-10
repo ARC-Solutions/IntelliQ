@@ -8,6 +8,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 import { useQuiz } from '@/contexts/quiz-context';
 
@@ -102,7 +103,11 @@ const CreateQuizVideo = () => {
                     <Button className='w-full ' onClick={(e) => handleSubmit(e, false)}>
                         Create Quiz
                     </Button>
-                    <p>Or</p>
+                    <div className='flex w-[185px] items-center justify-center gap-3 '>
+                        <Separator />
+                        <p>Or</p>
+                        <Separator />
+                    </div>
                     <Button className='w-full ' onClick={(e) => handleSubmit(e, true)}>
                         Quiz on Entire Video
                     </Button>

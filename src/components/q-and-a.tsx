@@ -7,10 +7,11 @@ type Props = {
     quiz: Quiz[];
     questionNumber: number;
     quizType: string;
+    userInput: string;
+    setUserInput: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const QAndA = ({ quiz, questionNumber, quizType }: Props) => {
-    const [userInput, setUserInput] = useState('');
+const QAndA = ({ quiz, questionNumber, quizType, userInput, setUserInput }: Props) => {
     const { dispatch, selectedAnswer } = useQuizLogic();
     const question = quiz[questionNumber];
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

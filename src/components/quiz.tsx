@@ -14,6 +14,7 @@ import Lottie from 'lottie-react';
 
 const Quiz = () => {
     const { currentQuiz, submitQuiz, summaryQuiz } = useQuiz();
+    const [userInput, setUserInput] = useState('');
     const [time, setTime] = useState({ minutes: 0, seconds: 0 });
     const [quizFinished, setQuizFinished] = useState(false);
     const [totalTimeInSeconds, setTotalTimeInSeconds] = useState(0);
@@ -109,6 +110,8 @@ const Quiz = () => {
                     quiz={currentQuiz.quiz}
                     questionNumber={questionNumber}
                     quizType={currentQuiz.quizType}
+                    userInput={userInput}
+                    setUserInput={setUserInput}
                 />
                 <Button
                     disabled={quizFinished}
@@ -129,7 +132,7 @@ const Quiz = () => {
                                     userAnswer: selectedAnswer,
                                 },
                             });
-
+                            setUserInput('');
                             if (questionNumber < currentQuiz.quiz.length - 1) {
                                 setQuestionNumber(questionNumber + 1);
                             } else {

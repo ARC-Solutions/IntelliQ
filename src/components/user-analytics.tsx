@@ -15,7 +15,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label })
                     <CardTitle>{label}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p>U PLAYED THAT: {payload[0].value} times</p>
+                    <p>You played that: {payload[0].value} times</p>
                 </CardContent>
             </Card>
         );
