@@ -9,7 +9,7 @@ const useLastUsed = () => {
 const LastUsed = () => {
     return (
         <span className='text-content-subtle absolute right-4 top-1/2 -translate-y-1/2 text-xs'>
-            <span className='animate-calm-shimmer inline-block bg-gradient-to-r from-transparent via-black/80 to-transparent bg-[length:300%_100%] bg-clip-text text-transparent'>
+            <span className='inline-block animate-calm-shimmer bg-gradient-to-r from-transparent via-black/80 to-transparent bg-[length:300%_100%] bg-clip-text text-transparent'>
                 Last used
             </span>
         </span>
