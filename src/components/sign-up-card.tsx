@@ -11,6 +11,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import { showToast } from '@/utils/show-toast';
+import { LastUsed, useLastUsed } from '@/components/last-used';
 
 const SignUpCard = () => {
     const [isANewUser, setIsAnewUser] = useState(false);
@@ -20,10 +21,12 @@ const SignUpCard = () => {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const confirmPasswordRef = useRef<HTMLInputElement>(null);
+    const [lastUsed, setLastUsed] = useLastUsed();
     const handleSubmit = async (isGoogleOAuth: boolean = false) => {
         if (isGoogleOAuth) {
             try {
                 signinUsingOAuth();
+                setLastUsed('google');
                 return;
             } catch (error) {
                 toast.error('Failed to initiate Google sign in.');
@@ -47,6 +50,7 @@ const SignUpCard = () => {
             } else {
                 try {
                     signupUsingEmail({ email, password });
+                    setLastUsed('email');
                     showToast(
                         'success',
                         'Account Created',
@@ -58,36 +62,41 @@ const SignUpCard = () => {
             }
         } else {
             signinUsingEmail({ email, password });
+            setLastUsed('email');
         }
     };
 
     return (
-        <div className='group relative w-auto duration-700 hover:border-violet-400/50 hover:bg-violet-800/10 sm:w-[450px]'>
-            <Tabs defaultValue='signup' className='w-auto sm:w-[450px]'>
-                <TabsList className='grid w-full grid-cols-2 rounded-lg border-none bg-[#0e0e0e] shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary'>
-                    <TabsTrigger value='signup' className='data-[state=active]:bg-[#c8b6ff]'>
+        <div
+            className="group relative w-auto duration-700 hover:border-violet-400/50 hover:bg-violet-800/10 sm:w-[450px]">
+            <Tabs defaultValue="signup" className="w-auto sm:w-[450px]">
+                <TabsList
+                    className="grid w-full grid-cols-2 rounded-lg border-none bg-[#0e0e0e] shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary">
+                    <TabsTrigger value="signup" className="data-[state=active]:bg-[#c8b6ff]">
                         Sign Up
                     </TabsTrigger>
-                    <TabsTrigger value='signin' className='data-[state=active]:bg-[#c8b6ff]'>
+                    <TabsTrigger value="signin" className="data-[state=active]:bg-[#c8b6ff]">
                         Sign In
                     </TabsTrigger>
                 </TabsList>
-                <TabsContent value='signin'>
-                    <Card className='w-auto rounded-lg border-none p-4 shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary sm:w-[450px]'>
-                        <CardHeader className='pb-5'>
-                            <CardTitle className='text-3xl'>ARC-Solutions</CardTitle>
-                            <CardDescription className='pb-2 pt-1 text-xl'>
+                <TabsContent value="signin">
+                    <Card
+                        className="w-auto rounded-lg border-none p-4 shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary sm:w-[450px]">
+                        <CardHeader className="pb-5">
+                            <CardTitle className="text-3xl">ARC-Solutions</CardTitle>
+                            <CardDescription className="pb-2 pt-1 text-xl">
                                 Let&apos;s Sign You In
                             </CardDescription>
                             <Button
                                 onClick={() => handleSubmit(true)}
-                                className='bg-[#fafafa] p-5 hover:bg-[#fafafa]/90 active:bg-[#fafafa]/80'
+                                className="relative bg-[#fafafa] p-5 hover:bg-[#fafafa]/90 active:bg-[#fafafa]/80"
                             >
-                                <div className='place-content-center text-3xl'>
-                                    <FcGoogle size='' />
+                                <div className="place-content-center text-3xl">
+                                    <FcGoogle size="" />
                                 </div>
+                                {lastUsed === 'google' && <LastUsed />}
                             </Button>
-                            <div className='border-b-[0.5px] border-white border-opacity-70 pb-1 pt-1'></div>
+                            <div className="border-b-[0.5px] border-white border-opacity-70 pb-1 pt-1"></div>
                         </CardHeader>
                         <CardContent>
                             <form
@@ -97,74 +106,77 @@ const SignUpCard = () => {
                                 }}
                             >
                                 <div>
-                                    <div className='mb-5'>
-                                        <div className='mb-1.5'>
-                                            <Label htmlFor='email' className='font-thin'>
+                                    <div className="mb-5">
+                                        <div className="mb-1.5">
+                                            <Label htmlFor="email" className="font-thin">
                                                 Email Address
                                             </Label>
                                         </div>
                                         <Input
-                                            type='email'
-                                            id='email'
-                                            placeholder='Enter your Email Address'
+                                            type="email"
+                                            id="email"
+                                            placeholder="Enter your Email Address"
                                             ref={emailRef}
-                                            className='border-2 font-medium placeholder:text-white placeholder:opacity-70'
+                                            className="border-2 font-medium placeholder:text-white placeholder:opacity-70"
                                         />
                                     </div>
-                                    <div className='relative mb-5'>
-                                        <div className='mb-1.5'>
-                                            <Label htmlFor='password' className='font-thin'>
+                                    <div className="relative mb-5">
+                                        <div className="mb-1.5">
+                                            <Label htmlFor="password" className="font-thin">
                                                 Your Password
                                             </Label>
                                         </div>
                                         <Input
-                                            id='password'
+                                            id="password"
                                             type={showPassword ? 'text' : 'password'}
-                                            placeholder='Enter your Password'
+                                            placeholder="Enter your Password"
                                             ref={passwordRef}
-                                            className='border-2 pr-8 font-medium placeholder:text-white placeholder:opacity-70'
+                                            className="border-2 pr-8 font-medium placeholder:text-white placeholder:opacity-70"
                                         />
                                         <Button
-                                            type='button'
-                                            className='absolute bottom-1 right-1 h-7 w-7'
-                                            size='icon'
-                                            variant='ghost'
+                                            type="button"
+                                            className="absolute bottom-1 right-1 h-7 w-7"
+                                            size="icon"
+                                            variant="ghost"
                                             onClick={() => setShowPassword(!showPassword)}
                                         >
                                             {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-                                            <span className='sr-only'>
+                                            <span className="sr-only">
                                                 Toggle password visibility
                                             </span>
                                         </Button>
                                     </div>
                                 </div>
                                 <Button
-                                    type='submit'
-                                    className='w-full rounded-none p-5 text-center text-xl font-[550] active:bg-primary/80'
+                                    type="submit"
+                                    className="relative w-full rounded-none p-5 text-center text-xl font-[550] active:bg-primary/80"
                                     onClick={() => setIsAnewUser(isANewUser)}
                                 >
                                     Sign In
+                                    {lastUsed === 'email' ? <LastUsed /> : null}
                                 </Button>
                             </form>
                         </CardContent>
                     </Card>
                 </TabsContent>
-                <TabsContent value='signup'>
-                    <Card className='w-auto rounded-lg border-none p-4 shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary sm:w-[450px]'>
-                        <CardHeader className='pb-5'>
-                            <CardTitle className='text-3xl'>ARC-Solutions</CardTitle>
-                            <CardDescription className='pb-2 pt-1 text-xl'>
+                <TabsContent value="signup">
+                    <Card
+                        className="w-auto rounded-lg border-none p-4 shadow-[0_0px_20px_-4px_rgba(0,0,0,0.24)] shadow-primary sm:w-[450px]">
+                        <CardHeader className="pb-5">
+                            <CardTitle className="text-3xl">ARC-Solutions</CardTitle>
+                            <CardDescription className="pb-2 pt-1 text-xl">
                                 Let&apos;s Sign You Up
                             </CardDescription>
                             <Button
                                 onClick={() => handleSubmit(true)}
-                                className='bg-[#fafafa] p-5 hover:bg-[#fafafa]/90 active:bg-[#fafafa]/80'
+                                className="relative bg-[#fafafa] p-5 hover:bg-[#fafafa]/90 active:bg-[#fafafa]/80"
                             >
-                                <div className='place-content-center text-3xl'>
-                                    <FcGoogle size='' />
+                                <div className="place-content-center text-3xl">
+                                    <FcGoogle size="" />
                                 </div>
+                                {lastUsed === 'google' && <LastUsed />}
                             </Button>
-                            <div className='border-b-[0.5px] border-white border-opacity-70 pb-1 pt-1'></div>
+                            <div className="border-b-[0.5px] border-white border-opacity-70 pb-1 pt-1"></div>
                         </CardHeader>
                         <CardContent>
                             <form
@@ -174,81 +186,82 @@ const SignUpCard = () => {
                                 }}
                             >
                                 <div>
-                                    <div className='mb-5'>
-                                        <div className='mb-1.5'>
-                                            <Label htmlFor='email' className='font-thin'>
+                                    <div className="mb-5">
+                                        <div className="mb-1.5">
+                                            <Label htmlFor="email" className="font-thin">
                                                 Email Address
                                             </Label>
                                         </div>
                                         <Input
-                                            type='email'
-                                            id='email'
-                                            placeholder='Enter your Email Address'
+                                            type="email"
+                                            id="email"
+                                            placeholder="Enter your Email Address"
                                             ref={emailRef}
-                                            className='border-2 font-medium placeholder:text-white placeholder:opacity-70'
+                                            className="border-2 font-medium placeholder:text-white placeholder:opacity-70"
                                         />
                                     </div>
-                                    <div className='relative mb-5'>
-                                        <div className='mb-1.5'>
-                                            <Label htmlFor='password' className='font-thin'>
+                                    <div className="relative mb-5">
+                                        <div className="mb-1.5">
+                                            <Label htmlFor="password" className="font-thin">
                                                 Your Password
                                             </Label>
                                         </div>
                                         <Input
-                                            id='password'
+                                            id="password"
                                             type={showPassword ? 'text' : 'password'}
-                                            placeholder='Enter your Password'
+                                            placeholder="Enter your Password"
                                             ref={passwordRef}
-                                            className='border-2 pr-8 font-medium placeholder:text-white placeholder:opacity-70'
+                                            className="border-2 pr-8 font-medium placeholder:text-white placeholder:opacity-70"
                                         />
                                         <Button
-                                            type='button'
-                                            className='absolute bottom-1 right-1 h-7 w-7'
-                                            size='icon'
-                                            variant='ghost'
+                                            type="button"
+                                            className="absolute bottom-1 right-1 h-7 w-7"
+                                            size="icon"
+                                            variant="ghost"
                                             onClick={() => setShowPassword(!showPassword)}
                                         >
                                             {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-                                            <span className='sr-only'>
+                                            <span className="sr-only">
                                                 Toggle password visibility
                                             </span>
                                         </Button>
                                     </div>
-                                    <div className='relative mb-5'>
-                                        <div className='mb-1.5'>
-                                            <Label htmlFor='confirmPassword' className='font-thin'>
+                                    <div className="relative mb-5">
+                                        <div className="mb-1.5">
+                                            <Label htmlFor="confirmPassword" className="font-thin">
                                                 Confirm Password
                                             </Label>
                                         </div>
                                         <Input
-                                            id='confirmPassword'
+                                            id="confirmPassword"
                                             type={showConfirmPassword ? 'text' : 'password'}
-                                            placeholder='Confirm your Password'
+                                            placeholder="Confirm your Password"
                                             ref={confirmPasswordRef}
-                                            className='border-2 pr-8 font-medium placeholder:text-white placeholder:opacity-70'
+                                            className="border-2 pr-8 font-medium placeholder:text-white placeholder:opacity-70"
                                         />
                                         <Button
-                                            type='button'
-                                            className='absolute bottom-1 right-1 h-7 w-7'
-                                            size='icon'
-                                            variant='ghost'
+                                            type="button"
+                                            className="absolute bottom-1 right-1 h-7 w-7"
+                                            size="icon"
+                                            variant="ghost"
                                             onClick={() =>
                                                 setShowConfirmPassword(!showConfirmPassword)
                                             }
                                         >
                                             {showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-                                            <span className='sr-only'>
+                                            <span className="sr-only">
                                                 Toggle password visibility
                                             </span>
                                         </Button>
                                     </div>
                                 </div>
                                 <Button
-                                    type='submit'
-                                    className='w-full rounded-none p-5 text-center text-xl font-[550] active:bg-primary/80'
+                                    type="submit"
+                                    className="relative w-full rounded-none p-5 text-center text-xl font-[550] active:bg-primary/80"
                                     onClick={() => setIsAnewUser(!isANewUser)}
                                 >
                                     Sign Up
+                                    {lastUsed === 'email' ? <LastUsed /> : null}
                                 </Button>
                             </form>
                         </CardContent>
