@@ -107,34 +107,34 @@ const GoogleAnalytics = ({ className }: CookieConsentProps) => {
                         className,
                     )}
                 >
-                    <Card className='relative max-w-md p-4 mx-auto rounded-lg shadow-lg'>
+                    <Card className='relative mx-auto max-w-md rounded-lg p-4 shadow-lg'>
                         <div className='flex items-start justify-between'>
                             <p className='flex-grow text-sm'>
                                 We use cookies to enhance site navigation and analyze site usage.
                                 View our Cookie Policy for more information.
                             </p>
                             <Button
-                                className='w-6 h-6 ml-4 border-none rounded-full'
+                                className='ml-4 h-6 w-6 rounded-full border-none'
                                 variant='outline'
                                 size='icon'
                                 onClick={() => setShowBanner(false)}
                             >
-                                <CrossCircledIcon className='w-6 h-6' />
+                                <CrossCircledIcon className='h-6 w-6' />
                             </Button>
                         </div>
-                        <div className='flex flex-col mt-4 md:flex-row md:gap-3'>
+                        <div className='mt-4 flex flex-col md:flex-row md:gap-3'>
                             <Dialog>
                                 <DialogTrigger asChild>
                                     <Button
-                                        className='w-full mb-2 md:mb-0 md:w-auto'
+                                        className='mb-2 w-full md:mb-0 md:w-auto'
                                         variant='outline'
                                     >
                                         Cookie Settings
                                     </Button>
                                 </DialogTrigger>
-                                <DialogContent className='flex flex-col border-none h-svh sm:h-auto sm:border-solid'>
+                                <DialogContent className='h-svh flex flex-col border-none sm:h-auto sm:border-solid'>
                                     <DialogHeader className='space-y-4'>
-                                        <DialogTitle className='text-2xl text-left'>
+                                        <DialogTitle className='text-left text-2xl'>
                                             Cookie Settings
                                         </DialogTitle>
                                         <hr className='my-4' />
@@ -146,7 +146,7 @@ const GoogleAnalytics = ({ className }: CookieConsentProps) => {
                                             <DialogClose asChild>
                                                 <Button
                                                     variant='outline'
-                                                    className='w-40 text-base text-left h-14'
+                                                    className='h-14 w-40 text-left text-base'
                                                     onClick={rejectAllCookies}
                                                 >
                                                     Reject analytics
@@ -154,7 +154,7 @@ const GoogleAnalytics = ({ className }: CookieConsentProps) => {
                                             </DialogClose>
                                             <DialogClose asChild>
                                                 <Button
-                                                    className='w-40 text-base text-left break-normal h-14'
+                                                    className='h-14 w-40 break-normal text-left text-base'
                                                     onClick={acceptAllCookies}
                                                 >
                                                     Allow analytics
@@ -221,10 +221,10 @@ const GoogleAnalytics = ({ className }: CookieConsentProps) => {
                                                 </div>
                                             </div>
                                             <hr className='my-4 mb-0' />
-                                            <DialogFooter className='flex justify-end mt-4 space-x-2'>
+                                            <DialogFooter className='mt-4 flex justify-end space-x-2'>
                                                 <DialogClose asChild>
                                                     <Button
-                                                        className='w-20 h-10 text-base'
+                                                        className='h-10 w-20 text-base'
                                                         type='submit'
                                                     >
                                                         Save
