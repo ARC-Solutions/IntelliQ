@@ -16,3 +16,4 @@ out
 *.tsbuildinfo
 bun.lockb
 .scannerwork
+/src/app/google-analytics.tsx
