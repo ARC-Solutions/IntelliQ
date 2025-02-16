@@ -1,17 +1,5 @@
-'use client';
-import Lottie from 'lottie-react';
-import Error from '../../public/404.json';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-const NotFound = () => {
-    return (
-        <div className='absolute left-1/2 top-1/2 flex w-[40] -translate-x-1/2 -translate-y-1/2 flex-col items-center md:w-[30vw]'>
-            <Lottie animationData={Error} />
-            <Link href='/'>
-                <Button>Back Home</Button>{' '}
-            </Link>
-        </div>
-    );
-};
+import NotFoundPage from './[...not_found]/page';
 
-export default NotFound;
+export default function NotFound() {
+    return <NotFoundPage />;
+}
